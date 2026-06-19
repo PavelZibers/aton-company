@@ -615,8 +615,24 @@
     .total { border: 2px solid #333; }
   }
 </style>
+<style>
+  .kp-nav-banner{position:sticky;top:0;z-index:1000;background:linear-gradient(135deg,#0B100D 0%,#131916 100%);border-bottom:2px solid #C9A961;padding:14px 0;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+  .kp-nav-inner{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .kp-nav-inner .logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#C9A961;text-decoration:none;margin-right:auto}
+  .kp-nav-inner a.kp-link{color:#ECE9E1;text-decoration:none;padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;transition:all 0.2s;border:1px solid transparent}
+  .kp-nav-inner a.kp-link:hover{background:rgba(201,169,97,0.1);border-color:#C9A961;color:#C9A961}
+  .kp-nav-inner a.kp-link.active{background:#C9A961;color:#0B100D;font-weight:600}
+</style>
 </head>
 <body>
+<div class="kp-nav-banner">
+  <div class="kp-nav-inner">
+    <a href="../" class="logo">АТОН</a>
+    <a href="commercial.html" class="kp-link">📊 Коммерческое</a>
+    <a href="a100.html" class="kp-link">🏠 Дом А-100 (100 м²)</a>
+    <a href="index.html" class="kp-link active">🏘 Дом 200 м² · Лесной Остров</a>
+  </div>
+</div>
 
 <header class="header">
   <div class="container header-inner">
