@@ -33,7 +33,6 @@
     padding: 0 20px;
   }
   
-  /* HERO */
   .hero {
     background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     padding: 60px 0 40px;
@@ -106,10 +105,7 @@
   
   .hero-cta:hover { transform: scale(1.05); }
   
-  /* SECTIONS */
-  section {
-    padding: 60px 0;
-  }
+  section { padding: 60px 0; }
   
   h2 {
     font-size: 36px;
@@ -120,7 +116,6 @@
   
   h2 .gold { color: var(--gold); }
   
-  /* STATS */
   .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -149,7 +144,6 @@
     letter-spacing: 0.5px;
   }
   
-  /* PLAN */
   .plan {
     background: var(--bg-card);
     border-radius: 16px;
@@ -176,7 +170,6 @@
   .plan-room .name { font-weight: 600; }
   .plan-room .area { color: var(--gold); font-weight: 700; }
   
-  /* CONSTRUCTIVE */
   .constr-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -190,24 +183,10 @@
     padding: 24px;
   }
   
-  .constr-item .icon {
-    font-size: 32px;
-    margin-bottom: 12px;
-  }
+  .constr-item .icon { font-size: 32px; margin-bottom: 12px; }
+  .constr-item .title { font-size: 18px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+  .constr-item .desc { font-size: 14px; color: var(--text-dim); }
   
-  .constr-item .title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  
-  .constr-item .desc {
-    font-size: 14px;
-    color: var(--text-dim);
-  }
-  
-  /* INCLUDED / NOT INCLUDED */
   .included {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -232,9 +211,7 @@
   .incl-card.in h3 { color: var(--green); }
   .incl-card.out h3 { color: var(--red); }
   
-  .incl-card ul {
-    list-style: none;
-  }
+  .incl-card ul { list-style: none; }
   
   .incl-card li {
     padding: 10px 0;
@@ -255,7 +232,6 @@
     font-size: 14px;
   }
   
-  /* PAYMENT STAGES */
   .stages {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -284,25 +260,10 @@
     margin: 0 auto 12px;
   }
   
-  .stage .stage-name {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
+  .stage .stage-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .stage .stage-sum { font-size: 16px; color: var(--gold); font-weight: 700; }
+  .stage .stage-pct { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
   
-  .stage .stage-sum {
-    font-size: 16px;
-    color: var(--gold);
-    font-weight: 700;
-  }
-  
-  .stage .stage-pct {
-    font-size: 11px;
-    color: var(--text-dim);
-    margin-top: 4px;
-  }
-  
-  /* ADVANTAGES */
   .advantages {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -321,7 +282,6 @@
   .adv .title { font-weight: 700; margin-bottom: 8px; color: var(--gold); }
   .adv .desc { font-size: 13px; color: var(--text-dim); }
   
-  /* FINAL CTA */
   .final-cta {
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
     border-radius: 20px;
@@ -357,7 +317,6 @@
     border-top: 1px solid rgba(255,255,255,0.1);
   }
   
-  /* MOBILE */
   @media (max-width: 768px) {
     .hero h1 { font-size: 32px; }
     .price-block .price { font-size: 36px; }
@@ -373,7 +332,6 @@
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="container">
     <div class="badge">🏠 Готовый проект • Срок 6 мес</div>
@@ -389,129 +347,54 @@
   </div>
 </div>
 
-<!-- STATS -->
 <section>
   <div class="container">
     <div class="stats">
-      <div class="stat">
-        <div class="num">100 м²</div>
-        <div class="label">Общая площадь</div>
-      </div>
-      <div class="stat">
-        <div class="num">1</div>
-        <div class="label">Этаж</div>
-      </div>
-      <div class="stat">
-        <div class="num">3</div>
-        <div class="label">Спальни</div>
-      </div>
-      <div class="stat">
-        <div class="num">6 мес</div>
-        <div class="label">Срок стройки</div>
-      </div>
+      <div class="stat"><div class="num">100 м²</div><div class="label">Общая площадь</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">Этаж</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Спальни</div></div>
+      <div class="stat"><div class="num">6 мес</div><div class="label">Срок стройки</div></div>
     </div>
   </div>
 </section>
 
-<!-- PLAN -->
 <section>
   <div class="container">
     <h2>📐 Планировка <span class="gold">92,38 м²</span></h2>
-    
     <div class="plan">
       <div class="plan-grid">
-        <div class="plan-room">
-          <span class="name">Кухня-гостиная-столовая</span>
-          <span class="area">33,06 м²</span>
-        </div>
-        <div class="plan-room">
-          <span class="name">Спальня 1 (главная)</span>
-          <span class="area">14,09 м²</span>
-        </div>
-        <div class="plan-room">
-          <span class="name">Спальня 2</span>
-          <span class="area">11,19 м²</span>
-        </div>
-        <div class="plan-room">
-          <span class="name">Спальня 3</span>
-          <span class="area">11,18 м²</span>
-        </div>
-        <div class="plan-room">
-          <span class="name">Коридор</span>
-          <span class="area">10,93 м²</span>
-        </div>
-        <div class="plan-room">
-          <span class="name">Ванная</span>
-          <span class="area">6,17 м²</span>
-        </div>
-        <div class="plan-room">
-          <span class="name">Котельная</span>
-          <span class="area">5,76 м²</span>
-        </div>
-        <div class="plan-room">
-          <span class="name">Крыльцо</span>
-          <span class="area">4,40 м²</span>
-        </div>
+        <div class="plan-room"><span class="name">Кухня-гостиная-столовая</span><span class="area">33,06 м²</span></div>
+        <div class="plan-room"><span class="name">Спальня 1 (главная)</span><span class="area">14,09 м²</span></div>
+        <div class="plan-room"><span class="name">Спальня 2</span><span class="area">11,19 м²</span></div>
+        <div class="plan-room"><span class="name">Спальня 3</span><span class="area">11,18 м²</span></div>
+        <div class="plan-room"><span class="name">Коридор</span><span class="area">10,93 м²</span></div>
+        <div class="plan-room"><span class="name">Ванная</span><span class="area">6,17 м²</span></div>
+        <div class="plan-room"><span class="name">Котельная</span><span class="area">5,76 м²</span></div>
+        <div class="plan-room"><span class="name">Крыльцо</span><span class="area">4,40 м²</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONSTRUCTIVE -->
 <section>
   <div class="container">
     <h2>🏗 Что входит в <span class="gold">конструктив</span></h2>
-    
     <div class="constr-grid">
-      <div class="constr-item">
-        <div class="icon">🏗</div>
-        <div class="title">Фундамент</div>
-        <div class="desc">Монолитная ж/б плита 300 мм, бетон В22,5, армирование d12, гидроизоляция, ЭППС 100 мм</div>
-      </div>
-      <div class="constr-item">
-        <div class="icon">🧱</div>
-        <div class="title">Стены</div>
-        <div class="desc">Газоблок D500 300 мм + минвата 100 мм + штукатурка «короед» + акценты планкеном</div>
-      </div>
-      <div class="constr-item">
-        <div class="icon">🏠</div>
-        <div class="title">Кровля</div>
-        <div class="desc">Стропильная система, минвата 200 мм, Шинглас (ТехноНИКОЛЬ), водосток Grand Line</div>
-      </div>
-      <div class="constr-item">
-        <div class="icon">🪟</div>
-        <div class="title">Окна и двери</div>
-        <div class="desc">ПВХ 5-камерный, 2-камерный стеклопакет, RAL 7024. Входная металлическая + 5 межкомнатных</div>
-      </div>
-      <div class="constr-item">
-        <div class="icon">🔥</div>
-        <div class="title">Отопление</div>
-        <div class="desc">Тёплый пол водяной по всей площади (PEX-b), газовый котёл, дымоход сэндвич</div>
-      </div>
-      <div class="constr-item">
-        <div class="icon">⚡</div>
-        <div class="title">Электрика</div>
-        <div class="desc">15 кВт, 3 фазы, ВВГнг-LS, щит с автоматами и УЗО, разводка по дому</div>
-      </div>
-      <div class="constr-item">
-        <div class="icon">🚿</div>
-        <div class="title">Вода + канализация</div>
-        <div class="desc">ПП-трубы Ø20, ПЭ 32 (ввод), канализация Ø110, водонагреватель 80 л</div>
-      </div>
-      <div class="constr-item">
-        <div class="icon">🏛</div>
-        <div class="title">Полы</div>
-        <div class="desc">Стяжка ЦПС М200, 100 мм с армированием сеткой 4С Вр1. Чистовое покрытие не входит</div>
-      </div>
+      <div class="constr-item"><div class="icon">🏗</div><div class="title">Фундамент</div><div class="desc">Монолитная ж/б плита 300 мм, бетон В22,5, армирование d12, гидроизоляция, ЭППС 100 мм</div></div>
+      <div class="constr-item"><div class="icon">🧱</div><div class="title">Стены</div><div class="desc">Газоблок D500 300 мм + минвата 100 мм + штукатурка «короед» + акценты планкеном</div></div>
+      <div class="constr-item"><div class="icon">🏠</div><div class="title">Кровля</div><div class="desc">Стропильная система, минвата 200 мм, Шинглас (ТехноНИКОЛЬ), водосток Grand Line</div></div>
+      <div class="constr-item"><div class="icon">🪟</div><div class="title">Окна и двери</div><div class="desc">ПВХ 5-камерный, 2-камерный стеклопакет, RAL 7024. Входная металлическая + 5 межкомнатных</div></div>
+      <div class="constr-item"><div class="icon">🔥</div><div class="title">Отопление</div><div class="desc">Тёплый пол водяной по всей площади (PEX-b), газовый котёл, дымоход сэндвич</div></div>
+      <div class="constr-item"><div class="icon">⚡</div><div class="title">Электрика</div><div class="desc">15 кВт, 3 фазы, ВВГнг-LS, щит с автоматами и УЗО, разводка по дому</div></div>
+      <div class="constr-item"><div class="icon">🚿</div><div class="title">Вода + канализация</div><div class="desc">ПП-трубы Ø20, ПЭ 32 (ввод), канализация Ø110, водонагреватель 80 л</div></div>
+      <div class="constr-item"><div class="icon">🏛</div><div class="title">Полы</div><div class="desc">Стяжка ЦПС М200, 100 мм с армированием сеткой 4С Вр1. Чистовое покрытие не входит</div></div>
     </div>
   </div>
 </section>
 
-<!-- INCLUDED / NOT INCLUDED -->
 <section>
   <div class="container">
     <h2>📦 <span class="gold">Включено</span> и <span style="color:var(--red)">не включено</span></h2>
-    
     <div class="included">
       <div class="incl-card in">
         <h3><span class="check">✓</span> В стоимость 7,9 млн ₽</h3>
@@ -527,7 +410,6 @@
           <li>Гарантия 5 лет на конструктив</li>
         </ul>
       </div>
-      
       <div class="incl-card out">
         <h3><span class="cross">✗</span> За доплату (опции)</h3>
         <ul>
@@ -545,91 +427,36 @@
   </div>
 </section>
 
-<!-- PAYMENT -->
 <section>
   <div class="container">
     <h2>💳 Этапы <span class="gold">оплаты</span></h2>
-    
     <div class="stages">
-      <div class="stage">
-        <div class="num">1</div>
-        <div class="stage-name">Фундамент</div>
-        <div class="stage-sum">2 370 000 ₽</div>
-        <div class="stage-pct">30%</div>
-      </div>
-      <div class="stage">
-        <div class="num">2</div>
-        <div class="stage-name">Стены</div>
-        <div class="stage-sum">2 370 000 ₽</div>
-        <div class="stage-pct">30%</div>
-      </div>
-      <div class="stage">
-        <div class="num">3</div>
-        <div class="stage-name">Кровля</div>
-        <div class="stage-sum">1 580 000 ₽</div>
-        <div class="stage-pct">20%</div>
-      </div>
-      <div class="stage">
-        <div class="num">4</div>
-        <div class="stage-name">Окна + инж.</div>
-        <div class="stage-sum">1 185 000 ₽</div>
-        <div class="stage-pct">15%</div>
-      </div>
-      <div class="stage">
-        <div class="num">5</div>
-        <div class="stage-name">Сдача</div>
-        <div class="stage-sum">395 000 ₽</div>
-        <div class="stage-pct">5%</div>
-      </div>
+      <div class="stage"><div class="num">1</div><div class="stage-name">Фундамент</div><div class="stage-sum">2 370 000 ₽</div><div class="stage-pct">30%</div></div>
+      <div class="stage"><div class="num">2</div><div class="stage-name">Стены</div><div class="stage-sum">2 370 000 ₽</div><div class="stage-pct">30%</div></div>
+      <div class="stage"><div class="num">3</div><div class="stage-name">Кровля</div><div class="stage-sum">1 580 000 ₽</div><div class="stage-pct">20%</div></div>
+      <div class="stage"><div class="num">4</div><div class="stage-name">Окна + инж.</div><div class="stage-sum">1 185 000 ₽</div><div class="stage-pct">15%</div></div>
+      <div class="stage"><div class="num">5</div><div class="stage-name">Сдача</div><div class="stage-sum">395 000 ₽</div><div class="stage-pct">5%</div></div>
     </div>
-    
     <p style="text-align:center; color:var(--text-dim); margin-top:20px;">
       💡 Возможна <span style="color:var(--gold); font-weight:600;">ипотека</span> (семейная 6%) или <span style="color:var(--gold); font-weight:600;">рассрочка 6 мес</span> без процентов
     </p>
   </div>
 </section>
 
-<!-- ADVANTAGES -->
 <section>
   <div class="container">
     <h2>🏆 Почему <span class="gold">АТОН</span></h2>
-    
     <div class="advantages">
-      <div class="adv">
-        <div class="icon">🎓</div>
-        <div class="title">Опыт 20+ лет</div>
-        <div class="desc">600+ построенных домов, знаем все нюансы</div>
-      </div>
-      <div class="adv">
-        <div class="icon">⏱</div>
-        <div class="title">Срок 6 мес</div>
-        <div class="desc">Фиксируем в договоре, платим за просрочку</div>
-      </div>
-      <div class="adv">
-        <div class="icon">🏠</div>
-        <div class="title">Демо-дом</div>
-        <div class="desc">Поживите 1-2 ночи бесплатно в Златоусте</div>
-      </div>
-      <div class="adv">
-        <div class="icon">📱</div>
-        <div class="title">Личный кабинет</div>
-        <div class="desc">Фото, статус, чат с прорабом каждый день</div>
-      </div>
-      <div class="adv">
-        <div class="icon">🪑</div>
-        <div class="title">Мебель в подарок</div>
-        <div class="desc">Корпусная мебель АТОН к проекту в комплекте</div>
-      </div>
-      <div class="adv">
-        <div class="icon">🔒</div>
-        <div class="title">Фикс. цена</div>
-        <div class="desc">Никаких «доплат» — что в смете, то и платите</div>
-      </div>
+      <div class="adv"><div class="icon">🎓</div><div class="title">Опыт 20+ лет</div><div class="desc">600+ построенных домов, знаем все нюансы</div></div>
+      <div class="adv"><div class="icon">⏱</div><div class="title">Срок 6 мес</div><div class="desc">Фиксируем в договоре, платим за просрочку</div></div>
+      <div class="adv"><div class="icon">🏠</div><div class="title">Демо-дом</div><div class="desc">Поживите 1-2 ночи бесплатно в Златоусте</div></div>
+      <div class="adv"><div class="icon">📱</div><div class="title">Личный кабинет</div><div class="desc">Фото, статус, чат с прорабом каждый день</div></div>
+      <div class="adv"><div class="icon">🪑</div><div class="title">Мебель в подарок</div><div class="desc">Корпусная мебель АТОН к проекту в комплекте</div></div>
+      <div class="adv"><div class="icon">🔒</div><div class="title">Фикс. цена</div><div class="desc">Никаких «доплат» — что в смете, то и платите</div></div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
 <section>
   <div class="container">
     <div class="final-cta">
