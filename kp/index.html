@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КП — Жилой дом 200 м² · пос. Лесной Остров · АТОН</title>
+<meta name="description" content="Коммерческое предложение на строительство жилого дома 200 м² в пос. Лесной Остров, Сосновский район, Челябинская область. АТОН — строим жизни, а не стены.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B100D;
+    --bg-elev: #131916;
+    --bg-card: #1A211D;
+    --border: #2A322D;
+    --border-light: #3A443D;
+    --accent: #C9A961;
+    --accent-bright: #E0C481;
+    --accent-dim: #8A7546;
+    --text: #ECE9E1;
+    --text-muted: #8B8680;
+    --text-dim: #5A564F;
+    --shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
+    --shadow-glow: 0 0 80px -20px rgba(201,169,97,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(201,169,97,0.06), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(201,169,97,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  /* HEADER */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11,16,13,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    color: var(--bg);
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .header-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .header-link:hover { color: var(--text); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 4px 20px -4px rgba(201,169,97,0.4);
+  }
+  .btn-primary:hover {
+    background: var(--accent-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px -4px rgba(201,169,97,0.5);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-light);
+  }
+  .btn-ghost:hover {
+    background: var(--bg-elev);
+    border-color: var(--accent-dim);
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 100px 0 80px;
+    text-align: center;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(201,169,97,0.08);
+    border: 1px solid rgba(201,169,97,0.25);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+  .badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 76px);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero h1 .accent { color: var(--accent); font-style: italic; }
+  .hero-sub {
+    font-size: 20px;
+    color: var(--text-muted);
+    max-width: 720px;
+    margin: 0 auto 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-meta span {
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+  .hero-meta span:not(:last-child)::after {
+    content: '·';
+    margin-left: 12px;
+    color: var(--accent-dim);
+  }
+
+  /* QUICK FACTS */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 60px 0;
+  }
+  .fact {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .fact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .fact:hover { transform: translateY(-4px); border-color: var(--accent-dim); }
+  .fact:hover::before { opacity: 1; }
+  .fact-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .fact-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* SECTIONS */
+  .section {
+    position: relative;
+    padding: 80px 0;
+  }
+  .section-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-eyebrow {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+  .section h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* TECH CARDS */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .tech-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+  }
+  .tech-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-dim);
+    box-shadow: var(--shadow);
+  }
+  .tech-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(201,169,97,0.1);
+    border: 1px solid rgba(201,169,97,0.2);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .tech-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .tech-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* TABLE */
+  .table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+  }
+  thead {
+    background: var(--bg-elev);
+  }
+  th {
+    text-align: left;
+    padding: 20px 24px;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+  }
+  th:last-child, td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(201,169,97,0.03); }
+  td {
+    padding: 18px 24px;
+    vertical-align: top;
+  }
+  td:first-child {
+    font-weight: 500;
+    color: var(--text);
+    width: 32%;
+  }
+  td:nth-child(2) {
+    color: var(--text-muted);
+    font-size: 13.5px;
+  }
+  td:last-child {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  /* TOTAL */
+  .total {
+    margin-top: 32px;
+    background: linear-gradient(135deg, rgba(201,169,97,0.08), rgba(201,169,97,0.02));
+    border: 1px solid rgba(201,169,97,0.25);
+    border-radius: 20px;
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .total::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(201,169,97,0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .total-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .total-value {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .total-sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .total-per-m {
+    text-align: right;
+  }
+  .total-per-m .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--text);
+  }
+  .total-per-m .lbl {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* FEATURES */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .feature {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .feature:hover { border-color: var(--accent-dim); }
+  .feature-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: var(--bg);
+  }
+  .feature h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .feature p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* TERMS */
+  .terms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .terms-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .terms-block h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .terms-list { list-style: none; }
+  .terms-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    color: var(--text);
+    font-size: 14.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  .terms-list li:last-child { border-bottom: none; }
+  .check {
+    flex-shrink: 0;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .cta {
+    margin: 60px 0 100px;
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-elev));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 40% 60% at 20% 50%, rgba(201,169,97,0.12), transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 50%, rgba(201,169,97,0.08), transparent 60%);
+  }
+  .cta > * { position: relative; }
+  .cta h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 16px;
+  }
+  .cta p {
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 540px;
+    margin: 0 auto 36px;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer a:hover { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    .tech-grid { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+    .terms { grid-template-columns: 1fr; }
+    .total { flex-direction: column; text-align: center; }
+    .total-per-m { text-align: center; }
+    .container { padding: 0 20px; }
+    .section { padding: 60px 0; }
+    .cta { padding: 40px 24px; margin: 40px 0 60px; }
+  }
+  @media (max-width: 600px) {
+    .header-link { display: none; }
+    .hero { padding: 60px 0 40px; }
+    th, td { padding: 14px 12px; font-size: 13px; }
+    th:first-child, td:first-child { width: auto; }
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; color: black; }
+    .header, .cta, .footer { display: none; }
+    .section { padding: 30px 0; page-break-inside: avoid; }
+    .total { border: 2px solid #333; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="https://atonsk.ru" class="logo">
+      <div class="logo-mark">А</div>
+      <div class="logo-text">АТОН</div>
+    </a>
+    <div class="header-actions">
+      <a href="https://atonsk.ru" class="header-link">atonsk.ru</a>
+      <a href="#cta" class="btn btn-primary">Связаться</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge">Коммерческое предложение</div>
+    <h1>Жилой дом <span class="accent">200 м²</span></h1>
+    <p class="hero-sub">Двухэтажный дом под ключ с мебелью. Технология АТОН: тёплый пол без батарей, высота потолков 3,15 м, корпусная мебель собственного производства.</p>
+    <div class="hero-meta">
+      <span>пос. Лесной Остров</span>
+      <span>Сосновский район</span>
+      <span>Челябинская область</span>
+      <span>«28» мая 2026 г.</span>
+    </div>
+
+    <div class="facts reveal">
+      <div class="fact">
+        <div class="fact-value">200</div>
+        <div class="fact-label">м² площадь</div>
+      </div>
+      <div class="fact">
+        <div class="fact-value">2</div>
+        <div class="fact-label">этажа</div>
+      </div>
+      <div class="fact">
+        <div class="fact-value">6</div>
+        <div class="fact-label">месяцев</div>
+      </div>
+      <div class="fact">
+        <div class="fact-value">12,2</div>
+        <div class="fact-label">млн ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Технологии</div>
+      <h2>Что внутри</h2>
+      <p class="section-sub">Дом собирается по проверенной технологии АТОН — энергоэффективно, тихо, без лишнего.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 12h.01M9 15h.01M9 18h.01M15 9h.01M15 12h.01M15 15h.01M15 18h.01"/></svg>
+        </div>
+        <h3>Газоблок D500, 300 мм</h3>
+        <p>Несущие стены из автоклавного газобетона — тёплый, прочный, не горит.</p>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12l3-3M2 12l3 3M22 12l-3-3M22 12l-3 3M6 12v6M18 12v6M3 21h18"/></svg>
+        </div>
+        <h3>Мягкая черепица Шинглас</h3>
+        <p>Скатная кровля Технониколь — не шумит, не ржавеет, держит уральские морозы.</p>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9-9-4-9-9zM7 12h10M12 7v10"/><path d="M8 16c1 0 2 1 2 2M16 8c-1 0-2 1-2 2"/></svg>
+        </div>
+        <h3>Тёплый пол без батарей</h3>
+        <p>Водяной тёплый пол PEX-b EVOH 16×2,0 — равномерный нагрев, никаких радиаторов.</p>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <h3>ПВХ-окна 70 мм</h3>
+        <p>Двухкамерный стеклопакет 40 мм, ламинация антрацит — тёплые, тихие, красивые.</p>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M9 3v18M15 9v9M15 18h6"/></svg>
+        </div>
+        <h3>ЭППС + минвата</h3>
+        <p>Фасад 100 мм ЭППС по цоколю + 100 мм минваты + декоративная штукатурка.</p>
+      </div>
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12V6a2 2 0 012-2h10a2 2 0 012 2v6M3 12h18v8H3zM9 16h6"/></svg>
+        </div>
+        <h3>Корпусная мебель</h3>
+        <p>Кухня, шкафы, гардеробная — собственное производство АТОН. Заезжайте с чемоданом.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Состав и стоимость</div>
+      <h2>Что входит в цену</h2>
+      <p class="section-sub">Каждая строка — отдельный этап работ с фиксированной стоимостью.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Раздел работ</th>
+            <th>Описание</th>
+            <th>Стоимость</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Демонтажные работы</td>
+            <td>Поэтапная разборка конструкций дома, вывоз строительного мусора с участка</td>
+            <td>1 000 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Фундамент</td>
+            <td>Существующий — работы не требуются</td>
+            <td style="color:var(--text-muted)">—</td>
+          </tr>
+          <tr>
+            <td>Стены, перегородки, армопояс</td>
+            <td>Газоблок D500 300 мм с армированием, перегородки 150 мм, перемычки, 2 армопояса М300</td>
+            <td>3 800 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Перекрытие +3.300</td>
+            <td>Укладка плит перекрытия, кладка стен из кирпича (заторцовка плит)</td>
+            <td>800 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Перекрытие +6.500</td>
+            <td>Деревянные балки 40×200, био-защита, утепление 200 мм, пароизоляция, подшив доской</td>
+            <td>400 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Кровля</td>
+            <td>Стропильная система, обрешётка, OSB 12 мм, подкладочный ковёр, Шинглас, вент. элементы</td>
+            <td>1 800 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Окна ~60 м²</td>
+            <td>ПВХ-профиль 70 мм, ламинация антрацит, 2-камерный стеклопакет 40 мм; входная дверь</td>
+            <td>700 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Внутренняя отделка</td>
+            <td>Гипсовая штукатурка, цементная в котельной/санузле, облицовка керамической плиткой</td>
+            <td>750 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Стяжка пола</td>
+            <td>ЭППС 50 мм, фольгированная подложка 5 мм, армирующая сетка, полусухая стяжка 70–100 мм</td>
+            <td>450 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Водоснабжение</td>
+            <td>ПНД-труба от существующей скважины до котельной (в изоляции с греющим кабелем)</td>
+            <td>350 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Электроснабжение</td>
+            <td>Прокладка кабелей, монтаж электрощита, подрозетники без чистовой фурнитуры</td>
+            <td>100 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Отопление</td>
+            <td>Укладка труб водяного тёплого пола PEX-b EVOH 16×2,0 из сшитого полиэтилена</td>
+            <td>550 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Фасад</td>
+            <td>ЭППС 100 мм по цоколю, минвата 100 мм, армирующий слой, декоративная штукатурка, окраска, подшив свесов, водостоки ПВХ</td>
+            <td>1 500 000 ₽</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="total reveal">
+      <div>
+        <div class="total-label">Общая стоимость</div>
+        <div class="total-value" data-target="12200000">12 200 000 ₽</div>
+        <div class="total-sub">Фиксированная смета · Поэтапная оплата</div>
+      </div>
+      <div class="total-per-m">
+        <div class="num">61 000 ₽</div>
+        <div class="lbl">за м²</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Фишки АТОН</div>
+      <h2>Что отличает нас от других</h2>
+      <p class="section-sub">Не «как у всех» — то, что мы делаем и никто другой в регионе.</p>
+    </div>
+    <div class="features">
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2zM9 22V12h6v10"/></svg>
+        </div>
+        <div>
+          <h3>Поживите в демо-доме</h3>
+          <p>100 м² в Златоусте — 1–2 ночи бесплатно перед покупкой. Не «посмотрите», а почувствуйте.</p>
+        </div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div>
+          <h3>Личный кабинет клиента</h3>
+          <p>Фото со стройки, статус работ, чат с прорабом — всё в одном месте, каждый день.</p>
+        </div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3h18v18H3zM3 9h18M9 3v18"/></svg>
+        </div>
+        <div>
+          <h3>Мебель в комплекте</h3>
+          <p>Кухня, шкафы, гардеробная — собственное производство. Заезжайте с чемоданом.</p>
+        </div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h3>Тёплый пол без батарей</h3>
+          <p>Энергоэффективная система отопления — никаких радиаторов на стенах, тепло снизу вверх.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Условия</div>
+      <h2>Как мы работаем</h2>
+    </div>
+    <div class="terms reveal">
+      <div class="terms-block">
+        <h3>В стоимость входит</h3>
+        <ul class="terms-list">
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Все работы по таблице состава</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Материалы и доставка</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Корпусная мебель АТОН</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Гарантия на конструктив 5 лет</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Доступ в личный кабинет</li>
+        </ul>
+      </div>
+      <div class="terms-block">
+        <h3>Дополнительно оплачивается</h3>
+        <ul class="terms-list">
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--text-dim)"><polyline points="20 6 9 17 4 12"/></svg>Котельное оборудование</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--text-dim)"><polyline points="20 6 9 17 4 12"/></svg>Сантехнические приборы</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--text-dim)"><polyline points="20 6 9 17 4 12"/></svg>Чистовая электрика</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--text-dim)"><polyline points="20 6 9 17 4 12"/></svg>Межкомнатные двери</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--text-dim)"><polyline points="20 6 9 17 4 12"/></svg>Благоустройство участка, забор</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--text-dim)"><polyline points="20 6 9 17 4 12"/></svg>Подключение газа</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="cta reveal" id="cta">
+    <h2>Готовы обсудить ваш дом?</h2>
+    <p>Запишитесь на бесплатный выезд на участок — посмотрим, посчитаем, ответим на все вопросы. Демо-дом в Златоусте — поживите 1–2 ночи бесплатно.</p>
+    <div class="cta-actions">
+      <a href="https://atonsk.ru" class="btn btn-primary">Оставить заявку</a>
+      <a href="https://atonsk.ru" class="btn btn-ghost">Записаться на демо</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>© 2026 АТОН · Строительная компания · Златоуст, Челябинская обл.</div>
+    <div><a href="https://atonsk.ru">atonsk.ru</a> · <a href="mailto:info@atonsk.ru">info@atonsk.ru</a></div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
