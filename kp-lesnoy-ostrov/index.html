@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коммерческое предложение — АТОН</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    color: #1a1a1a;
+    background: #e9ecef;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: #fff;
+    padding: 50px 55px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #0a2540 0%, #c9a14a 50%, #0a2540 100%);
+  }
+
+  /* COVER */
+  .cover {
+    text-align: center;
+    padding: 40px 0 50px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 40px;
+  }
+  .logo {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 8px;
+    color: #0a2540;
+    margin-bottom: 6px;
+  }
+  .logo-sub {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #c9a14a;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .cover h1 {
+    font-size: 28px;
+    color: #0a2540;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .cover .object {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 6px;
+  }
+  .cover .date {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 25px;
+  }
+  .cover .doc-id {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 14px;
+    background: #f3f4f6;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #6b7280;
+    letter-spacing: 1px;
+  }
+
+  /* SECTIONS */
+  section {
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 17px;
+    color: #0a2540;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #c9a14a;
+    display: inline-block;
+  }
+  p {
+    font-size: 13.5px;
+    margin-bottom: 10px;
+    color: #2d3748;
+    text-align: justify;
+  }
+  ul {
+    margin: 10px 0 10px 20px;
+    font-size: 13.5px;
+  }
+  li {
+    margin-bottom: 6px;
+    color: #2d3748;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .about-item {
+    background: #f8f9fb;
+    border-left: 3px solid #c9a14a;
+    padding: 12px 14px;
+  }
+  .about-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0a2540;
+    margin-bottom: 2px;
+  }
+  .about-label {
+    font-size: 11px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 12.5px;
+  }
+  th {
+    background: #0a2540;
+    color: #fff;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  th.num, td.num {
+    text-align: right;
+    width: 110px;
+  }
+  th.center {
+    text-align: center;
+    width: 50px;
+  }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  tr:nth-child(even) td {
+    background: #fafbfc;
+  }
+  tr.total td {
+    background: #0a2540 !important;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+  }
+  tr.subtotal td {
+    background: #f3f4f6;
+    font-weight: 600;
+    color: #0a2540;
+  }
+
+  /* BIG PRICE */
+  .price-block {
+    background: linear-gradient(135deg, #0a2540 0%, #1e3a5f 100%);
+    color: #fff;
+    padding: 30px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-block::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201,161,74,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .price-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c9a14a;
+    margin-bottom: 12px;
+  }
+  .price-value {
+    font-size: 44px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .price-note {
+    font-size: 12px;
+    color: #c9d1de;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    margin-top: 14px;
+    padding-left: 20px;
+    border-left: 2px solid #c9a14a;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 6px 0 14px 20px;
+    font-size: 13.5px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 12px;
+    width: 10px;
+    height: 10px;
+    background: #c9a14a;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #c9a14a;
+  }
+  .timeline-item strong {
+    color: #0a2540;
+  }
+
+  /* GUARANTEE */
+  .guarantee-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .guarantee-item {
+    background: #f8f9fb;
+    padding: 14px 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .guarantee-years {
+    font-size: 24px;
+    font-weight: 800;
+    color: #c9a14a;
+    min-width: 70px;
+  }
+  .guarantee-text {
+    font-size: 12.5px;
+    color: #2d3748;
+  }
+  .guarantee-text strong {
+    display: block;
+    color: #0a2540;
+    margin-bottom: 2px;
+  }
+
+  /* NOT INCLUDED */
+  .not-included {
+    background: #fef9e7;
+    border-left: 4px solid #c9a14a;
+    padding: 14px 18px;
+    margin-top: 12px;
+    font-size: 12.5px;
+  }
+  .not-included strong {
+    color: #0a2540;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* CONTACTS */
+  .contacts {
+    background: #0a2540;
+    color: #fff;
+    padding: 30px;
+    margin: 40px -55px -50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+  .contacts-left h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #c9a14a;
+  }
+  .contacts-left p {
+    color: #c9d1de;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .contacts-right {
+    text-align: right;
+  }
+  .contacts-right .phone {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .contacts-right .small {
+    font-size: 12px;
+    color: #c9d1de;
+  }
+
+  .footer-note {
+    font-size: 10.5px;
+    color: #9ca3af;
+    font-style: italic;
+    margin-top: 30px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="logo">АТОН</div>
+    <div class="logo-sub">строительная компания</div>
+    <h1>Коммерческое предложение</h1>
+    <div class="object">Строительство жилого дома 200 м²</div>
+    <div class="object">пос. Лесной Остров, Сосновский район, Челябинская область</div>
+    <div class="date">17 июня 2026 г.</div>
+    <div class="doc-id">КП-2026-0617</div>
+  </div>
+
+  <!-- О КОМПАНИИ -->
+  <section>
+    <h2>О компании</h2>
+    <p>Строительная компания <strong>АТОН</strong> — 20+ лет на рынке Челябинской области. Специализация — частные дома под ключ с собственной мебелью. Строим так, чтобы клиент заехал с чемоданом и жил.</p>
+    <div class="about-grid">
+      <div class="about-item">
+        <div class="about-num">20+</div>
+        <div class="about-label">лет на рынке</div>
+      </div>
+      <div class="about-item">
+        <div class="about-num">~30</div>
+        <div class="about-label">домов в год</div>
+      </div>
+      <div class="about-item">
+        <div class="about-num">~50</div>
+        <div class="about-label">человек в команде</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОБЪЕКТ -->
+  <section>
+    <h2>Объект строительства</h2>
+    <p><strong>Тип:</strong> 2-этажный жилой дом</p>
+    <p><strong>Площадь:</strong> 200 м²</p>
+    <p><strong>Адрес:</strong> Челябинская обл., Сосновский р-н, пос. Лесной Остров</p>
+    <p><strong>Технология:</strong> несущие стены — газобетонные блоки D500, 300 мм; перегородки — газоблок 150 мм; перекрытие 1 этажа — плиты ПК; перекрытие 2 этажа — деревянное по балкам; кровля — гибкая черепица (мягкая кровля); фасад — СФТК (минвата 100 мм + декоративная штукатурка).</p>
+  </section>
+
+  <!-- СОСТАВ РАБОТ -->
+  <section>
+    <h2>Состав работ и материалов</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="center">№</th>
+          <th>Раздел</th>
+          <th class="num">Стоимость, ₽</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center">1</td>
+          <td>Демонтажные работы (при необходимости), подготовка участка</td>
+          <td class="num">400 000</td>
+        </tr>
+        <tr>
+          <td class="center">2</td>
+          <td>Устройство фундамента (ленточный / плита — по результатам изысканий)</td>
+          <td class="num">1 500 000</td>
+        </tr>
+        <tr>
+          <td class="center">3</td>
+          <td>Стены наружные (газоблок D500 300 мм) + армирование</td>
+          <td class="num">2 600 000</td>
+        </tr>
+        <tr>
+          <td class="center">4</td>
+          <td>Перегородки внутренние (газоблок D500 150 мм)</td>
+          <td class="num">600 000</td>
+        </tr>
+        <tr>
+          <td class="center">5</td>
+          <td>Армопояса 2 шт (300×300, 4×d12)</td>
+          <td class="num">600 000</td>
+        </tr>
+        <tr>
+          <td class="center">6</td>
+          <td>Перекрытие 1 этажа (плиты ПК с монтажом и анкеровкой)</td>
+          <td class="num">700 000</td>
+        </tr>
+        <tr>
+          <td class="center">7</td>
+          <td>Перекрытие 2 этажа (деревянные балки, утепление 200 мм, пароизоляция)</td>
+          <td class="num">400 000</td>
+        </tr>
+        <tr>
+          <td class="center">8</td>
+          <td>Кровля (стропильная система, OSB 12, подкладочный ковёр, гибкая черепица)</td>
+          <td class="num">1 800 000</td>
+        </tr>
+        <tr>
+          <td class="center">9</td>
+          <td>Окна ПВХ 70 мм (антрацит, 2-камерный стеклопакет) + входная дверь</td>
+          <td class="num">800 000</td>
+        </tr>
+        <tr>
+          <td class="center">10</td>
+          <td>Фасад (ЭППС 100 по цоколю, минвата 100, армирующий слой, штукатурка, окраска, водостоки)</td>
+          <td class="num">1 500 000</td>
+        </tr>
+        <tr>
+          <td class="center">11</td>
+          <td>Стяжка пола с ЭППС и армированием</td>
+          <td class="num">450 000</td>
+        </tr>
+        <tr>
+          <td class="center">12</td>
+          <td>Штукатурка стен (гипсовая + цементная в мокрых зонах)</td>
+          <td class="num">700 000</td>
+        </tr>
+        <tr class="subtotal">
+          <td class="center"></td>
+          <td><strong>Промежуточный итог (коробка + черновая):</strong></td>
+          <td class="num"><strong>12 050 000</strong></td>
+        </tr>
+        <tr>
+          <td class="center">13</td>
+          <td>Электроснабжение (щит, автоматы, УЗО, разводка по этажам, заземление)</td>
+          <td class="num">550 000</td>
+        </tr>
+        <tr>
+          <td class="center">14</td>
+          <td>Водоснабжение (от скважины, обвязка, разводка по дому)</td>
+          <td class="num">350 000</td>
+        </tr>
+        <tr>
+          <td class="center">15</td>
+          <td>Канализация (внутренняя разводка + септик / ЛОС)</td>
+          <td class="num">450 000</td>
+        </tr>
+        <tr>
+          <td class="center">16</td>
+          <td>Отопление (тёплый пол + радиаторы + котёл + обвязка котельной)</td>
+          <td class="num">1 200 000</td>
+        </tr>
+        <tr>
+          <td class="center">17</td>
+          <td>Вентиляция (приточно-вытяжная, кухня, санузлы)</td>
+          <td class="num">200 000</td>
+        </tr>
+        <tr>
+          <td class="center">18</td>
+          <td>Финишная отделка (шпаклёвка, покраска/обои, напольные покрытия, плитка, потолки)</td>
+          <td class="num">1 500 000</td>
+        </tr>
+        <tr>
+          <td class="center">19</td>
+          <td>Межкомнатные двери (комплект)</td>
+          <td class="num">200 000</td>
+        </tr>
+        <tr>
+          <td class="center">20</td>
+          <td>Лестница межэтажная (деревянная, с отделкой)</td>
+          <td class="num">350 000</td>
+        </tr>
+        <tr>
+          <td class="center">21</td>
+          <td>Доставка материалов, организация, накладные расходы, технадзор</td>
+          <td class="num">650 000</td>
+        </tr>
+        <tr class="total">
+          <td class="center"></td>
+          <td>ИТОГО — полный цикл «под ключ»</td>
+          <td class="num">17 500 000 ₽</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ЦЕНА -->
+  <section>
+    <h2>Итоговая стоимость</h2>
+    <div class="price-block">
+      <div class="price-label">Стоимость строительства</div>
+      <div class="price-value">17 500 000 ₽</div>
+      <div class="price-note">87 500 ₽/м² · фиксируется в договоре · без скрытых платежей</div>
+    </div>
+  </section>
+
+  <!-- СРОКИ -->
+  <section>
+    <h2>Сроки строительства</h2>
+    <p><strong>Общий срок:</strong> 10 месяцев с даты подписания договора (при нормальных погодных условиях).</p>
+    <div class="timeline">
+      <div class="timeline-item"><strong>1–1,5 мес.</strong> — Фундамент (набор прочности бетона)</div>
+      <div class="timeline-item"><strong>2–2,5 мес.</strong> — Коробка: стены, перекрытия, армопояса</div>
+      <div class="timeline-item"><strong>1,5–2 мес.</strong> — Кровля, окна, входная дверь</div>
+      <div class="timeline-item"><strong>1,5–2 мес.</strong> — Фасад, стяжка, штукатурка</div>
+      <div class="timeline-item"><strong>1,5–2 мес.</strong> — Инженерия: электрика, сантехника, отопление, вентиляция</div>
+      <div class="timeline-item"><strong>1,5–2 мес.</strong> — Финишная отделка, двери, сдача</div>
+    </div>
+  </section>
+
+  <!-- ГАРАНТИЯ -->
+  <section>
+    <h2>Гарантийные обязательства</h2>
+    <div class="guarantee-grid">
+      <div class="guarantee-item">
+        <div class="guarantee-years">7 лет</div>
+        <div class="guarantee-text"><strong>Конструктив</strong>фундамент, стены, перекрытия, армопояса</div>
+      </div>
+      <div class="guarantee-item">
+        <div class="guarantee-years">5 лет</div>
+        <div class="guarantee-text"><strong>Кровля и фасад</strong>целостность пирога, герметичность</div>
+      </div>
+      <div class="guarantee-item">
+        <div class="guarantee-years">3 года</div>
+        <div class="guarantee-text"><strong>Инженерные сети</strong>электрика, сантехника, отопление</div>
+      </div>
+      <div class="guarantee-item">
+        <div class="guarantee-years">2 года</div>
+        <div class="guarantee-text"><strong>Отделочные работы</strong>штукатурка, стяжка, финиш</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОРЯДОК ОПЛАТЫ -->
+  <section>
+    <h2>Порядок оплаты</h2>
+    <p>Оплата поэтапная, привязана к факту выполненных работ. Без предоплаты за работы, которых ещё не сделали.</p>
+    <table>
+      <thead>
+        <tr>
+          <th class="center">№</th>
+          <th>Этап</th>
+          <th class="num">%</th>
+          <th class="num">Сумма, ₽</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="center">1</td><td>Подписание договора</td><td class="num">10%</td><td class="num">1 750 000</td></tr>
+        <tr><td class="center">2</td><td>После устройства фундамента</td><td class="num">20%</td><td class="num">3 500 000</td></tr>
+        <tr><td class="center">3</td><td>После возведения стен 1 этажа и перекрытия</td><td class="num">20%</td><td class="num">3 500 000</td></tr>
+        <tr><td class="center">4</td><td>После монтажа кровли и окон</td><td class="num">20%</td><td class="num">3 500 000</td></tr>
+        <tr><td class="center">5</td><td>После инженерных работ (электрика, сантехника, отопление)</td><td class="num">20%</td><td class="num">3 500 000</td></tr>
+        <tr><td class="center">6</td><td>После финишной отделки и сдачи объекта</td><td class="num">10%</td><td class="num">1 750 000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ЧТО НЕ ВХОДИТ -->
+  <section>
+    <h2>Что не входит в стоимость</h2>
+    <div class="not-included">
+      <strong>Просим учесть при планировании бюджета:</strong>
+      Ландшафтный дизайн и благоустройство участка · забор и ворота · гараж, навес, баня (рассчитываются отдельно при необходимости) · подключение к магистральному газу (если требуется — отдельный проект) · мебель и техника (опционально, по отдельной смете) · интерьерный дизайн-проект · согласования и получение разрешений на строительство (при необходимости поможем с подрядчиком).
+    </div>
+  </section>
+
+  <!-- FOOTER NOTE -->
+  <p class="footer-note">Данное предложение носит предварительный характер. Окончательная стоимость фиксируется в договоре подряда после выезда на участок, обследования и согласования технического задания. Срок действия предложения — 30 календарных дней.</p>
+
+  <!-- CONTACTS -->
+  <div class="contacts">
+    <div class="contacts-left">
+      <h3>Строительная компания АТОН</h3>
+      <p>atonsk.ru</p>
+      <p>г. Челябинск · демо-дом в Златоусте</p>
+    </div>
+    <div class="contacts-right">
+      <div class="phone">+7 (351) 000-00-00</div>
+      <div class="small">Звоните — посчитаем под ваш участок</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
