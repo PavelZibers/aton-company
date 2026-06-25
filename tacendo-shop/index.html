@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Алексеев Никита — Такендо Шоп</title>
+<!-- Фавикон по теме: магазин 🛍️ -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E0E10;
+    --ink:#F2EEE5;
+    --muted:#8A857A;
+    --line:#26252A;
+    --gold:#C9A227;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:radial-gradient(1200px 800px at 70% 20%,#1A1A1F 0%,var(--bg) 60%);
+    -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    max-width:560px;
+    margin:0 auto;
+    min-height:100vh;
+    padding:72px 56px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+  .top{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--muted)}
+  .top .dot{display:inline-block;width:6px;height:6px;background:var(--gold);border-radius:50%;margin-right:10px;vertical-align:middle}
+  .name{
+    font-family:'Playfair Display',serif;
+    font-weight:700;
+    font-size:64px;
+    line-height:1.05;
+    letter-spacing:-1px;
+    margin:48px 0 28px;
+  }
+  .name .first{color:var(--ink);display:block}
+  .name .last{color:var(--gold);display:block}
+  .role{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:6px 0 0;
+    flex-wrap:wrap;
+  }
+  .role .bar{width:42px;height:1px;background:var(--gold)}
+  .role .title{font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);font-weight:500}
+  .role .brand{font-size:13px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+  .contacts{margin-top:auto;display:grid;grid-template-columns:120px 1fr;row-gap:14px;column-gap:18px;align-items:start}
+  .contacts .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding-top:2px}
+  .contacts .v{font-size:16px;color:var(--ink);font-weight:500;text-decoration:none;border-bottom:1px dashed transparent}
+  .contacts .v.empty{color:#5A554B;font-style:italic}
+  .foot{
+    margin-top:48px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  }
+  .foot .mark{color:var(--gold);font-weight:600;letter-spacing:3px}
+
+  /* Печать: «Файл → Печать → Сохранить в PDF» — выйдет 1-в-1 как на экране */
+  @media print{
+    body{background:#fff}
+    .page{
+      max-width:none;
+      min-height:0;
+      padding:24mm 18mm;
+      border:none;
+      background:#fff;
+      color:#111;
+    }
+    .name{color:#111}
+    .name .last{color:#8a6a10}
+    .role .title{color:#111}
+    .role .bar{background:#8a6a10}
+    .contacts .v{color:#111}
+    .contacts .k{color:#666}
+    .foot{border-top:1px solid #ccc;color:#666}
+    .foot .mark{color:#8a6a10}
+    .top{color:#666}
+    .top .dot{background:#8a6a10}
+    @page{size:A4;margin:0}
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <div>
+      <div class="top"><span class="dot"></span>Визитная карточка</div>
+      <h1 class="name">
+        <span class="first">Алексеев</span>
+        <span class="last">Никита</span>
+      </h1>
+      <div class="role">
+        <span class="bar"></span>
+        <span class="title">Должность</span>
+        <span class="brand">· Такендо Шоп</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="contacts">
+        <div class="k">Телефон</div>
+        <a class="v empty" href="#">+7 ___ ___ __ __</a>
+
+        <div class="k">E-mail</div>
+        <a class="v empty" href="#">name@domain.ru</a>
+
+        <div class="k">Сайт</div>
+        <a class="v empty" href="#">tacendo-shop.ru</a>
+
+        <div class="k">Telegram</div>
+        <a class="v empty" href="#">@username</a>
+      </div>
+
+      <div class="foot">
+        <span>Такендо Шоп</span>
+        <span class="mark">A · N</span>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
