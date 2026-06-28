@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Загуменнов Павел — АТОН</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2D4A3E; --gold:#C9A227; --cream:#F8F1E3; --ink:#2A2A24; --muted:#6b6b60;
+    --line:#e6dfce;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--cream);line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:30px 16px}
+  .page{max-width:520px;margin:0 auto;background:#fff;box-shadow:0 12px 50px rgba(45,74,62,.15);border-radius:6px;overflow:hidden}
+  header{background:var(--green);color:#fff;padding:36px 36px 30px;border-bottom:4px solid var(--gold);text-align:center}
+  .logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;letter-spacing:6px;color:var(--gold);margin-bottom:4px}
+  .logo-sub{font-size:11px;letter-spacing:3.5px;text-transform:uppercase;opacity:.85}
+  main{padding:32px 36px}
+  .name{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--green);line-height:1.15;text-align:center;margin-bottom:6px}
+  .role{font-size:14px;color:var(--gold);font-weight:600;text-align:center;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
+  .tagline{font-style:italic;color:var(--muted);text-align:center;font-size:14px;margin-bottom:24px;padding:0 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0}
+
+  .contacts{margin:0 0 24px}
+  .contact-row{display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:6px;margin-bottom:8px;background:#fbf8f1;border-left:3px solid var(--gold);transition:transform .15s}
+  .contact-row:hover{transform:translateX(2px)}
+  .ico{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:var(--green);color:var(--gold);border-radius:50%;font-size:18px;flex-shrink:0}
+  .ctext .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:1px}
+  .ctext a,.ctext span{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;word-break:break-all}
+  .ctext a:hover{color:var(--gold)}
+
+  .about{margin:22px 0;padding:18px;background:#fbf8f1;border-radius:6px}
+  .about h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--green);margin-bottom:10px;letter-spacing:.5px}
+  .about p{font-size:13.5px;color:#3a3a32;line-height:1.55;margin-bottom:6px}
+  .about .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .num-box{background:#fff;border-radius:4px;padding:10px 6px;text-align:center;border-bottom:2px solid var(--gold)}
+  .num-box b{display:block;font-family:'Playfair Display',serif;font-size:20px;color:var(--green)}
+  .num-box span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+
+  .cta{display:block;text-align:center;background:var(--green);color:var(--gold);padding:16px 24px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.5px;margin-top:20px;border:2px solid var(--green);transition:all .15s}
+  .cta:hover{background:#fff;color:var(--green)}
+  .cta-sub{display:block;text-align:center;font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.5px}
+
+  footer{padding:18px 36px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center;background:#fbf8f1}
+
+  /* Печать */
+  @media print{
+    body{background:#fff;padding:0}
+    .page{box-shadow:none;border-radius:0;max-width:100%}
+    header,main,footer{padding-left:24px;padding-right:24px}
+    .cta{display:none}
+    .contact-row{break-inside:avoid}
+    @page{size:A5;margin:8mm}
+  }
+
+  @media (max-width:480px){
+    body{padding:0}
+    .page{border-radius:0}
+    header{padding:28px 22px 24px}
+    main{padding:24px 22px}
+    footer{padding:16px 22px}
+    .name{font-size:24px}
+    .about .nums{grid-template-columns:1fr;gap:6px}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">АТОН</div>
+      <div class="logo-sub">строительная компания</div>
+    </header>
+
+    <main>
+      <h1 class="name">Загуменнов Павел<br>Александрович</h1>
+      <div class="role">Собственник и руководитель</div>
+      <div class="tagline">«Строим жизни, а не стены»</div>
+
+      <div class="contacts">
+        <div class="contact-row">
+          <div class="ico">📞</div>
+          <div class="ctext">
+            <div class="label">Основной телефон</div>
+            <a href="tel:+79123199647">+7 (912) 319-96-47</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="ico">✈️</div>
+          <div class="ctext">
+            <div class="label">Telegram</div>
+            <a href="https://t.me/Zibers">@Zibers</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="ico">🌐</div>
+          <div class="ctext">
+            <div class="label">Сайт компании</div>
+            <a href="https://atonsk.ru/">atonsk.ru</a>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="ico">📍</div>
+          <div class="ctext">
+            <div class="label">Офис</div>
+            <span>г. Челябинск · СНТ «Мечуренец», ул. 15, 620В</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about">
+        <h3>О компании</h3>
+        <p>Строим частные дома в Челябинской области <strong>«под ключ»</strong> с собственной мебелью. Газоблок, скатная кровля, тёплый пол без батарей. Полный цикл: от фундамента до мебели — заезжай с чемоданом и живи.</p>
+        <p>Семейная ипотека, наличный расчёт, маткапитал. Цена фиксированная — единая для всех.</p>
+        <div class="nums">
+          <div class="num-box"><b>20+</b><span>лет опыта</span></div>
+          <div class="num-box"><b>~30</b><span>домов / год</span></div>
+          <div class="num-box"><b>~50</b><span>человек в команде</span></div>
+        </div>
+      </div>
+
+      <a href="contact.vcf" download class="cta">
+        ⬇ Сохранить контакт в телефон
+      </a>
+      <div class="cta-sub">vCard-файл · iPhone, Android, Outlook</div>
+    </main>
+
+    <footer>АТОН · atonsk.ru · г. Челябинск</footer>
+  </div>
+</body>
+</html>
