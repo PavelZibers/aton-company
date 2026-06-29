@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>АТОН — Прочие работы, Копейск 98 м²</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#2D4A3E; --green-soft:#3d5e50;
+    --gold:#C9A227; --gold-soft:#e6cb6e;
+    --cream:#F8F1E3; --cream-deep:#f0e5cc;
+    --ink:#2A2A24; --muted:#6b6b60;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--cream);line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{max-width:880px;margin:24px auto;background:#fff;box-shadow:0 4px 30px rgba(0,0,0,.08);border-radius:4px;overflow:hidden}
+
+  header{background:var(--green);color:#fff;padding:38px 56px;border-bottom:5px solid var(--gold);position:relative}
+  header::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--gold-soft)}
+  header .brand{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;letter-spacing:3px;color:var(--gold);line-height:1}
+  header .sub{font-size:12px;letter-spacing:4px;text-transform:uppercase;opacity:.85;margin-top:6px}
+  header .contacts{margin-top:18px;font-size:13.5px;opacity:.92;display:flex;flex-wrap:wrap;gap:6px 18px}
+  header .contacts span::before{content:"·";margin-right:14px;color:var(--gold-soft)}
+  header .contacts span:first-child::before{content:"";margin-right:0}
+
+  main{padding:42px 56px 48px}
+
+  .doc-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--green);letter-spacing:.5px}
+  .doc-sub{font-size:14.5px;color:var(--muted);margin-top:4px;font-style:italic}
+  .doc-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 24px;margin-top:18px;padding:14px 18px;background:var(--cream);border-left:4px solid var(--gold);border-radius:4px;font-size:13.5px}
+  .doc-meta b{color:var(--green)}
+  .doc-meta .date{align-self:center;font-family:'Playfair Display',serif;font-style:italic;color:var(--green);font-size:15px}
+
+  h2.section{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--green);margin:30px 0 14px;padding-bottom:8px;border-bottom:1px solid #e6dfce;letter-spacing:.3px;text-transform:uppercase}
+
+  .cards{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+  .card{position:relative;padding:16px 20px 14px;border:1px solid #e6dfce;border-radius:6px;background:#fff;page-break-inside:avoid;break-inside:avoid}
+  .card::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;background:var(--gold);border-radius:3px}
+  .card .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:6px}
+  .card .name{font-family:'Playfair Display',serif;font-weight:700;color:var(--green);font-size:16.5px}
+  .card .price{font-family:'Playfair Display',serif;font-weight:700;color:var(--green);font-size:18px;white-space:nowrap}
+  .card .price small{font-size:12px;color:var(--muted);font-weight:500;display:block;text-align:right;font-family:'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase}
+  .card .desc{font-size:13.5px;color:#444;margin-top:6px}
+  .card .desc p{margin:3px 0}
+  .card .desc b{color:var(--green-soft);font-weight:600}
+  .card ul{margin:6px 0 0 0;list-style:none}
+  .card ul li{padding:3px 0 3px 18px;position:relative;font-size:13.5px;color:#444}
+  .card ul li::before{content:"—";position:absolute;left:0;color:var(--gold);font-weight:700}
+
+  .total{margin-top:28px;background:var(--green);color:#fff;border-radius:8px;padding:24px 28px}
+  .total h3{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-soft);margin-bottom:14px;opacity:.95}
+  .total .row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.18);font-size:14.5px}
+  .total .row:last-of-type{border-bottom:none}
+  .total .row .label{opacity:.92}
+  .total .row .v{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);font-size:18px}
+  .total .row.finale{padding-top:14px;border-top:2px solid var(--gold);margin-top:10px;border-bottom:none}
+  .total .row.finale .v{font-size:28px}
+  .total .row.alt .v{font-size:16px;color:#fff;background:rgba(201,162,39,.18);padding:2px 10px;border-radius:4px}
+
+  .installment{margin-top:22px;padding:14px 18px;background:var(--cream);border-radius:6px;font-size:13.5px;color:#444}
+  .installment::before{content:"💬 ";font-size:15px}
+  .installment b{color:var(--green)}
+
+  .sign{margin-top:36px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+  .sign .left{font-size:13.5px;color:var(--muted);line-height:1.6}
+  .sign .left b{color:var(--green);font-family:'Playfair Display',serif;font-size:15px}
+  .sign .right{text-align:right;font-size:12px;color:var(--muted)}
+
+  footer{padding:22px 56px;border-top:1px solid #e6dfce;font-size:12.5px;color:var(--muted);text-align:center;background:#fbf7ec}
+  footer .accent{color:var(--gold);font-weight:600}
+
+  /* Печать: открыть страницу → меню → Печать → Сохранить в PDF. Выйдет 1-в-1 как на экране. */
+  @media print{
+    body{background:#fff}
+    .page{max-width:none;box-shadow:none;margin:0;border-radius:0}
+    header,main,footer{padding-left:24px;padding-right:24px}
+    .card,.total,.sign{break-inside:avoid}
+    @page{size:A4;margin:12mm}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="brand">АТОН</div>
+      <div class="sub">Строительная компания</div>
+      <div class="contacts">
+        <span>г. Челябинск</span>
+        <span>atonsk.ru</span>
+        <span>+7 912 319-96-47</span>
+        <span>@Zibers</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="doc-title">Прочие работы <span style="font-weight:400;font-size:18px;color:var(--muted);font-style:italic">— рекомендуемые</span></div>
+      <div class="doc-sub">Дополнительные работы по жилому дому, не вошедшие в основной договор подряда</div>
+
+      <div class="doc-meta">
+        <div><b>Объект:</b> Жилой дом 98,00 м²&nbsp;· Челябинская обл., г. Копейск<br><b>Кадастровый №:</b> 74:12:1408006:4899</div>
+        <div class="date">«30» октября 2025 г.</div>
+      </div>
+
+      <h2 class="section">Внутренние работы</h2>
+      <div class="cards">
+
+        <div class="card">
+          <div class="head">
+            <div class="name">Отделка котельной</div>
+            <div class="price">150 000 ₽<small>раздел</small></div>
+          </div>
+          <ul>
+            <li>Штукатурка стен цементным раствором</li>
+            <li>Облицовка стен и пола в котельной керамическими плитками: стены — белая плитка 20×30 см, пол — серая плитка 60×60 см</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="head">
+            <div class="name">Штукатурка стен в помещениях</div>
+            <div class="price">300 000 ₽<small>раздел</small></div>
+          </div>
+          <ul>
+            <li>Штукатурка стен гипсовым раствором</li>
+            <li>Штукатурка стен цементным раствором в санузлах</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="head">
+            <div class="name">Электроснабжение</div>
+            <div class="price">100 000 ₽<small>раздел</small></div>
+          </div>
+          <ul>
+            <li>Прокладка вводного кабеля от электрощита дома до электрощита, установленного на опоре ЛЭП</li>
+            <li>Установка электрощита в котельной (ПВХ, 24 мод.)</li>
+            <li>Сборка электрощита — установка автоматов: 2 шт. 3-полюсных, 4 шт. 1-полюсных</li>
+            <li>Подключение оборудования котельной к электроснабжению</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <h2 class="section">Фасад — два варианта утепления</h2>
+      <div class="cards">
+
+        <div class="card">
+          <div class="head">
+            <div class="name">Отделка фасада · <span style="font-weight:400;color:var(--gold)">Вариант 1 — 100 мм</span></div>
+            <div class="price">800 000 ₽<small>рекомендуем</small></div>
+          </div>
+          <ul>
+            <li>Монтаж плит утеплителя из экструдированного пенополистирола, толщина 100 мм, вдоль цоколя дома</li>
+            <li>Монтаж плит утеплителя 100 мм из минеральной ваты (плотность 100 кг/м³)</li>
+            <li>Создание защитного армированного слоя на поверхности утеплителя</li>
+            <li>Нанесение декоративной штукатурки на стены (камешковая, зерно 1,5–2,0 мм)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="head">
+            <div class="name">Отделка фасада · <span style="font-weight:400;color:var(--muted)">Вариант 2 — 50 мм</span></div>
+            <div class="price">700 000 ₽<small>эконом</small></div>
+          </div>
+          <ul>
+            <li>Монтаж плит утеплителя из экструдированного пенополистирола, толщина 50 мм, вдоль цоколя дома</li>
+            <li>Монтаж плит утеплителя 50 мм из минеральной ваты (плотность 100 кг/м³)</li>
+            <li>Создание защитного армированного слоя на поверхности утеплителя</li>
+            <li>Нанесение декоративной штукатурки на стены (камешковая, зерно 1,5–2,0 мм)</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="total">
+        <h3>Итоговая стоимость</h3>
+
+        <div class="row">
+          <span class="label">Внутренние работы (котельная + штукатурка + электрика)</span>
+          <span class="v">550 000 ₽</span>
+        </div>
+        <div class="row">
+          <span class="label">Фасад «Вариант 1» — 100 мм</span>
+          <span class="v">800 000 ₽</span>
+        </div>
+        <div class="row alt">
+          <span class="label">или Фасад «Вариант 2» — 50 мм (экономия 100 000 ₽)</span>
+          <span class="v">700 000 ₽</span>
+        </div>
+        <div class="row finale">
+          <span class="label">Итого с фасадом «Вариант 1» (рекомендуем)</span>
+          <span class="v">1 350 000 ₽</span>
+        </div>
+        <div class="row finale" style="border-top:1px dashed rgba(255,255,255,.25);padding-top:10px;margin-top:8px">
+          <span class="label" style="font-weight:600">Итого с фасадом «Вариант 2»</span>
+          <span class="v" style="font-size:22px;color:#fff;background:rgba(201,162,39,.18);padding:2px 12px;border-radius:4px">1 250 000 ₽</span>
+        </div>
+      </div>
+
+      <div class="installment">
+        <b>Рассрочка:</b> в случае заинтересованности в вышеперечисленных работах готовы предоставить рассрочку по платежам — обсудим индивидуально под удобный вам график.
+      </div>
+
+      <div class="sign">
+        <div class="left">
+          С уважением,<br>
+          <b>Загуменнов Павел Александрович</b><br>
+          Собственник строительной компании «АТОН»
+        </div>
+        <div class="right">
+          Согласовано:<br>
+          ___________________ / __________________ /
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      АТОН · Строим жизни, а не стены · <span class="accent">atonsk.ru</span> · +7 912 319-96-47
+    </footer>
+
+  </div>
+</body>
+</html>
