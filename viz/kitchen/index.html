@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>АТОН — Визуализация кухни</title>
+<style>
+  :root{
+    --gold:#C9A227;
+    --gold-soft:#E7CB72;
+    --ink:#3A2A0F;
+    --bg:#F8F1E3;
+    --bg-soft:#FBF5E9;
+    --gray:#7A7E83;
+    --oak:#B8956A;
+    --oak-dark:#8A6B45;
+    --marble:#F4F1EC;
+    --line:#D9D2C3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:linear-gradient(180deg,var(--bg-soft) 0%,var(--bg) 100%);
+    color:var(--ink);
+    min-height:100vh;
+    padding:32px 24px 64px;
+    line-height:1.55;
+  }
+  .wrap{max-width:1280px;margin:0 auto}
+  .top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:18px;border-bottom:1.5px solid var(--gold);
+    margin-bottom:24px;flex-wrap:wrap;gap:14px;
+  }
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{
+    width:46px;height:46px;border:2px solid var(--gold);border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold);font-weight:800;font-size:22px;letter-spacing:1px;
+  }
+  .brand h1{font-size:22px;font-weight:700;letter-spacing:.5px}
+  .brand small{display:block;font-size:12px;color:var(--oak-dark);letter-spacing:1px;text-transform:uppercase}
+  .meta{text-align:right;font-size:13px;color:#6B5A3A}
+  .meta strong{color:var(--ink)}
+
+  h2{
+    font-size:18px;font-weight:700;letter-spacing:.3px;
+    margin:32px 0 14px;display:flex;align-items:center;gap:10px;
+  }
+  h2::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:2px}
+
+  .viz-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 6px 24px rgba(58,42,15,.06);
+    padding:24px;overflow-x:auto;
+  }
+  .viz-card svg{display:block;margin:0 auto;max-width:100%;height:auto}
+
+  .grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-top:24px}
+  @media(max-width:880px){.grid2{grid-template-columns:1fr}}
+
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;
+  }
+  .card h3{font-size:14px;color:var(--oak-dark);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px}
+  .spec-list{list-style:none}
+  .spec-list li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px;gap:14px}
+  .spec-list li:last-child{border-bottom:none}
+  .spec-list b{font-weight:600;color:var(--ink);flex-shrink:0}
+  .spec-list span{color:#6B5A3A;text-align:right}
+
+  .palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:8px}
+  .swatch{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+  .swatch .chip{height:78px}
+  .swatch .meta{padding:10px 12px;font-size:12px}
+  .swatch .meta b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+  .swatch .meta span{color:#6B5A3A;font-family:ui-monospace,Menlo,monospace;font-size:11px}
+
+  .footer{
+    margin-top:36px;padding-top:18px;border-top:1.5px solid var(--gold);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+    font-size:12px;color:#6B5A3A;
+  }
+  .footer .stamp{
+    border:1.5px solid var(--gold);color:var(--gold);
+    padding:4px 10px;border-radius:20px;font-weight:700;letter-spacing:1px;font-size:11px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <div class="logo">А</div>
+      <div>
+        <h1>АТОН</h1>
+        <small>Визуализация кухни</small>
+      </div>
+    </div>
+    <div class="meta">
+      <strong>30.06.2026</strong><br>
+      Эскиз → рендер<br>
+      Подготовлено: Бро
+    </div>
+  </header>
+
+  <h2>Фронтальный вид</h2>
+  <div class="viz-card">
+<svg viewBox="0 0 1300 900" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B7B4AD"/>
+      <stop offset="1" stop-color="#8E8A82"/>
+    </linearGradient>
+    <linearGradient id="marble" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBFAF6"/>
+      <stop offset="1" stop-color="#EDE7DA"/>
+    </linearGradient>
+    <linearGradient id="oak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C49A6C"/>
+      <stop offset="1" stop-color="#A5804F"/>
+    </linearGradient>
+    <linearGradient id="gray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#88898B"/>
+      <stop offset="1" stop-color="#6B6C6F"/>
+    </linearGradient>
+    <linearGradient id="fridge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D8DADC"/>
+      <stop offset="1" stop-color="#A8AAAD"/>
+    </linearGradient>
+    <pattern id="woodgrain" x="0" y="0" width="40" height="600" patternUnits="userSpaceOnUse">
+      <rect width="40" height="600" fill="url(#oak)"/>
+      <path d="M0 60 Q20 50 40 70 M0 140 Q20 130 40 150 M0 230 Q20 220 40 240 M0 320 Q20 310 40 330 M0 410 Q20 400 40 420 M0 500 Q20 490 40 510" stroke="#8A6B45" stroke-width=".6" fill="none" opacity=".35"/>
+    </pattern>
+    <pattern id="marbleVein" x="0" y="0" width="600" height="20" patternUnits="userSpaceOnUse">
+      <rect width="600" height="20" fill="url(#marble)"/>
+      <path d="M0 6 Q40 2 90 8 T180 5 T280 9 T380 6 T500 8 T600 5" stroke="#B6AE9D" stroke-width=".5" fill="none" opacity=".55"/>
+      <path d="M0 14 Q60 12 130 16 T260 14 T390 17 T520 15 T600 13" stroke="#C9C0AC" stroke-width=".4" fill="none" opacity=".4"/>
+    </pattern>
+    <pattern id="subway" x="0" y="0" width="50" height="30" patternUnits="userSpaceOnUse">
+      <rect width="50" height="30" fill="#F4F1EC"/>
+      <line x1="0" y1="0" x2="50" y2="0" stroke="#D9D2C3" stroke-width="1"/>
+      <line x1="0" y1="15" x2="25" y2="15" stroke="#D9D2C3" stroke-width="1"/>
+      <line x1="25" y1="15" x2="25" y2="30" stroke="#D9D2C3" stroke-width="1"/>
+      <line x1="25" y1="15" x2="50" y2="15" stroke="#D9D2C3" stroke-width="1"/>
+      <line x1="0" y1="30" x2="50" y2="30" stroke="#D9D2C3" stroke-width="1"/>
+      <line x1="0" y1="0" x2="0" y2="30" stroke="#D9D2C3" stroke-width="1"/>
+      <line x1="50" y1="0" x2="50" y2="30" stroke="#D9D2C3" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1300" height="760" fill="#E9E5DD"/>
+  <rect x="0" y="0" width="1300" height="30" fill="#D5CFBE"/>
+  <rect x="0" y="60" width="1300" height="40" fill="#D8D2C0" opacity=".6"/>
+  <rect x="0" y="760" width="1300" height="140" fill="url(#floor)"/>
+  <rect x="60" y="745" width="1180" height="18" fill="#000" opacity=".18"/>
+
+  <g>
+    <rect x="80" y="100" width="370" height="190" fill="url(#woodgrain)" stroke="#6E5236" stroke-width="1"/>
+    <line x1="265" y1="100" x2="265" y2="290" stroke="#6E5236" stroke-width="1.2" opacity=".7"/>
+    <rect x="82" y="102" width="370" height="3" fill="#000" opacity=".18"/>
+    <rect x="80" y="287" width="370" height="3" fill="#000" opacity=".12"/>
+  </g>
+
+  <g>
+    <rect x="630" y="100" width="370" height="190" fill="url(#woodgrain)" stroke="#6E5236" stroke-width="1"/>
+    <line x1="815" y1="100" x2="815" y2="290" stroke="#6E5236" stroke-width="1.2" opacity=".7"/>
+    <rect x="632" y="102" width="370" height="3" fill="#000" opacity=".18"/>
+    <rect x="630" y="287" width="370" height="3" fill="#000" opacity=".12"/>
+  </g>
+
+  <g>
+    <rect x="450" y="100" width="180" height="190" fill="#BFC1C4" stroke="#5E6063" stroke-width="1"/>
+    <rect x="450" y="100" width="180" height="22" fill="#9DA0A3"/>
+    <rect x="460" y="135" width="160" height="14" rx="2" fill="#4A4C4F" opacity=".7"/>
+    <circle cx="540" cy="265" r="4" fill="#3A3C3F"/>
+    <circle cx="540" cy="265" r="2" fill="#C49A6C"/>
+    <rect x="465" y="155" width="150" height="100" fill="#5A5C5F" opacity=".25"/>
+  </g>
+
+  <rect x="80" y="290" width="920" height="180" fill="url(#subway)"/>
+
+  <rect x="80" y="470" width="920" height="15" fill="url(#marbleVein)" stroke="#A89E89" stroke-width=".8"/>
+  <rect x="80" y="485" width="920" height="3" fill="#000" opacity=".15"/>
+
+  <g>
+    <rect x="80" y="488" width="400" height="240" fill="url(#gray)" stroke="#3F4042" stroke-width="1"/>
+    <line x1="180" y1="488" x2="180" y2="728" stroke="#3F4042" stroke-width="1" opacity=".7"/>
+    <line x1="280" y1="488" x2="280" y2="728" stroke="#3F4042" stroke-width="1" opacity=".7"/>
+    <line x1="380" y1="488" x2="380" y2="728" stroke="#3F4042" stroke-width="1" opacity=".7"/>
+
+    <rect x="480" y="488" width="180" height="240" fill="#5A5C5F" stroke="#2D2F31" stroke-width="1"/>
+    <rect x="495" y="503" width="150" height="210" fill="#1A1B1C"/>
+    <circle cx="540" cy="555" r="28" fill="none" stroke="#3A3B3D" stroke-width="2"/>
+    <circle cx="600" cy="555" r="28" fill="none" stroke="#3A3B3D" stroke-width="2"/>
+    <circle cx="540" cy="625" r="28" fill="none" stroke="#3A3B3D" stroke-width="2"/>
+    <circle cx="600" cy="625" r="28" fill="none" stroke="#3A3B3D" stroke-width="2"/>
+    <circle cx="540" cy="555" r="3" fill="#666"/>
+    <circle cx="600" cy="555" r="3" fill="#666"/>
+    <circle cx="540" cy="625" r="3" fill="#666"/>
+    <circle cx="600" cy="625" r="3" fill="#666"/>
+
+    <rect x="660" y="488" width="180" height="240" fill="url(#gray)" stroke="#3F4042" stroke-width="1"/>
+    <rect x="678" y="503" width="144" height="210" fill="#C9CACD" stroke="#7E8082" stroke-width="1"/>
+    <text x="750" y="615" font-size="14" fill="#4F5154" text-anchor="middle" font-weight="600">ПММ</text>
+
+    <rect x="840" y="488" width="160" height="240" fill="url(#gray)" stroke="#3F4042" stroke-width="1"/>
+    <line x1="840" y1="568" x2="1000" y2="568" stroke="#3F4042" stroke-width="1" opacity=".7"/>
+    <line x1="840" y1="648" x2="1000" y2="648" stroke="#3F4042" stroke-width="1" opacity=".7"/>
+  </g>
+
+  <rect x="80" y="728" width="920" height="17" fill="#3A3B3D"/>
+
+  <g stroke="#2A2B2D" stroke-width="1.5" opacity=".7">
+    <line x1="270" y1="490" x2="270" y2="496"/>
+    <line x1="370" y1="490" x2="370" y2="496"/>
+    <line x1="470" y1="490" x2="470" y2="496"/>
+    <line x1="750" y1="490" x2="750" y2="496"/>
+    <line x1="840" y1="490" x2="840" y2="496"/>
+    <line x1="930" y1="490" x2="930" y2="496"/>
+  </g>
+
+  <g>
+    <rect x="1015" y="100" width="180" height="640" fill="url(#fridge)" stroke="#5E6063" stroke-width="1.2"/>
+    <line x1="1015" y1="380" x2="1195" y2="380" stroke="#7E8082" stroke-width="1"/>
+    <rect x="1030" y="115" width="6" height="55" rx="2" fill="#5E6063"/>
+    <rect x="1030" y="395" width="6" height="120" rx="2" fill="#5E6063"/>
+    <rect x="1030" y="525" width="6" height="100" rx="2" fill="#5E6063"/>
+    <text x="1105" y="430" font-size="11" fill="#5E6063" text-anchor="middle" letter-spacing="2">FRIDGE</text>
+    <rect x="1015" y="740" width="180" height="5" fill="#000" opacity=".18"/>
+  </g>
+
+  <g stroke="#8A6B45" stroke-width="1" fill="none">
+    <line x1="80" y1="800" x2="1000" y2="800"/>
+    <line x1="80" y1="795" x2="80" y2="805"/>
+    <line x1="1000" y1="795" x2="1000" y2="805"/>
+  </g>
+  <rect x="495" y="788" width="90" height="22" rx="3" fill="#F8F1E3" stroke="#C9A227"/>
+  <text x="540" y="803" font-size="13" fill="#3A2A0F" text-anchor="middle" font-weight="700">2890 мм</text>
+
+  <g stroke="#8A6B45" stroke-width="1" fill="none">
+    <line x1="1015" y1="800" x2="1195" y2="800"/>
+    <line x1="1015" y1="795" x2="1015" y2="805"/>
+    <line x1="1195" y1="795" x2="1195" y2="805"/>
+  </g>
+  <rect x="1062" y="788" width="86" height="22" rx="3" fill="#F8F1E3" stroke="#C9A227"/>
+  <text x="1105" y="803" font-size="13" fill="#3A2A0F" text-anchor="middle" font-weight="700">600 мм</text>
+
+  <g stroke="#8A6B45" stroke-width="1" fill="none">
+    <line x1="40" y1="100" x2="40" y2="740"/>
+    <line x1="35" y1="100" x2="45" y2="100"/>
+    <line x1="35" y1="740" x2="45" y2="740"/>
+  </g>
+  <g transform="translate(40 420) rotate(-90)">
+    <rect x="-50" y="-12" width="100" height="22" rx="3" fill="#F8F1E3" stroke="#C9A227"/>
+    <text x="0" y="3" font-size="13" fill="#3A2A0F" text-anchor="middle" font-weight="700">2540 мм</text>
+  </g>
+
+  <g stroke="#8A6B45" stroke-width="1" fill="none">
+    <line x1="1050" y1="470" x2="1050" y2="485"/>
+    <line x1="1045" y1="470" x2="1055" y2="470"/>
+    <line x1="1045" y1="485" x2="1055" y2="485"/>
+  </g>
+  <text x="1060" y="482" font-size="11" fill="#3A2A0F" font-weight="600">38 мм</text>
+
+  <text x="540" y="86" font-size="11" fill="#3A2A0F" text-anchor="middle" font-weight="600">вытяжка</text>
+
+  <line x1="80" y1="745" x2="1195" y2="745" stroke="#8A6B45" stroke-dasharray="3 3" stroke-width=".8"/>
+  <text x="1230" y="748" font-size="11" fill="#6B5A3A">уровень пола</text>
+
+  <text x="1265" y="40" font-size="11" fill="#C9A227" text-anchor="end" font-weight="700" letter-spacing="2">АТОН · ВИЗУАЛИЗАЦИЯ</text>
+</svg>
+  </div>
+
+  <div class="grid2">
+
+    <div class="card">
+      <h3>Габариты и планировка</h3>
+      <ul class="spec-list">
+        <li><b>Тип</b><span>прямая кухня, отдельностоящий холодильник</span></li>
+        <li><b>Общая длина линии</b><span>2890 мм</span></li>
+        <li><b>Высота блока (полная)</b><span>2540 мм</span></li>
+        <li><b>Цоколь</b><span>100 мм</span></li>
+        <li><b>Нижние шкафы (с цоколем)</b><span>720 мм</span></li>
+        <li><b>Столешница</b><span>38 мм — белый кварц «каррара»</span></li>
+        <li><b>Фартук</b><span>600 мм — белый subway / керамогранит</span></li>
+        <li><b>Верхние шкафы</b><span>720 мм, 2 секции по 426 мм (рекомендую разбить)</span></li>
+        <li><b>Вытяжка встраиваемая</b><span>600 мм, между верхними шкафами</span></li>
+        <li><b>Варочная панель</b><span>600 мм, чёрное стекло</span></li>
+        <li><b>ПММ (посудомойка)</b><span>600 мм, inox панель</span></li>
+        <li><b>Холодильник</b><span>600 × 2100 мм, отдельностоящий, справа</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Палитра</h3>
+      <div class="palette">
+        <div class="swatch">
+          <div class="chip" style="background:linear-gradient(180deg,#88898B,#6B6C6F)"></div>
+          <div class="meta"><b>Фасады нижние</b><span>#7A7E83 матовый</span></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:linear-gradient(180deg,#C49A6C,#A5804F)"></div>
+          <div class="meta"><b>Фасады верхние</b><span>#B8956A дуб тёплый</span></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:linear-gradient(180deg,#FBFAF6,#EDE7DA)"></div>
+          <div class="meta"><b>Столешница</b><span>белый кварц «каррара»</span></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#F4F1EC"></div>
+          <div class="meta"><b>Фартук</b><span>subway / белый глянец</span></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:linear-gradient(180deg,#1A1B1C,#2D2F31)"></div>
+          <div class="meta"><b>Варочная</b><span>чёрное стекло</span></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:linear-gradient(180deg,#D8DADC,#A8AAAD)"></div>
+          <div class="meta"><b>Техника / холодильник</b><span>inox / brushed steel</span></div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:22px">Что надо доделать в ТЗ для Пиванова</h3>
+      <ul class="spec-list">
+        <li><b>Мойка</b><span>не показана на чертеже — добавить слева от варочной</span></li>
+        <li><b>Подвод воды + канализация</b><span>привязка к мойке и ПММ</span></li>
+        <li><b>Розетки на фартуке</b><span>минимум 3–4 шт. + отдельная линия на ПММ/духовку</span></li>
+        <li><b>Фурнитура</b><span>Blum / Hettich, петли с доводчиком, ящики Tandembox</span></li>
+        <li><b>Подсветка</b><span>LED-лента под верхними шкафами</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div>Эскиз — от руки (по вводным Павла). Рендер: Бро · 30.06.2026</div>
+    <div class="stamp">АТОН · ЧЕЛЯБИНСК</div>
+  </footer>
+
+</div>
+</body>
+</html>
