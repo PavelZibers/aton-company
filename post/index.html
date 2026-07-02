@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Посты АТОН — о доме, стройке и жизни в нём</title>
+  <meta name="description" content="Короткие посты от основателя строительной компании АТОН — о том, что мы строим на самом деле и почему. Челябинская область.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Посты АТОН — о доме, стройке и жизни в нём">
+  <meta property="og:description" content="Короткие мысли от основателя АТОН. Без воды, про реальную стройку и реальных людей.">
+  <meta property="og:url" content="https://aton-company.io/post/">
+  <meta property="og:site_name" content="АТОН — Строительная компания">
+  <meta property="og:locale" content="ru_RU">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+  <link rel="canonical" href="https://aton-company.io/post/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .article { padding-top: 72px; }
+
+    /* HERO */
+    .index-hero {
+      padding: 140px 0 96px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .index-hero::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -15%;
+      width: 70%; height: 110%;
+      background: radial-gradient(ellipse at center, rgba(201, 169, 97, 0.14), transparent 70%);
+      pointer-events: none;
+    }
+    .index-hero .container { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+    .hero-sub {
+      font-size: clamp(17px, 1.6vw, 20px);
+      color: var(--text-muted);
+      max-width: 640px;
+      line-height: 1.55;
+    }
+
+    /* POST CARD */
+    .posts-section { padding: 96px 0; }
+
+    .post-card {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-alt);
+      transition: border-color 0.3s;
+    }
+    .post-card:hover { border-color: var(--accent); }
+    @media (max-width: 900px) {
+      .post-card { grid-template-columns: 1fr; }
+    }
+
+    .post-card-body {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .post-card-meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .post-card-meta .dot { color: var(--accent); }
+    .post-card-meta .tag {
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .post-card-title {
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .post-card-title .accent { color: var(--accent); }
+
+    .post-card-quote {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text);
+      font-style: italic;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(201, 169, 97, 0.04);
+      margin: 8px 0;
+    }
+
+    .post-card-themes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .theme-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .theme-chip .emoji { font-size: 14px; }
+
+    .post-card-cta {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* RIGHT VISUAL */
+    .post-card-visual {
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(201, 169, 97, 0.18), transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(201, 169, 97, 0.10), transparent 60%),
+        linear-gradient(160deg, var(--bg) 0%, var(--bg-alt) 100%);
+      padding: 56px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      border-left: 1px solid var(--border);
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .post-card-visual { border-left: none; border-top: 1px solid var(--border); }
+    }
+
+    .visual-label {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .visual-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .visual-list li {
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .visual-list li:last-child { border-bottom: none; }
+    .visual-list .check {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* USES SECTION */
+    .uses-section {
+      padding: 96px 0;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+    }
+    .section-head {
+      margin-bottom: 56px;
+      max-width: 720px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .uses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) {
+      .uses-grid { grid-template-columns: 1fr; }
+    }
+    .use-card {
+      padding: 32px 28px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .use-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .use-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .use-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .use-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* CONTACT */
+    .contact-band {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-band::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: 50%;
+      transform: translateX(-50%);
+      width: 60%; height: 140%;
+      background: radial-gradient(ellipse at center, rgba(201, 169, 97, 0.10), transparent 60%);
+      pointer-events: none;
+    }
+    .contact-band .container { position: relative; z-index: 1; }
+    .contact-band h2 {
+      font-size: clamp(28px, 3.5vw, 36px);
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .contact-band p {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .contact-cta {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* PRINT */
+    @media print {
+      .nav, .contact-cta { display: none !important; }
+      .index-hero { padding: 32px 0 24px; }
+      .posts-section, .uses-section, .contact-band { padding: 24px 0; }
+      body { background: #fff; color: #111; }
+      .post-card, .use-card { border-color: #ccc !important; background: #fafafa !important; }
+      .post-card-visual { background: transparent !important; }
+      .accent { color: #8B6F1F !important; }
+    }
+
+    @media (max-width: 768px) {
+      .index-hero { padding: 110px 0 64px; }
+      .post-card-body { padding: 36px 28px; }
+      .post-card-visual { padding: 36px 28px; }
+      .posts-section, .uses-section, .contact-band { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="https://aton-company.io/" class="logo">АТОН</a>
+      <div class="nav-links">
+        <a href="https://aton-company.io/">Главная</a>
+        <a href="https://aton-company.io/#demo">Демо-дом</a>
+        <a href="https://aton-company.io/#contact">Контакты</a>
+      </div>
+    </div>
+  </nav>
+
+  <article class="article">
+
+    <!-- HERO -->
+    <header class="index-hero">
+      <div class="container">
+        <div class="hero-eyebrow">Посты АТОН</div>
+        <h1 class="hero-title">
+          Короткие мысли<br>о&nbsp;доме, стройке<br><span class="accent">и&nbsp;жизни в&nbsp;нём.</span>
+        </h1>
+        <p class="hero-sub">
+          Без воды, про реальную стройку и&nbsp;реальных людей. Здесь&nbsp;— то, что мы&nbsp;думаем и&nbsp;хотим сказать клиентам открыто.
+        </p>
+      </div>
+    </header>
+
+    <!-- КАРТОЧКА ПОСТА -->
+    <section class="posts-section">
+      <div class="container">
+        <article class="post-card">
+          <div class="post-card-body">
+            <div class="post-card-meta">
+              <span class="tag">Пост</span>
+              <span>2 июля 2026</span>
+              <span class="dot">·</span>
+              <span>~3 мин чтения</span>
+            </div>
+
+            <h2 class="post-card-title">
+              Люди покупают <span class="accent">не&nbsp;стены.</span><br>
+              Они покупают будущую жизнь.
+            </h2>
+
+            <p style="font-size: 16px; color: var(--text-muted); line-height: 1.6; max-width: 540px;">
+              Пост основателя АТОН о&nbsp;том, почему «хотим дом»&nbsp;— это про будущую жизнь, а&nbsp;не&nbsp;про квадратные метры. И&nbsp;как мы&nbsp;в&nbsp;эту будущую жизнь закладываем всё: от&nbsp;высоты потолков до&nbsp;мебели.
+            </p>
+
+            <blockquote class="post-card-quote">
+              «Каждый дом&nbsp;— это не&nbsp;квадратные метры. Это чья-то семья, чей-то первый завтрак, чей-то Новый год».
+            </blockquote>
+
+            <div class="post-card-themes">
+              <span class="theme-chip"><span class="emoji">🌅</span> Утро без суеты</span>
+              <span class="theme-chip"><span class="emoji">👶</span> Дети во дворе</span>
+              <span class="theme-chip"><span class="emoji">🎄</span> Новый год у себя</span>
+              <span class="theme-chip"><span class="emoji">🌳</span> Свой угол земли</span>
+            </div>
+
+            <div class="post-card-cta">
+              <a href="https://aton-company.io/post/zhizn/" class="btn btn-primary">Читать пост полностью →</a>
+            </div>
+          </div>
+
+          <aside class="post-card-visual">
+            <div class="visual-label">Внутри поста</div>
+            <ul class="visual-list">
+              <li><span class="check">→</span> Hero-цитата крупно</li>
+              <li><span class="check">→</span> 4 эмоциональные карточки</li>
+              <li><span class="check">→</span> 5 пунктов «почему строим так»</li>
+              <li><span class="check">→</span> CTA «позвонить / пожить»</li>
+              <li><span class="check">→</span> Шапка и футер с контактами</li>
+              <li><span class="check">→</span> OG-теги для шеринга</li>
+              <li><span class="check">→</span> Печатный CSS под PDF</li>
+            </ul>
+          </aside>
+        </article>
+      </div>
+    </section>
+
+    <!-- ГДЕ ИСПОЛЬЗОВАТЬ -->
+    <section class="uses-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Где это работает</div>
+          <h2 class="section-title">Куда можно кинуть пост</h2>
+        </div>
+
+        <div class="uses-grid">
+          <div class="use-card">
+            <div class="use-icon">📱</div>
+            <div class="use-title">В соцсетях</div>
+            <p class="use-text">
+              Instagram, VK, Telegram&nbsp;— ссылка с&nbsp;красивым превью (OG-теги прописаны). Открывается по&nbsp;тапу, читается с&nbsp;телефона.
+            </p>
+          </div>
+
+          <div class="use-card">
+            <div class="use-icon">💼</div>
+            <div class="use-title">На встрече с клиентом</div>
+            <p class="use-text">
+              Открыть на&nbsp;телефоне или планшете прямо в&nbsp;разговоре. Работает и&nbsp;в&nbsp;портрете, и&nbsp;в&nbsp;ландшафте. Эмоционально, без слащавости.
+            </p>
+          </div>
+
+          <div class="use-card">
+            <div class="use-icon">🖨️</div>
+            <div class="use-title">Печать в PDF</div>
+            <p class="use-text">
+              Открыть в&nbsp;браузере → «Печать» → «Сохранить как PDF». Печатный CSS уже настроен&nbsp;— выйдет 1-в-1 как на&nbsp;экране.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- КОНТАКТ -->
+    <section class="contact-band">
+      <div class="container">
+        <h2>Хотите такую&nbsp;же страницу про&nbsp;себя?</h2>
+        <p>Делаю посты, лендинги, КП, чехлы для маркетплейсов. В&nbsp;фирменном стиле АТОН.</p>
+        <div class="contact-cta">
+          <a href="tel:+79123199647" class="btn btn-primary">Позвонить Павлу</a>
+          <a href="https://t.me/Zibers" class="btn btn-ghost">Написать в Telegram</a>
+        </div>
+      </div>
+    </section>
+
+  </article>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">АТОН</div>
+      <div class="footer-text">
+        Строительная компания · Челябинская область<br>
+        © 2026 Зиберс Павел. Строим жизни, а&nbsp;не&nbsp;стены.
+      </div>
+      <div class="footer-text">
+        <a href="https://aton-company.io/">Главная</a>
+        ·
+        <a href="https://atonsk.ru" target="_blank" rel="noopener">atonsk.ru</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
