@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Люди покупают не стены. Они покупают будущую жизнь. — АТОН</title>
+  <meta name="description" content="Почему мы в АТОН строим не «коробки с крышей». Что на самом деле стоит за словами «хотим дом» — и как это меняет стройку.">
+  <meta name="author" content="Павел Зиберс, основатель АТОН">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Люди покупают не стены. Они покупают будущую жизнь.">
+  <meta property="og:description" content="Когда к нам приходят с фразой «хотим дом», за ней почти всегда стоит нечто большее. Разбираем, что именно.">
+  <meta property="og:url" content="https://aton-company.io/post/zhizn/">
+  <meta property="og:site_name" content="АТОН — Строительная компания">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪴</text></svg>">
+  <link rel="canonical" href="https://aton-company.io/post/zhizn/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* === POST-SPECIFIC === */
+
+    .article {
+      padding-top: 72px;
+    }
+
+    /* HERO POSTA */
+    .post-hero {
+      position: relative;
+      padding: 160px 0 96px;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .post-hero::before {
+      content: '';
+      position: absolute;
+      top: -25%; right: -15%;
+      width: 70%; height: 110%;
+      background: radial-gradient(ellipse at center, rgba(201, 169, 97, 0.16), transparent 70%);
+      pointer-events: none;
+    }
+    .post-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.5;
+    }
+    .post-hero .container { position: relative; z-index: 1; }
+
+    .post-eyebrow {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .post-title {
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      max-width: 900px;
+    }
+    .post-title .accent { color: var(--accent); }
+
+    .post-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .post-meta .divider { color: var(--accent); }
+
+    /* SECTIONS */
+    .post-section {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-section:last-of-type { border-bottom: none; }
+    .post-section.alt { background: var(--bg-alt); }
+
+    .lead-xl {
+      font-size: clamp(20px, 1.8vw, 24px);
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 28px;
+      max-width: 760px;
+    }
+
+    .post-section h2 {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+    }
+    .post-section h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* FUTURE GRID */
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+    @media (max-width: 768px) {
+      .future-grid { grid-template-columns: 1fr; }
+    }
+
+    .future-card {
+      padding: 40px 32px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .post-section:not(.alt) .future-card {
+      background: var(--bg);
+    }
+    .future-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .future-icon {
+      font-size: 36px;
+      margin-bottom: 18px;
+      display: block;
+    }
+    .future-title {
+      font-size: 21px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .future-text {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ATON POINTS */
+    .aton-points {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .aton-point {
+      padding: 24px 28px;
+      border-left: 3px solid var(--accent);
+      background: rgba(201, 169, 97, 0.04);
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .aton-point strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* CTA */
+    .post-cta {
+      text-align: center;
+      background:
+        radial-gradient(ellipse at center top, rgba(201, 169, 97, 0.10), transparent 60%),
+        var(--bg-alt);
+    }
+    .post-cta-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .post-cta h2 {
+      margin-bottom: 24px;
+    }
+    .post-cta-sub {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 40px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* BACK LINK */
+    .back-bar {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 20, 17, 0.6);
+    }
+    .back-bar a {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .back-bar a:hover { color: var(--accent); }
+
+    /* CTA phones in footer */
+    .post-footer-cta {
+      margin-top: 32px;
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+    .post-footer-cta strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* PRINT */
+    @media print {
+      .nav, .back-bar, .post-cta .cta-row, .footer { display: none !important; }
+      .post-hero { padding: 32px 0 24px; }
+      .post-section { padding: 32px 0; }
+      body { background: #ffffff; color: #111; }
+      .post-section, .post-hero { border-color: #ccc !important; }
+      .future-card { background: #fafafa !important; border-color: #ddd !important; }
+      .aton-point { background: transparent !important; border-left-color: #8B6F1F !important; }
+      .accent { color: #8B6F1F !important; }
+      .post-cta { background: transparent !important; }
+    }
+
+    @media (max-width: 768px) {
+      .post-hero { padding: 120px 0 64px; }
+      .post-section { padding: 64px 0; }
+      .post-section h2 { margin-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="https://aton-company.io/" class="logo">АТОН</a>
+      <div class="nav-links">
+        <a href="https://aton-company.io/#about">О компании</a>
+        <a href="https://aton-company.io/#demo">Демо-дом</a>
+        <a href="https://aton-company.io/#contact">Контакты</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="back-bar">
+    <div class="container">
+      <a href="https://aton-company.io/">← Вернуться на главную</a>
+    </div>
+  </div>
+
+  <article class="article">
+
+    <!-- HERO -->
+    <header class="post-hero">
+      <div class="container">
+        <div class="post-eyebrow">Пост · Основатель АТОН</div>
+        <h1 class="post-title">
+          Люди покупают не&nbsp;стены.<br>
+          Они покупают <span class="accent">будущую жизнь.</span>
+        </h1>
+        <p class="lead-xl">
+          Каждый, кто приходит к&nbsp;нам, говорит одну и&nbsp;ту&nbsp;же фразу: «Хотим дом». Но&nbsp;за&nbsp;этими тремя словами почти всегда стоит совсем другое.
+        </p>
+        <div class="post-meta">
+          <span>2 июля 2026</span>
+          <span class="divider">·</span>
+          <span>Павел Зиберс, основатель АТОН</span>
+          <span class="divider">·</span>
+          <span>~3 минуты чтения</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ЧТО ПОКУПАЮТ -->
+    <section class="post-section">
+      <div class="container">
+        <h2>Что на&nbsp;самом деле стоит за&nbsp;«хотим дом»</h2>
+        <p class="lead-xl">
+          За&nbsp;двадцать с&nbsp;лишним лет в&nbsp;стройке я&nbsp;слышал это сотни раз. И&nbsp;каждый раз разговор быстро уходил дальше квадратных метров.
+        </p>
+
+        <div class="future-grid">
+          <div class="future-card">
+            <span class="future-icon">🌅</span>
+            <div class="future-title">Утро без суеты</div>
+            <p class="future-text">
+              Проснуться и&nbsp;не&nbsp;слышать соседей. Заварить кофе на&nbsp;своей кухне. Выйти на&nbsp;террасу босиком&nbsp;— в&nbsp;своём дворе, в&nbsp;тишине.
+            </p>
+          </div>
+
+          <div class="future-card">
+            <span class="future-icon">👶</span>
+            <div class="future-title">Дети во дворе</div>
+            <p class="future-text">
+              Бегать, кричать, расти. Свой двор, свой газон, своя площадка. Не&nbsp;парк по&nbsp;расписанию&nbsp;— место, где можно всё.
+            </p>
+          </div>
+
+          <div class="future-card">
+            <span class="future-icon">🎄</span>
+            <div class="future-title">Новый год у себя</div>
+            <p class="future-text">
+              Ёлка в&nbsp;своей гостиной. Родители приезжают к&nbsp;вам. Дети засыпают в&nbsp;своей комнате, а&nbsp;не&nbsp;в&nbsp;чемодане.
+            </p>
+          </div>
+
+          <div class="future-card">
+            <span class="future-icon">🌳</span>
+            <div class="future-title">Свой угол земли</div>
+            <p class="future-text">
+              Мангал, грядки, собака, гамак. Место, где никто не&nbsp;скажет «нельзя», и&nbsp;где шум&nbsp;— только тот, который вы&nbsp;сами выбрали.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- МЫ СТРОИМ ИМЕННО ЭТО -->
+    <section class="post-section alt">
+      <div class="container">
+        <h2>Поэтому мы&nbsp;строим&nbsp;— <span class="accent">именно так</span></h2>
+        <p class="lead-xl">
+          Если наши клиенты покупают будущую жизнь, то&nbsp;наша работа&nbsp;— сделать так, чтобы эта жизнь в&nbsp;доме <strong>состоялась</strong>. Из&nbsp;этого вытекает всё&nbsp;— от&nbsp;высоты потолков до&nbsp;мебели.
+        </p>
+
+        <div class="aton-points">
+          <div class="aton-point">
+            <strong>Одноэтажный дом.</strong> Никаких лестниц в&nbsp;быту, никакого топота сверху. Дети, старики, гости&nbsp;— все на&nbsp;одном уровне. Пространство для жизни&nbsp;— а&nbsp;не&nbsp;для спортивных упражнений между этажами.
+          </div>
+          <div class="aton-point">
+            <strong>Тёплый пол без батарей.</strong> Равномерный нагрев, никаких радиаторов на&nbsp;стенах. Дети могут сидеть на&nbsp;полу хоть в&nbsp;январе&nbsp;— и&nbsp;это нормально.
+          </div>
+          <div class="aton-point">
+            <strong>Корпусная мебель&nbsp;— сразу.</strong> Кухни, шкафы, гардеробные&nbsp;— производим сами. Клиент заезжает с&nbsp;чемоданом и&nbsp;живёт. Без полугодового доделывания и&nbsp;поездок по&nbsp;салонам.
+          </div>
+          <div class="aton-point">
+            <strong>Демо-дом, чтобы пожить.</strong> Никаких решений «по&nbsp;картинке». Можно приехать, провести две ночи, проснуться в&nbsp;этом доме. Почувствовать&nbsp;— и&nbsp;только потом решать. Этого не&nbsp;делает больше никто.
+          </div>
+          <div class="aton-point">
+            <strong>6&nbsp;месяцев от пустыря до&nbsp;ключей.</strong> Один срок, одна команда, один договор. Не&nbsp;«через полгода найдём субподрядчика на&nbsp;плитку».
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="post-section post-cta">
+      <div class="container">
+        <div class="post-cta-inner">
+          <h2>Готовы к&nbsp;своей <span class="accent">будущей жизни?</span></h2>
+          <p class="post-cta-sub">
+            Расскажите, какую жизнь вы&nbsp;хотите построить. Мы&nbsp;послушаем&nbsp;— и&nbsp;построим именно её. Без шаблонов и&nbsp;«как у&nbsp;всех».
+          </p>
+
+          <div class="cta-row">
+            <a href="tel:+79123199647" class="btn btn-primary">Позвонить основателю</a>
+            <a href="https://aton-company.io/#demo" class="btn btn-ghost">Пожить в&nbsp;демо-доме</a>
+          </div>
+
+          <p class="post-footer-cta">
+            <strong>+7&nbsp;912&nbsp;319-96-47</strong> · Павел Зиберс · atonsk.ru · Челябинская область
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </article>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">АТОН</div>
+      <div class="footer-text">
+        Строительная компания · Челябинская область<br>
+        © 2026 Зиберс Павел. Строим жизни, а&nbsp;не&nbsp;стены.
+      </div>
+      <div class="footer-text">
+        <a href="https://github.com/PavelZibers/aton-company" target="_blank" rel="noopener">GitHub</a>
+        ·
+        <a href="https://atonsk.ru" target="_blank" rel="noopener">atonsk.ru</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
