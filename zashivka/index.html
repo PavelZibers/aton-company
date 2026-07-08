@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>АТОН — Зашивка контрактов (черновик v0.1)</title>
+<style>
+:root {
+  --bg: #FAF7F0;
+  --paper: #FFFFFF;
+  --gold: #C9A227;
+  --gold-light: #F0E2A6;
+  --gold-dark: #8B6F1F;
+  --ink: #2A2A2A;
+  --ink-soft: #5A5A5A;
+  --line: #D9D2BA;
+  --green: #2E7D32;
+  --green-bg: #D5E8D4;
+  --yellow: #7F6000;
+  --yellow-bg: #FFF2CC;
+  --red: #9C0006;
+  --red-bg: #F8CBCB;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 16px;
+  font-size: 14px;
+}
+header {
+  background: linear-gradient(135deg, #FBF5E9, #F2E8D0);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.brand {
+  font-family: 'Georgia', serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--gold-dark);
+}
+.subtitle {
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.version {
+  background: var(--gold);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.date-picker {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+th {
+  background: var(--gold-light);
+  color: var(--gold-dark);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 12px 8px;
+  border-bottom: 2px solid var(--gold);
+  text-align: left;
+}
+td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+tr:hover td { background: #FFFCF2; }
+td input, td select {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  border-radius: 3px;
+}
+td input:focus, td select:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: #FFFDF5;
+}
+td.amount input { font-weight: 600; text-align: right; font-family: 'Menlo', monospace; }
+td.date input { font-family: 'Menlo', monospace; font-size: 13px; }
+.amount-paid { color: var(--green); font-weight: 600; }
+.amount-due { color: var(--ink); font-weight: 600; }
+.btn {
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  margin-right: 8px;
+}
+.btn:hover { background: var(--gold-dark); }
+.btn-secondary {
+  background: transparent;
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
+}
+.btn-danger {
+  background: transparent;
+  color: var(--red);
+  border: 1px solid #E5A0A0;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+.actions { margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.total-row {
+  background: var(--gold-light);
+  font-weight: 700;
+}
+.total-row td { font-size: 14px; color: var(--gold-dark); }
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px;
+  border-left: 4px solid var(--gold);
+}
+.card-label {
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.card-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  font-family: 'Menlo', monospace;
+}
+.card.due .card-value { color: var(--red); }
+.card.paid .card-value { color: var(--green); }
+.contract-pill {
+  background: #E8F0FF;
+  color: #1A4789;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
+}
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold-dark);
+  margin: 24px 0 10px 0;
+  padding-left: 8px;
+  border-left: 3px solid var(--gold);
+}
+.hint { color: var(--ink-soft); font-size: 12px; font-style: italic; margin: 8px 0; }
+note {
+  display: block;
+  background: #FFFCEC;
+  border: 1px dashed var(--gold);
+  padding: 10px 14px;
+  margin-top: 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="brand">АТОН</div>
+    <div class="subtitle">Зашивка контрактов · черновик v0.1</div>
+  </div>
+  <div>
+    <input type="date" class="date-picker" id="reportDate" value="2026-07-08">
+    <span class="version">DRAFT</span>
+  </div>
+</header>
+
+<div class="summary">
+  <div class="card paid">
+    <div class="card-label">Поступило всего</div>
+    <div class="card-value" id="sumPaid">0 ₽</div>
+  </div>
+  <div class="card due">
+    <div class="card-label">Остаток по этапам</div>
+    <div class="card-value" id="sumDue">0 ₽</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Контрактов в работе</div>
+    <div class="card-value" id="cntContracts">0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Этапов закрыто / всего</div>
+    <div class="card-value"><span id="cntStagesDone">0</span> / <span id="cntStagesAll">0</span></div>
+  </div>
+</div>
+
+<div class="section-title">▼ Зашивка контрактов — поступления от клиентов</div>
+<div class="hint">Каждое поступление привязывается к этапу работ. Dropdown в колонке "Этап" — чтобы видеть, по какому этапу пришёл платёж.</div>
+
+<div class="actions">
+  <button class="btn" onclick="addRow('income')">+ Добавить поступление</button>
+  <button class="btn btn-secondary" onclick="addContract()">+ Новый контракт (привязать строки)</button>
+</div>
+
+<table id="incomeTable">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Дата</th>
+      <th>Контракт</th>
+      <th>Этап (слева →)</th>
+      <th>Клиент</th>
+      <th>Сумма, ₽</th>
+      <th>Способ</th>
+      <th>Комментарий</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="incomeBody"></tbody>
+  <tfoot>
+    <tr class="total-row">
+      <td colspan="5" style="text-align: right;">ИТОГО поступлений:</td>
+      <td id="incomeTotal" class="amount-paid">0 ₽</td>
+      <td colspan="3"></td>
+    </tr>
+  </tfoot>
+</table>
+
+<div class="section-title">▼ Распределение по этапам — сводка по контрактам</div>
+<div class="hint">Здесь видно, какой этап оплачен, какой нет. Назавтра подвяжем получение по этапам сюда.</div>
+
+<table id="stagesTable">
+  <thead>
+    <tr>
+      <th>Контракт</th>
+      <th>Фундамент</th>
+      <th>Стены</th>
+      <th>Армопояс</th>
+      <th>Кровля</th>
+      <th>Всего поступило</th>
+      <th>Остаток</th>
+    </tr>
+  </thead>
+  <tbody id="stagesBody"></tbody>
+</table>
+
+<div class="section-title">▼ Платежи исполнителям (по этапам, dropdown исполнителя)</div>
+<div class="hint">Когда закупили/залили фундамент или стену — здесь же отмечаем платёж бригаде. Дропдаун — чтобы не печатать каждый раз имя.</div>
+
+<div class="actions">
+  <button class="btn" onclick="addRow('worker')">+ Добавить платёж</button>
+</div>
+
+<table id="workerTable">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Дата</th>
+      <th>Этап</th>
+      <th>Контракт</th>
+      <th>Исполнитель</th>
+      <th>Вид работ</th>
+      <th>Сумма договора, ₽</th>
+      <th>Выплачено, ₽</th>
+      <th>Остаток, ₽</th>
+      <th>Статус</th>
+      <th>Комментарий</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="workerBody"></tbody>
+  <tfoot>
+    <tr class="total-row">
+      <td colspan="6" style="text-align: right;">ИТОГО:</td>
+      <td id="workerContract">0 ₽</td>
+      <td id="workerPaid" class="amount-paid">0 ₽</td>
+      <td id="workerRemain" class="amount-due">0 ₽</td>
+      <td colspan="3"></td>
+    </tr>
+  </tfoot>
+</table>
+
+<note>
+  <strong>v0.1 — черновик.</strong> Идея: верх — зашивка (поступления), низ — выплаты, между ними — сводка по этапам. Этапы (фундамент / стены / армопояс / кровля) — dropdown, чтобы привязывать платежи и поступления к одному месту.<br>
+  <strong>Что нужно от Павла:</strong> (1) список исполнителей для dropdown (Бойматов, Варвонин, Андреев, …), (2) точно ли этапы = "фундамент / стены / армопояс / кровля" — нужно 4 или больше/меньше?, (3) есть ли ещё таблица, к которой это подвязывать надо?
+</note>
+
+<script>
+const STAGES = ['фундамент', 'стены', 'армопояс', 'кровля'];
+const WORKERS = ['Бойматов Ботирон', 'Бойматов Ботирон 1', 'Бойматов Ботирон 2', 'Бойматов Ботирон 3', 'Варвонина Артем', 'Варвонина Артем А.', 'Андреев Евгений', '—'];
+const STATUSES = ['оплачен', 'частично', 'в работе', 'долг'];
+const METHODS = ['банк (СБЕР)', 'банк (иное)', 'наличные', 'касса', 'жена перевела', 'П.А. наливные', 'долг', 'иное'];
+
+const seedIncome = [
+  { date: '2026-06-29', stage: 'фундамент', contract: 'КОПЕЙСК 26.6', client: 'Анна', amount: 2000000, method: 'банк (СБЕР)', comment: 'аванс по договору' },
+  { date: '2026-07-02', stage: 'стены',     contract: 'КОПЕЙСК 26.6', client: 'Анна', amount: 1500000, method: 'банк (СБЕР)', comment: '' },
+  { date: '2026-07-08', stage: 'фундамент', contract: 'СИДОРОВКА 26.5', client: 'Сидоров Сидор', amount: 1500000, method: 'банк (СБЕР)', comment: 'ПВ по договору' },
+];
+
+const seedWorkers = [
+  { date: '2026-05-25', stage: 'фундамент', contract: '— (без привязки)', worker: 'Бойматов Ботирон',  work: 'устройство свайного поля + ростверк', contractSum: 110000, paid: 110000, status: 'оплачен', comment: 'касса' },
+  { date: '2026-06-10', stage: 'кровля',    contract: '— (без привязки)', worker: 'Бойматов Ботирон 1', work: 'баня, пар. плат. май',            contractSum: 42000,  paid: 42000,  status: 'оплачен', comment: '' },
+  { date: '2026-06-13', stage: 'стены',     contract: '— (без привязки)', worker: 'Бойматов Ботирон 1', work: 'П.А. наливные',                    contractSum: 30900,  paid: 30900,  status: 'оплачен', comment: '' },
+  { date: '2026-06-19', stage: 'армопояс',  contract: '— (без привязки)', worker: 'Бойматов Ботирон 2', work: 'П.А. наливные',                    contractSum: 119100, paid: 119100, status: 'оплачен', comment: '' },
+  { date: '2026-06-25', stage: 'кровля',    contract: '— (без привязки)', worker: 'Бойматов Ботирон 2', work: 'долг',                              contractSum: 40000,  paid: 40000,  status: 'долг',    comment: '' },
+  { date: '2026-07-03', stage: 'кровля',    contract: '— (без привязки)', worker: 'Бойматов Ботирон 3', work: 'перевёл ПА',                       contractSum: 100000, paid: 100000, status: 'оплачен', comment: 'БАНК' },
+];
+
+function fmt(n) { return new Intl.NumberFormat('ru-RU').format(n || 0) + ' ₽'; }
+
+function renderIncome() {
+  const tbody = document.getElementById('incomeBody');
+  tbody.innerHTML = '';
+  seedIncome.forEach((r, i) => tbody.appendChild(makeIncomeRow(i + 1, r)));
+  tbody.appendChild(makeIncomeRow(seedIncome.length + 1, { date: '', stage: 'фундамент', contract: '', client: '', amount: 0, method: 'банк (СБЕР)', comment: '' }));
+  recalc();
+}
+
+function renderWorkers() {
+  const tbody = document.getElementById('workerBody');
+  tbody.innerHTML = '';
+  seedWorkers.forEach((r, i) => tbody.appendChild(makeWorkerRow(i + 1, r)));
+  tbody.appendChild(makeWorkerRow(seedWorkers.length + 1, { stage: 'фундамент', worker: WORKERS[0], contractSum: 0, paid: 0, status: 'оплачен' }));
+  recalc();
+}
+
+function makeIncomeRow(n, r) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${n}</td>
+    <td class="date"><input type="date" value="${r.date || ''}" onchange="if(seedIncome[${n-1}]) seedIncome[${n-1}].date=this.value"></td>
+    <td><input value="${r.contract || ''}" placeholder="КОПЕЙСК 26.6" onchange="if(seedIncome[${n-1}]) seedIncome[${n-1}].contract=this.value; recalc();"></td>
+    <td><select onchange="if(seedIncome[${n-1}]) seedIncome[${n-1}].stage=this.value; recalc();">
+      ${STAGES.map(s => `<option ${s === r.stage ? 'selected' : ''}>${s}</option>`).join('')}
+    </select></td>
+    <td><input value="${r.client || ''}" placeholder="Имя клиента" onchange="if(seedIncome[${n-1}]) seedIncome[${n-1}].client=this.value; recalc();"></td>
+    <td class="amount"><input type="number" value="${r.amount || 0}" oninput="if(seedIncome[${n-1}]) seedIncome[${n-1}].amount=+this.value; recalc();"></td>
+    <td><select onchange="if(seedIncome[${n-1}]) seedIncome[${n-1}].method=this.value">
+      ${METHODS.map(m => `<option ${m === r.method ? 'selected' : ''}>${m}</option>`).join('')}
+    </select></td>
+    <td><input value="${r.comment || ''}" onchange="if(seedIncome[${n-1}]) seedIncome[${n-1}].comment=this.value"></td>
+    <td><button class="btn btn-danger" onclick="removeIncome(${n-1})">×</button></td>
+  `;
+  return tr;
+}
+
+function makeWorkerRow(n, r) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${n}</td>
+    <td class="date"><input type="date" value="${r.date || ''}" onchange="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].date=this.value"></td>
+    <td><select onchange="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].stage=this.value">
+      ${STAGES.map(s => `<option ${s === r.stage ? 'selected' : ''}>${s}</option>`).join('')}
+    </select></td>
+    <td><input value="${r.contract || ''}" placeholder="КОПЕЙСК 26.6" onchange="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].contract=this.value; recalc();"></td>
+    <td><select onchange="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].worker=this.value">
+      ${WORKERS.map(w => `<option ${w === r.worker ? 'selected' : ''}>${w}</option>`).join('')}
+    </select></td>
+    <td><input value="${r.work || ''}" placeholder="вид работ" onchange="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].work=this.value"></td>
+    <td class="amount"><input type="number" value="${r.contractSum || 0}" oninput="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].contractSum=+this.value; recalc();"></td>
+    <td class="amount"><input type="number" value="${r.paid || 0}" oninput="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].paid=+this.value; recalc();"></td>
+    <td class="amount-due" style="text-align:right; padding-right:10px;">${fmt((r.contractSum || 0) - (r.paid || 0))}</td>
+    <td><select onchange="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].status=this.value">
+      ${STATUSES.map(s => `<option ${s === r.status ? 'selected' : ''}>${s}</option>`).join('')}
+    </select></td>
+    <td><input value="${r.comment || ''}" onchange="if(seedWorkers[${n-1}]) seedWorkers[${n-1}].comment=this.value"></td>
+    <td><button class="btn btn-danger" onclick="removeWorker(${n-1})">×</button></td>
+  `;
+  return tr;
+}
+
+function removeIncome(i) { seedIncome.splice(i, 1); renderIncome(); }
+function removeWorker(i) { seedWorkers.splice(i, 1); renderWorkers(); }
+
+function addRow(kind) {
+  if (kind === 'income') {
+    seedIncome.push({ date: '', stage: 'фундамент', contract: '', client: '', amount: 0, method: 'банк (СБЕР)', comment: '' });
+    renderIncome();
+  } else {
+    seedWorkers.push({ stage: 'фундамент', worker: WORKERS[0], contractSum: 0, paid: 0, status: 'оплачен' });
+    renderWorkers();
+  }
+}
+
+function recalc() {
+  const totalPaid = seedIncome.reduce((s, r) => s + (r.amount || 0), 0);
+  document.getElementById('incomeTotal').textContent = fmt(totalPaid);
+  document.getElementById('sumPaid').textContent = fmt(totalPaid);
+
+  const contractSum = seedWorkers.reduce((s, r) => s + (r.contractSum || 0), 0);
+  const paid = seedWorkers.reduce((s, r) => s + (r.paid || 0), 0);
+  const remain = contractSum - paid;
+  document.getElementById('workerContract').textContent = fmt(contractSum);
+  document.getElementById('workerPaid').textContent = fmt(paid);
+  document.getElementById('workerRemain').textContent = fmt(remain);
+  document.getElementById('sumDue').textContent = fmt(remain);
+
+  const contracts = new Set();
+  seedIncome.forEach(r => { if (r.contract) contracts.add(r.contract); });
+  seedWorkers.forEach(r => { if (r.contract && r.contract !== '— (без привязки)') contracts.add(r.contract); });
+  document.getElementById('cntContracts').textContent = contracts.size;
+
+  const stagesTotal = STAGES.length * contracts.size;
+  const stagesDone = {};
+  seedIncome.forEach(r => {
+    if (r.contract && r.amount > 0) {
+      if (!stagesDone[r.contract]) stagesDone[r.contract] = new Set();
+      stagesDone[r.contract].add(r.stage);
+    }
+  });
+  let doneCount = 0;
+  Object.values(stagesDone).forEach(s => doneCount += s.size);
+  document.getElementById('cntStagesAll').textContent = stagesTotal;
+  document.getElementById('cntStagesDone').textContent = doneCount;
+
+  const stagesBody = document.getElementById('stagesBody');
+  stagesBody.innerHTML = '';
+  const sortedContracts = Array.from(contracts).sort();
+  sortedContracts.forEach(contract => {
+    const byStage = {};
+    STAGES.forEach(st => byStage[st] = 0);
+    seedIncome.forEach(r => {
+      if (r.contract === contract && byStage[r.stage] !== undefined) byStage[r.stage] += r.amount || 0;
+    });
+    const totalGot = STAGES.reduce((s, st) => s + byStage[st], 0);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="contract-pill">${contract}</span></td>
+      ${STAGES.map(st => `<td style="text-align:right; font-family:Menlo,monospace;">${byStage[st] > 0 ? fmt(byStage[st]) : '—'}</td>`).join('')}
+      <td style="text-align:right; font-weight:600; color:var(--green);">${fmt(totalGot)}</td>
+      <td style="text-align:right; color:var(--ink-soft); font-size:12px;">—</td>
+    `;
+    stagesBody.appendChild(tr);
+  });
+  if (sortedContracts.length === 0) {
+    stagesBody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:var(--ink-soft); padding:20px;">пока нет контрактов</td></tr>';
+  }
+}
+
+function addContract() {
+  const name = prompt('Название контракта (напр. КОПЕЙСК 26.6):');
+  if (name) {
+    seedIncome.push({ date: '', stage: 'фундамент', contract: name.trim(), client: '', amount: 0, method: 'банк (СБЕР)', comment: 'новый контракт' });
+    renderIncome();
+  }
+}
+
+renderIncome();
+renderWorkers();
+</script>
+</body>
+</html>
