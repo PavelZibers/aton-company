@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>АТОН — Подборка маляров с Авито</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .toolbar {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+    text-align: center;
+  }
+  .toolbar a.home {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .toolbar h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .toolbar .sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  .toolbar .meta {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+  .toolbar .meta .sep { color: var(--accent-dim); margin: 0 12px; }
+  .toolbar .meta b { color: var(--accent); font-weight: 500; }
+
+  .lead-block {
+    padding: 60px 0 0;
+  }
+  .lead-block .lead-card {
+    padding: 28px 32px;
+    background: rgba(201, 169, 97, 0.05);
+    border: 1px solid var(--accent-dim);
+    border-radius: 6px;
+  }
+  .lead-block h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+  }
+  .lead-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .lead-block li {
+    padding: 8px 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text);
+    padding-left: 24px;
+    position: relative;
+  }
+  .lead-block li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .lead-block li b {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .filters {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .filters h2,
+  .candidates h2,
+  .template h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .filters .h-sub,
+  .candidates .h-sub,
+  .template .h-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+    max-width: 720px;
+  }
+  .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 768px) {
+    .filter-grid { grid-template-columns: 1fr; }
+  }
+  .filter-card {
+    display: block;
+    padding: 24px 28px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .filter-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .filter-card .tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .filter-card .name {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .filter-card .hint {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+  .filter-card .arrow {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: var(--accent);
+    font-size: 18px;
+    opacity: 0.6;
+  }
+
+  .candidates {
+    padding: 80px 0;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+  }
+  .candidate {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    transition: all 0.25s ease;
+  }
+  .candidate:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+  .candidate .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .candidate .title a:hover { color: var(--accent); }
+  .candidate .quote {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    padding: 12px 16px;
+    border-left: 2px solid var(--accent-dim);
+    background: rgba(201, 169, 97, 0.04);
+    margin: 12px 0 16px;
+    font-style: italic;
+  }
+  .candidate .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .candidate .tags span {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-muted);
+  }
+  .candidate .tags span.ok { color: var(--accent); border-color: var(--accent-dim); }
+  .candidate .tags span.warn { color: #d4a04a; border-color: rgba(212, 160, 74, 0.4); }
+  .candidate .open {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .candidate .open::after {
+    content: "→";
+    font-size: 16px;
+  }
+
+  .template { padding: 80px 0; }
+  table.tmpl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 24px;
+  }
+  table.tmpl th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--accent-dim);
+  }
+  table.tmpl td {
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-muted);
+  }
+  table.tmpl td:first-child { color: var(--text); font-weight: 500; }
+  table.tmpl tr:hover td { background: rgba(201, 169, 97, 0.03); }
+  table.tmpl td.muted { color: var(--text-muted); font-style: italic; }
+  table.tmpl td b { color: var(--accent); font-weight: 500; }
+
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 768px) {
+    .legend { grid-template-columns: 1fr; }
+  }
+  .legend-card {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .legend-card .l-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .legend-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .next {
+    padding: 80px 0 60px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-alt);
+  }
+  .next h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .next p {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 720px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 768px) {
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+  .step {
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+  }
+  .step .num {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    margin-bottom: 12px;
+  }
+  .step .what {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="https://aton-company.io/" class="logo">АТОН</a>
+    <div class="nav-links">
+      <a href="https://aton-company.io/#build">Строим</a>
+      <a href="https://aton-company.io/#demo">Демо-дом</a>
+      <a href="https://aton-company.io/#tech">Технологии</a>
+      <a href="https://aton-company.io/#contact">Контакт</a>
+    </div>
+  </div>
+</nav>
+
+<section class="toolbar">
+  <div class="container">
+    <a class="home" href="https://aton-company.io/">← На главный сайт АТОН</a>
+    <h1>Подборка маляров <span class="accent">с Авито</span></h1>
+    <p class="sub">Штукатурно-малярные бригады и мастера под дома АТОН — подборка для внутренней работы. Открывай ссылки, фильтруй, звони, заполняй карточку.</p>
+    <div class="meta">
+      <b>14 июля 2026</b><span class="sep">·</span>
+      <b>Челябинск + область</b><span class="sep">·</span>
+      Сборка: БРО
+    </div>
+  </div>
+</section>
+
+<section class="lead-block">
+  <div class="container">
+    <div class="lead-card">
+      <h2>Кого ищем</h2>
+      <ul>
+        <li><b>Специализация:</b> штукатурно-малярные работы — под газоблок (наружный 300 мм, внутренний 200 мм, перегородки 150 мм). ГКЛ не используем.</li>
+        <li><b>Объём:</b> полный цикл — штукатурка, шпаклёвка, грунтовка, покраска стен и потолков. Готовность под чистовую.</li>
+        <li><b>Формат:</b> бригада 3+ человека или звено 2 человека. Один мастер на подхвате тоже годен — для точечных объектов.</li>
+        <li><b>Опыт:</b> минимум 5 лет на отделке. <b>Опыт в частных домах обязателен</b> — квартиры и коттеджи сильно отличаются.</li>
+        <li><b>Регион:</b> Челябинск + 30–40 км (Сосновский, Аргаяшский р-ны, пригороды). Готовность выезжать на дальние объекты — плюс.</li>
+        <li><b>Инструмент:</b> свой минимальный набор (шпатели, правило, уровень, миксер). Механизированная штукатурка — плюс.</li>
+        <li><b>Договор:</b> готовность работать по договору с АТОН, с актами и графиком. Безналичный/наличный — обсуждаем.</li>
+        <li><b>Что НЕ берём:</b> «поклейка обоев под ключ», сантехника+электрика «в нагрузку», бригады без портфолио.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="filters">
+  <div class="container">
+    <h2>Где смотреть на Авито</h2>
+    <p class="h-sub">Готовые ссылки с фильтрами — открываются сразу с правильной категорией и запросом. Нажал → смотришь листинг → кликаешь по объявлениям.</p>
+
+    <div class="filter-grid">
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag">
+        <div class="tag">Услуги · Раздел</div>
+        <div class="name">Поклейка обоев и малярные работы</div>
+        <div class="hint">Основная категория. Большинство штукатурно-малярных бригад сидят здесь. Самый большой выбор.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag?q=%D1%88%D1%82%D1%83%D0%BA%D0%B0%D1%82%D1%83%D1%80+%D0%BC%D0%B0%D0%BB%D1%8F%D1%80">
+        <div class="tag">Поиск · Подкатегория</div>
+        <div class="name">«Штукатур-маляр» в малярных работах</div>
+        <div class="hint">Сразу режет только профильных. Экономь время — отсеивает поклейщиков обоев.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty/brigada-ASgBAgICAkSYC8CfAcQVyvr9AryuD8C38wI">
+        <div class="tag">Поиск · Подкатегория</div>
+        <div class="name">«Бригада» в малярных работах</div>
+        <div class="hint">Кто прямо пишет «бригада» — обычно серьёзные ребята, готовы объёмом.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug?q=%D1%88%D1%82%D1%83%D0%BA%D0%B0%D1%82%D1%83%D1%80+%D0%BC%D0%B0%D0%BB%D1%8F%D1%80">
+        <div class="tag">Поиск · Общий раздел услуг</div>
+        <div class="name">«Штукатур-маляр» по всем услугам</div>
+        <div class="hint">Шире выбор — сюда попадают и те, кто не выбрал правильную категорию. Просеивать вручную.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug?q=%D0%BC%D0%B0%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B5+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B+%D1%87%D0%B0%D1%81%D1%82%D0%BD%D1%8B%D0%B9+%D0%B4%D0%BE%D0%BC">
+        <div class="tag">Поиск · Уточнение</div>
+        <div class="name">«Малярные работы частный дом»</div>
+        <div class="hint">Кто уже работал по домам — сразу видно в описании. Фильтр против квартирников.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug?q=%D0%BC%D0%B5%D1%85%D0%B0%D0%BD%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F+%D1%88%D1%82%D1%83%D0%BA%D0%B0%D1%82%D1%83%D1%80%D0%BA%D0%B0">
+        <div class="tag">Поиск · Подсегмент</div>
+        <div class="name">«Механизированная штукатурка»</div>
+        <div class="hint">У кого есть штукатурная станция — темп выше, цена чуть ниже на больших объёмах. Златоуст и дальние объекты — особенно полезно.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug?q=%D1%84%D0%B0%D1%81%D0%B0%D0%B4%D0%BD%D1%8B%D0%B5+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B+%D0%BF%D0%BE%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0">
+        <div class="tag">Поиск · Подсегмент</div>
+        <div class="name">«Фасадные работы покраска»</div>
+        <div class="hint">Наружная отделка домов АТОН — штукатурка + покраска фасада. Тот же пул мастеров часто берёт и внутреннюю.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="filter-card" target="_blank" rel="noopener" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug?q=%D0%B4%D0%B5%D0%BA%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F+%D1%88%D1%82%D1%83%D0%BA%D0%B0%D1%82%D1%83%D1%80%D0%BA%D0%B0">
+        <div class="tag">Поиск · Премиум</div>
+        <div class="name">«Декоративная штукатурка»</div>
+        <div class="hint">Премиальный сегмент. Дома АТОН сдаются под чистовую — если клиент захочет декор, пригодится.</div>
+        <span class="arrow">↗</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="candidates">
+  <div class="container">
+    <h2>Конкретные бригады с Авито</h2>
+    <p class="h-sub">То, что уже нашёл поисковик на момент 14.07.2026. Ссылки ведут на сами объявления — открывай, читай описание, смотри отзывы, звони. Телефоны Авито скрывает — они откроются в самом объявлении после клика.</p>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/malyarnye_raboty_brigada_malyarov_2749473099" target="_blank" rel="noopener">Бригада маляров — «от эконом до премиум»</a></div>
+      <div class="quote">«Предлагаем услуги маляров любой сложности. Мы — бригада маляров, опытные, порядочные, высококвалифицированные. Работаем разными материалами — от "эконом" до "премиум" сегмента».</div>
+      <div class="tags">
+        <span class="ok">Бригада</span>
+        <span class="ok">Любой сегмент</span>
+        <span class="warn">Нужно уточнить опыт по домам</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/malyarnye_raboty_brigada_malyarov_2749473099" target="_blank" rel="noopener">Открыть на Авито</a>
+    </div>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/malyarnye_raboty_3059570176" target="_blank" rel="noopener">Штукатурно-малярная бригада №1</a></div>
+      <div class="quote">«Основная специализация нашей бригады — штукатурно-малярные работы».</div>
+      <div class="tags">
+        <span class="ok">Штукатурка + малярка</span>
+        <span class="ok">Профильная специализация</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/malyarnye_raboty_3059570176" target="_blank" rel="noopener">Открыть на Авито</a>
+    </div>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/malyarnye_raboty_3739983210" target="_blank" rel="noopener">Штукатурно-малярная бригада №2</a></div>
+      <div class="quote">«Выполним работы качественно и в сроки. Специализация нашей бригады — штукатурно-малярные работы».</div>
+      <div class="tags">
+        <span class="ok">Штукатурка + малярка</span>
+        <span class="warn">Сроки и качество — уточнить на собеседовании</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/malyarnye_raboty_3739983210" target="_blank" rel="noopener">Открыть на Авито</a>
+    </div>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag?q=%D0%B1%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B0+%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9+%D0%B8%D1%89%D0%B5%D1%82+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83" target="_blank" rel="noopener">Частная бригада — 3 человека, опыт 8+ лет, 700+ объектов</a></div>
+      <div class="quote">«Здравствуйте, мы частная бригада из 3 человек, опыт работы более 8 лет. За это время выполнили более 700 отделочных работ в квартирах, частных домах, коттеджах и офисах».</div>
+      <div class="tags">
+        <span class="ok">8+ лет</span>
+        <span class="ok">700+ объектов</span>
+        <span class="ok">Есть опыт по домам</span>
+        <span class="ok">Звено 3 чел.</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag?q=%D0%B1%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B0+%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9+%D0%B8%D1%89%D0%B5%D1%82+%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83" target="_blank" rel="noopener">Открыть на Авито</a>
+    </div>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag" target="_blank" rel="noopener">Бригада 3+ чел., опыт 20+ лет</a></div>
+      <div class="quote">«Бригада из 3-х человек, опыт работы более 20 лет. Быстро и качественно выполним: выравнивание, шпаклевка, покраска стен и потолков, поклейка всех видов обоев».</div>
+      <div class="tags">
+        <span class="ok">20+ лет</span>
+        <span class="ok">Полный цикл</span>
+        <span class="warn">Проверить, работали ли по домам (не только квартиры)</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag" target="_blank" rel="noopener">Открыть список по тегу</a>
+    </div>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/otdelochnye_i_malyarnye_raboty_2018275712" target="_blank" rel="noopener">Отделочные и малярные работы — общее объявление</a></div>
+      <div class="quote">«Отделочные и малярные работы в Челябинске. Профессиональные услуги и сервисы».</div>
+      <div class="tags">
+        <span>Под запрос</span>
+        <span class="warn">Мало описания — открыть, посмотреть портфолио</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/otdelochnye_i_malyarnye_raboty_2018275712" target="_blank" rel="noopener">Открыть на Авито</a>
+    </div>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag?q=%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%D1%81%D1%8F+%D0%B1%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B0" target="_blank" rel="noopener">«Требуется бригада» — ищут работу, откликаемся мы</a></div>
+      <div class="quote">«Здравствуйте, опытная бригада, строим дома, отделка квартир под ключ, копать, ломать».</div>
+      <div class="tags">
+        <span>Универсалы</span>
+        <span class="warn">«Строим дома» — хорошо; «копать, ломать» — перегруз, уточнять специализацию</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag?q=%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%D1%81%D1%8F+%D0%B1%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B0" target="_blank" rel="noopener">Открыть на Авито</a>
+    </div>
+
+    <div class="candidate">
+      <div class="title"><a href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag?q=%D0%B1%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B0+%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D1%85" target="_blank" rel="noopener">«Бригада рабочих» — ловить в общем списке</a></div>
+      <div class="quote">Раздел поиска с подзапросом «бригада рабочих» — сюда попадают все, кто ставит это слово в описание.</div>
+      <div class="tags">
+        <span>Подсев по «бригада»</span>
+        <span>Фильтровать вручную</span>
+      </div>
+      <a class="open" href="https://www.avito.ru/chelyabinsk/predlozheniya_uslug/remont_i_otdelka/poklejka_oboev_i_malyarnye_raboty-ASgBAgICAkSYC8CfAcQVyvr9Ag?q=%D0%B1%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B0+%D1%80%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D1%85" target="_blank" rel="noopener">Открыть список на Авито</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="template">
+  <div class="container">
+    <h2>Шаблон карточки маляра</h2>
+    <p class="h-sub">Кого позвонил — заноси сюда. После 5–7 звонков будет ясно, кого звать на объект первым.</p>
+
+    <table class="tmpl">
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Имя / название</th>
+          <th>Телефон</th>
+          <th>Формат</th>
+          <th>Состав</th>
+          <th>Опыт</th>
+          <th>Специализация</th>
+          <th>Ставка ₽/м²</th>
+          <th>Район</th>
+          <th>Первое впечатление</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>—</td>
+          <td class="muted">открыть объявление → в Авито</td>
+          <td class="muted">бригада / одиночка</td>
+          <td class="muted">N чел.</td>
+          <td class="muted">__ лет</td>
+          <td class="muted">штук-маляр / маляр / покраска</td>
+          <td class="muted">__ ₽</td>
+          <td class="muted">Че / область</td>
+          <td class="muted">что сказал, что обещал</td>
+          <td class="muted">новый / звонок / встреча / отказ / в работе</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="legend">
+      <div class="legend-card">
+        <div class="l-title">Что спрашивать</div>
+        <p>Опыт по домам (не квартирам). Состав бригады. Инструмент свой/нет. Готовность по договору. Минимальный объём за выход. Ставка за м² штукатурки и шпаклёвки отдельно.</p>
+      </div>
+      <div class="legend-card">
+        <div class="l-title">Красные флаги</div>
+        <p>«Берёмся за всё подряд». Нет фото готовых объектов. Требуют 100% предоплату до начала. Не выходят на связь после первого звонка. Негативные отзывы на Авито.</p>
+      </div>
+      <div class="legend-card">
+        <div class="l-title">Что предлагать</div>
+        <p>Объём 100–250 м² за объект, график 6 дней, оплата по этапам (аванс/акты/финал). Постоянный поток домов в течение сезона. При необходимости — мебель от АТОН в подарок для себя.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="next">
+  <div class="container">
+    <h2>Что дальше</h2>
+    <p>Подборка — стартовая. Набирай свою — звони, заполняй карточку, фильтруй. Через неделю будет база, и можно будет раздавать маляров конкретным прорабам на объекты.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div class="what">Открыть 5–8 объявлений из подборки. Записать имя + ссылку + что зацепило.</div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div class="what">Прозвонить 5 штук. Первый фильтр: голос, адекватность, готовность приехать на замер.</div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div class="what">2–3 кандидата пригласить на любой ближайший объект (Тимер, Малиновка, Лесной остров). Смотрят, говорят ставку.</div>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <div class="what">1–2 берём в работу. Тест — 1 объект. Если сработались — в долгую, как Дмитрий с мебельным цехом.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">АТОН</div>
+    <div class="footer-text">Строим жизни, а не стены · г. Челябинск · atonsk.ru · <a href="https://aton-company.io/">aton-company.io</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
