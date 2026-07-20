@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бизнес-план: Производство и продажа пиломатериала — АТОН</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f1ea;
+    color: #2c2418;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 18px 60px; }
+  header {
+    background: #2c2418;
+    color: #f5f1ea;
+    padding: 28px 24px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid #c9a227;
+  }
+  header .pre { font-size: 12px; letter-spacing: 1.5px; color: #c9a227; text-transform: uppercase; }
+  header h1 { margin: 6px 0 8px; font-size: 24px; line-height: 1.3; }
+  header .meta { font-size: 12px; opacity: 0.7; margin-top: 8px; }
+  .summary {
+    background: #fff8e7;
+    border-left: 6px solid #c9a227;
+    padding: 18px 22px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .summary b { color: #8b6f1f; display: block; margin-bottom: 4px; font-size: 16px; }
+  .section {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    border: 1px solid #e6dcc6;
+  }
+  .section h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    color: #8b6f1f;
+    border-bottom: 2px solid #c9a227;
+    padding-bottom: 8px;
+  }
+  .section h3 {
+    margin: 18px 0 8px;
+    font-size: 15px;
+    color: #3a2a0f;
+    font-weight: 600;
+  }
+  .section p { margin: 0 0 12px; }
+  .section ul, .section ol { margin: 8px 0 12px; padding-left: 22px; }
+  .section li { margin-bottom: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+  table th, table td {
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid #e6dcc6;
+  }
+  table th {
+    background: #f8f1e3;
+    font-weight: 600;
+    color: #3a2a0f;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  table td.num, table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table tr.totalrow td {
+    background: #f8f1e3;
+    font-weight: 700;
+    border-top: 2px solid #c9a227;
+  }
+  .kpi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .kpi-card {
+    background: #f8f1e3;
+    border: 1px solid #c9a227;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .kpi-card .label { font-size: 11px; color: #8b6f1f; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-card .value { font-size: 22px; font-weight: 700; color: #3a2a0f; margin: 6px 0 4px; }
+  .kpi-card .delta { font-size: 11px; color: #6b5a3e; }
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  .check-list li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    border-bottom: 1px dashed #e6dcc6;
+  }
+  .check-list li:before {
+    content: "○";
+    position: absolute;
+    left: 0;
+    color: #c9a227;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .check-list li.done:before { content: "✓"; color: #2d6a1f; }
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    margin: 12px 0;
+  }
+  .timeline:before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #c9a227;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 8px 0 16px;
+  }
+  .timeline-item:before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 14px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #c9a227;
+    border: 2px solid #f5f1ea;
+  }
+  .timeline-item .when { font-size: 12px; color: #8b6f1f; font-weight: 600; }
+  .timeline-item .what { font-size: 14px; margin-top: 2px; }
+  .risk {
+    background: #fff;
+    border-left: 3px solid #c9a227;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  .risk.warn { border-left-color: #d97706; background: #fffaf0; }
+  .risk.bad { border-left-color: #b91c1c; background: #fff5f5; }
+  .meta {
+    text-align: center;
+    color: #8b6f1f;
+    font-size: 12px;
+    margin-top: 30px;
+    opacity: 0.8;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    background: #e7f4e4;
+    color: #2d6a1f;
+    margin-left: 8px;
+  }
+  .badge.warn { background: #fff3d4; color: #8b6f1f; }
+  @media print {
+    body { background: #fff; }
+    .section, .summary { box-shadow: none; }
+    header { background: #fff; color: #2c2418; border: 1px solid #2c2418; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="pre">Бизнес-план · АТОН</div>
+  <h1>Производство и продажа пиломатериала</h1>
+  <div class="meta">Производственная база АТОН · СНТ «Мечуренец», Челябинск · 20.07.2026</div>
+</header>
+
+<div class="summary">
+  <b>📌 Резюме</b>
+  Запуск производства пиломатериала на собственной пилораме (покупка у арендатора Никиты за долг). Основной продукт — обрезной пиломатериал (брус, доска) из сосны. Сбыт: внутренний АТОН (~375 м³/год) + оптовые покупатели в Челябинской области (~500 м³/год). Целевой объём: 875 м³/год. Цена продажи: 16 500 ₽/м³ (с дисконтом 1 000 ₽ от рынка). Вход: ~2.5 млн. Окупаемость: ~6 месяцев. Чистая прибыль (после налогов): 4.5–5.5 млн/год.
+</div>
+
+<div class="section">
+  <h2>1. Описание проекта</h2>
+  <p><b>Суть:</b> покупка готового пилорамы-бизнеса у арендатора Никиты (в долгах, в судах), выход на производство пиломатериала для собственного потребления АТОНа и оптовой продажи на рынке Челябинской области.</p>
+  <p><b>Почему сейчас:</b></p>
+  <ul>
+    <li>АТОН потребляет ~375 м³/год пиломатериала по рыночной цене 17 500 ₽/м³ (6.6 млн/год)</li>
+    <li>Никита в безвыходной ситуации — пилорама достанется дёшево (500 тыс нал + 700 тыс списание долга = 1.2 млн за актив рыночной стоимостью 2–5 млн)</li>
+    <li>У АТОНа пустует территория на базе — есть куда масштабироваться</li>
+    <li>У Никиты стоят 2 ленточные пилорамы (использовалась одна) — резерв мощности</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>2. Продукт и цены</h2>
+  <table>
+    <tr>
+      <th>Продукт</th>
+      <th>Сорт</th>
+      <th class="num">Цена рынок ₽/м³</th>
+      <th class="num">Цена наша ₽/м³</th>
+    </tr>
+    <tr>
+      <td>Брус обрезной 100×100, 150×150, 200×200</td>
+      <td>1-2</td>
+      <td class="num">18 000–20 000</td>
+      <td class="num">16 500</td>
+    </tr>
+    <tr>
+      <td>Доска обрезная 25×150, 50×150</td>
+      <td>1-2</td>
+      <td class="num">17 500–19 000</td>
+      <td class="num">16 500</td>
+    </tr>
+    <tr>
+      <td>Доска необрезная / горбыль</td>
+      <td>—</td>
+      <td class="num">8 000–10 000</td>
+      <td class="num">8 000</td>
+    </tr>
+  </table>
+  <p><b>Ценовая стратегия:</b> рынок Челябинской обл. на готовый пиломатериал — 17 500–20 000 ₽/м³. Продаём по 16 500 ₽/м³ — дисконт 1 000 ₽ от нижней границы, при этом маржа остаётся ~50%.</p>
+</div>
+
+<div class="section">
+  <h2>3. Производство</h2>
+  <h3>3.1. Оборудование</h3>
+  <ul>
+    <li><b>Пила ленточная №1</b> (основная, используется сейчас): 8–11 м³/смену</li>
+    <li><b>Пила ленточная №2</b> (резерв): можно запустить при росте объёмов</li>
+    <li><b>Дополнительно потребуется:</b> пильные ленты (расходник, ~3–5 замен в месяц), заточной станок, рольганги</li>
+  </ul>
+  <h3>3.2. Производительность</h3>
+  <table>
+    <tr><th>Сценарий</th><th class="num">м³/день</th><th class="num">Рабочих дней/год</th><th class="num">м³/год</th></tr>
+    <tr><td>Целевой</td><td class="num">3.5–4.4</td><td class="num">250</td><td class="num">875</td></tr>
+    <tr><td>Средний (1 пила)</td><td class="num">8–11</td><td class="num">250</td><td class="num">2 000–2 750</td></tr>
+    <tr><td>Максимум (2 пилы)</td><td class="num">16–22</td><td class="num">250</td><td class="num">4 000–5 500</td></tr>
+  </table>
+  <p>Запас мощности — 3-4 раза. Можно расти вверх по объёмам без инвестиций в оборудование.</p>
+  <h3>3.3. Персонал</h3>
+  <ul>
+    <li>1–2 распиловщика (оплата 2 000 ₽/м³ распиленного — модель «за результат»)</li>
+    <li>1 подсобный (погрузка/разгрузка, складирование)</li>
+  </ul>
+  <p><b>Важно:</b> Никита в долгах — в качестве оператора не подходит. Нужно искать нового.</p>
+</div>
+
+<div class="section">
+  <h2>4. Сбыт</h2>
+  <h3>4.1. Каналы продаж</h3>
+  <table>
+    <tr><th>Канал</th><th class="num">Объём м³/год</th><th class="num">Выручка млн/год</th><th>Комментарий</th></tr>
+    <tr>
+      <td><b>Внутренний АТОН</b> (стропила, обрешётка, черепяки)</td>
+      <td class="num">375</td>
+      <td class="num">6.2</td>
+      <td>по себестоимости (внутри холдинга) или с минимальной наценкой 16 500</td>
+    </tr>
+    <tr>
+      <td><b>Строительные бригады Челябинска</b></td>
+      <td class="num">200</td>
+      <td class="num">3.3</td>
+      <td>прямые договоры, постоянные клиенты</td>
+    </tr>
+    <tr>
+      <td><b>Стройбазы / магазины</b></td>
+      <td class="num">150</td>
+      <td class="num">2.5</td>
+      <td>оптом с наценкой 5–10%</td>
+    </tr>
+    <tr>
+      <td><b>Частные застройщики</b> (через сайт АТОН, ВК)</td>
+      <td class="num">100</td>
+      <td class="num">1.65</td>
+      <td>розница, доставка</td>
+    </tr>
+    <tr>
+      <td><b>Срубы / бани</b> (расширение линейки)</td>
+      <td class="num">50</td>
+      <td class="num">1.0</td>
+      <td>с 2-го года, выход в смежный сегмент</td>
+    </tr>
+    <tr class="totalrow"><td><b>ИТОГО</b></td><td class="num"><b>875</b></td><td class="num"><b>~14.7</b></td><td></td></tr>
+  </table>
+  <h3>4.2. Спрос и конкуренция</h3>
+  <ul>
+    <li>Рынок Челябинской обл.: стабильный высокий спрос на пиломатериал (стройка активная, ИЖС растёт)</li>
+    <li>Конкуренты: федеральные пилорамы, региональные, «гаражные» производители</li>
+    <li>Конкурентные преимущества АТОНа: стабильное качество (ФГИС ЛК, ГОСТ), бесперебойность поставок, бренд, доставка</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>5. Стоимость входа</h2>
+  <table>
+    <tr><th>Статья</th><th class="num">Сумма</th><th>Комментарий</th></tr>
+    <tr><td>Пилорама (2 ленточных, с наработкой)</td><td class="num">1 200 000 ₽</td><td>500 тыс нал + 700 тыс списание долга Никиты</td></tr>
+    <tr><td>Доводка, ремонт, ЗИП (пилы, масло)</td><td class="num">300 000 ₽</td><td>привести в идеал, запас расходников на 3 мес</td></tr>
+    <tr><td>Оборотный капитал (на 3 мес до выхода на прибыль)</td><td class="num">1 500 000 ₽</td><td>закупка кругляка, ФОТ операторов, расходники</td></tr>
+    <tr><td>Юрлицо + регистрация + ФГИС ЛК + бухгалтерия</td><td class="num">100 000 ₽</td><td>ИП/ООО, ЭЦП, настройка учёта</td></tr>
+    <tr class="totalrow"><td><b>ИТОГО вход</b></td><td class="num"><b>~3.1 млн</b></td><td></td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>6. Финансовый план (год 1)</h2>
+  <h3>6.1. P&L (при 875 м³/год, продажа по 16 500 ₽/м³)</h3>
+  <table>
+    <tr><th>Статья</th><th class="num">За 1 м³</th><th class="num">За 875 м³/год</th></tr>
+    <tr><td colspan="3" style="background: #f8f1e3;"><b>Выручка</b></td></tr>
+    <tr><td>Продажа пиломатериала</td><td class="num">16 500</td><td class="num">14 437 500</td></tr>
+    <tr class="totalrow"><td><b>ИТОГО выручка</b></td><td class="num"><b>16 500</b></td><td class="num"><b>14 437 500</b></td></tr>
+    <tr><td colspan="3" style="background: #f8f1e3;"><b>Себестоимость</b></td></tr>
+    <tr><td>Кругляк на деляне</td><td class="num">5 000</td><td class="num">4 375 000</td></tr>
+    <tr><td>Доставка кругляка</td><td class="num">300</td><td class="num">262 500</td></tr>
+    <tr><td>Операторам (распил 2 000 ₽/м³)</td><td class="num">2 000</td><td class="num">1 750 000</td></tr>
+    <tr><td>Электричество, расходники</td><td class="num">900</td><td class="num">787 500</td></tr>
+    <tr class="totalrow"><td><b>Итого себестоимость</b></td><td class="num"><b>8 200</b></td><td class="num"><b>7 175 000</b></td></tr>
+    <tr><td colspan="3" style="background: #f8f1e3;"><b>Валовая прибыль</b></td></tr>
+    <tr class="totalrow"><td><b>Маржа</b></td><td class="num"><b>8 300</b></td><td class="num"><b>7 262 500</b></td></tr>
+    <tr><td colspan="3" style="background: #f8f1e3;"><b>Расходы периода</b></td></tr>
+    <tr><td>Аренда территории (внутренняя, АТОН)</td><td class="num">—</td><td class="num">0</td></tr>
+    <tr><td>Бухгалтерия, налоги (УСН 15%)</td><td class="num">—</td><td class="num">1 090 000</td></tr>
+    <tr><td>ФГИС ЛК, сертификация, документы</td><td class="num">—</td><td class="num">100 000</td></tr>
+    <tr><td>Транспорт (доставка клиентам)</td><td class="num">—</td><td class="num">200 000</td></tr>
+    <tr><td>Прочие расходы (связь, инструмент)</td><td class="num">—</td><td class="num">150 000</td></tr>
+    <tr class="totalrow"><td><b>Итого расходов</b></td><td class="num">—</td><td class="num"><b>1 540 000</b></td></tr>
+    <tr class="totalrow"><td><b>ЧИСТАЯ ПРИБЫЛЬ</b></td><td class="num">—</td><td class="num"><b>~5.7 млн</b></td></tr>
+  </table>
+
+  <h3>6.2. Ключевые метрики (KPI)</h3>
+  <div class="kpi">
+    <div class="kpi-card">
+      <div class="label">Выручка год 1</div>
+      <div class="value">14.4 млн</div>
+      <div class="delta">875 м³ × 16 500 ₽</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Чистая прибыль</div>
+      <div class="value">5.7 млн</div>
+      <div class="delta">после налогов</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Рентабельность</div>
+      <div class="value">40%</div>
+      <div class="delta">чистая прибыль / выручка</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Окупаемость</div>
+      <div class="value">~6 мес</div>
+      <div class="delta">вход 3.1 млн / 5.7 млн год</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Маржа на м³</div>
+      <div class="value">8 300 ₽</div>
+      <div class="delta">50%</div>
+    </div>
+  </div>
+
+  <h3>6.3. Потенциал роста (год 2–3)</h3>
+  <table>
+    <tr><th>Сценарий</th><th class="num">м³/год</th><th class="num">Выручка</th><th class="num">Чистая прибыль</th></tr>
+    <tr><td>Год 1 (план)</td><td class="num">875</td><td class="num">14.4 млн</td><td class="num">5.7 млн</td></tr>
+    <tr><td>Год 2 (рост продаж + сушилка)</td><td class="num">1 500</td><td class="num">30 млн</td><td class="num">12 млн</td></tr>
+    <tr><td>Год 3 (полная загрузка 1 пилы)</td><td class="num">2 500</td><td class="num">50 млн</td><td class="num">20 млн</td></tr>
+  </table>
+  <p>При выходе на сухой пиломатериал (сушилка +1.5–3 млн инвестиций) цена растёт на 30–50%, маржа — пропорционально.</p>
+</div>
+
+<div class="section">
+  <h2>7. Юридические и регуляторные вопросы</h2>
+  <h3>7.1. Оформление бизнеса</h3>
+  <ul class="check-list">
+    <li>Зарегистрировать ИП или ООО (рекомендация — ИП на УСН 15% «доходы минус расходы»)</li>
+    <li>Получить ЭЦП на юрлицо</li>
+    <li>Зарегистрироваться в <b>ФГИС ЛК</b> (ЕГАИС-Лес) — обязательно для торговли лесом и пиломатериалами</li>
+    <li>Получить сертификат соответствия на продукцию по ГОСТ 18288-2018 (пиломатериалы)</li>
+    <li>Заключить договор с Никитой на передачу пилорамы (бартер + акт приёма-передачи + списание долга)</li>
+    <li>Постановка на учёт в Росреестре (если есть недвижимость — пилорама)</li>
+  </ul>
+  <h3>7.2. Налогообложение</h3>
+  <ul>
+    <li><b>УСН 15%</b> (доходы минус расходы) — оптимально при марже 40%</li>
+    <li><b>УСН 6%</b> (только доходы) — проще, но невыгодно при высоких расходах на кругляк</li>
+    <li><b>Патент</b> — не подходит (оптовая торговля пиломатериалом)</li>
+    <li>Страховые взносы за сотрудников (если будут): ~30% от ФОТ</li>
+  </ul>
+  <h3>7.3. Разрешения и лимиты</h3>
+  <ul>
+    <li>На пилораму как объект: разрешение не требуется (не ОПО)</li>
+    <li>Электричество: согласование мощности с сетями (если >15 кВт)</li>
+    <li>Пожарные требования: минимальные (деревянная пыль — вытяжка, средства пожаротушения)</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>8. Риски</h2>
+  <div class="risk warn">
+    <b>⚠️ Риск №1: Не найден оператор</b><br>
+    Без человека пилорама стоит. Никита в долгах — не подходит. Решение: активный поиск (Авито, HH.ru, сарафан), возможно — переманить оператора с другой пилорамы Челябинска.
+  </div>
+  <div class="risk">
+    <b>Риск №2: Сезонность спроса</b><br>
+    Пик спроса на пиломатериал — весна/лето (стройка активная), спад — зима. Решение: формировать склад зимой под весну, диверсифицировать клиентов.
+  </div>
+  <div class="risk">
+    <b>Риск №3: Рост цен на кругляк</b><br>
+    Цены на кругляк могут вырасти (спрос растёт, ФГИС ЛК контролирует). Решение: долгосрочные договоры с делянами, фиксация цены на сезон.
+  </div>
+  <div class="risk">
+    <b>Риск №4: Конкуренция</b><br>
+    На рынке Челябинской обл. десятки пилорам. Решение: качество, стабильность поставок, сервис (доставка, распил под заказ).
+  </div>
+  <div class="risk">
+    <b>Риск №5: Состояние оборудования</b><br>
+    Пилорама у Никиты — с наработкой. Может потребовать ремонта после покупки. Решение: заложить 200–300 тыс на ремонт в первые 3 месяца.
+  </div>
+</div>
+
+<div class="section">
+  <h2>9. План действий</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="when">Неделя 1</div>
+      <div class="what">Договориться с Никитой: акт приёма-передачи пилорамы, списание долга 700 тыс, выплата 500 тыс нал. Подписать документы.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Неделя 2–3</div>
+      <div class="what">Зарегистрировать ИП (или ООО), получить ЭЦП, зарегистрироваться в ФГИС ЛК. Открыть р/с.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Неделя 3–4</div>
+      <div class="what">Найти оператора пилорамы (Авито, знакомые, переманить с другой пилорамы). Договориться по модели 2 000 ₽/м³.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Неделя 4–5</div>
+      <div class="what">Закупить первую партию кругляка (50 м³) на деляне. Проверить пилораму в работе — тестовый распил 30 м³.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Месяц 2</div>
+      <div class="what">Запуск регулярного производства. Первые продажи (бригады, стройбазы Челябинска). Настройка канала продаж через сайт АТОН + ВК.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Месяц 3–4</div>
+      <div class="what">Сертификация пиломатериала по ГОСТ (если нужно для оптовиков). Выход на стабильные 50 м³/мес.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Месяц 6</div>
+      <div class="what">Точка окупаемости. Анализ: какие сорта и каналы продаж работают лучше. Масштабирование.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Год 2 (план)</div>
+      <div class="what">Постановка вопроса о сушильной камере (+1.5–3 млн, +30–50% к цене). Выход на 1 500 м³/год.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>10. Что нужно решить сейчас</h2>
+  <ol>
+    <li><b>Никита</b> — когда готов закрыть сделку по пилораме? Подписать акт + списание долга.</li>
+    <li><b>Оператор</b> — есть кандидат? Если нет — сразу дать объявление на Авито / HH.</li>
+    <li><b>Электричество</b> — хватает мощности на базе (10–50 кВт)? Если нет — подать заявку в сети (1–3 мес).</li>
+    <li><b>ИП или ООО</b> — какой формат выбираем? ИП проще и дешевле, ООО надёжнее.</li>
+    <li><b>Канал продаж</b> — есть база клиентов (бригады, базы) или начинаем с нуля?</li>
+  </ol>
+</div>
+
+<p class="meta">Документ от 20.07.2026 · внутренний · подлежит обновлению по ходу реализации</p>
+
+</div>
+</body>
+</html>
