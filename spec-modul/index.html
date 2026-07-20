@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Спецификация модульного дома АТОН (40 фут) — для обсуждения с подрядчиком</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f1ea;
+    color: #2c2418;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 18px 60px; }
+  header {
+    background: #2c2418;
+    color: #f5f1ea;
+    padding: 24px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid #c9a227;
+  }
+  header .pre { font-size: 12px; letter-spacing: 1.5px; color: #c9a227; text-transform: uppercase; }
+  header h1 { margin: 6px 0 8px; font-size: 22px; line-height: 1.3; }
+  header p { margin: 0; font-size: 13px; opacity: 0.85; }
+  .block {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    border: 1px solid #e6dcc6;
+  }
+  .block h2 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: #8b6f1f;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .block .sub { font-size: 12px; color: #8b6f1f; opacity: 0.8; margin-bottom: 14px; }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e6dcc6;
+    font-size: 14px;
+  }
+  .row:last-child { border-bottom: none; }
+  .row .name { flex: 1; }
+  .row .price { white-space: nowrap; color: #3a2a0f; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .row .note { display: block; font-size: 12px; color: #6b5a3e; margin-top: 3px; }
+  .total {
+    background: #f8f1e3;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border: 1px solid #c9a227;
+  }
+  .total h2 { margin: 0 0 10px; font-size: 14px; color: #8b6f1f; text-transform: uppercase; letter-spacing: 0.5px; }
+  .total .sum { font-size: 18px; font-weight: 600; color: #3a2a0f; }
+  .total .small { font-size: 12px; color: #6b5a3e; margin-top: 4px; }
+  .options {
+    background: #fff8e7;
+    border-left: 4px solid #c9a227;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .options h3 { margin: 0 0 8px; font-size: 14px; color: #8b6f1f; }
+  .options ul { margin: 0; padding-left: 20px; }
+  .options li { margin-bottom: 4px; }
+  .questions {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-top: 16px;
+    border: 1px solid #c9a227;
+  }
+  .questions h2 { margin: 0 0 12px; font-size: 16px; color: #8b6f1f; }
+  .questions ol { margin: 0; padding-left: 22px; font-size: 14px; }
+  .questions li { margin-bottom: 8px; }
+  .meta {
+    text-align: center;
+    color: #8b6f1f;
+    font-size: 12px;
+    margin-top: 30px;
+    opacity: 0.8;
+  }
+  .check {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid #c9a227;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .row .name { display: flex; align-items: flex-start; }
+  @media print {
+    body { background: #fff; }
+    .block, .total, .questions { box-shadow: none; }
+    header { background: #fff; color: #2c2418; border: 1px solid #2c2418; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="pre">АТОН — рабочий документ</div>
+  <h1>Спецификация модульного дома на базе 40-футового контейнера</h1>
+  <p>Для обсуждения с подрядчиком (Роман Аскаров) · 21.07.2026</p>
+</header>
+
+<div class="block">
+  <h2>Общие параметры</h2>
+  <div class="row"><div class="name">База</div><div class="price">морской контейнер 40 фут (12.19 × 2.44 × 2.59 м)</div></div>
+  <div class="row"><div class="name">Полезная площадь</div><div class="price">~30 м²</div></div>
+  <div class="row"><div class="name">Регион</div><div class="price">Урал (расчётная зимняя t° до −25°C)</div></div>
+  <div class="row"><div class="name">Тип</div><div class="price">жилой дом, круглогодичное проживание</div></div>
+  <div class="row"><div class="name">Бренд</div><div class="price">отдельный (НЕ АТОН — обсуждается)</div></div>
+</div>
+
+<div class="block">
+  <h2>Блок 1 · Базовая конструкция</h2>
+  <div class="sub">контейнер + доставка + орг. работы Романа</div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Контейнер 40 фут (новый)</div><div class="price">140 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Доставка до участка</div><div class="price">15 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Кран на выгрузку</div><div class="price">10 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Организационные работы Романа
+      <span class="note">приёмка, монтаж, отгрузка, контроль людей</span>
+    </div>
+    <div class="price">100 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 2 · Утепление (ОБЯЗАТЕЛЬНО для Урала)</h2>
+  <div class="sub">иначе зимой холодно → плохие отзывы</div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Стены: минвата 200 мм + пароизоляция + ветрозащита
+      <span class="note">пирог утвердить с Романом: марка/толщина</span>
+    </div>
+    <div class="price">80 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Пол: 200 мм утеплитель + пароизоляция
+      <span class="note">по всей площади, под стяжку</span>
+    </div>
+    <div class="price">40 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Потолок (кровля): 200 мм
+      <span class="note">с антиконденсатной мембраной</span>
+    </div>
+    <div class="price">50 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 3 · Окна и двери</h2>
+  <div class="row">
+    <div class="name"><span class="check"></span>Окна ПВХ энергосберегающие, 2-камерные (3 шт)</div><div class="price">45 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Входная дверь утеплённая</div><div class="price">25 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Межкомнатные двери (2 шт)</div><div class="price">15 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 4 · Электрика</h2>
+  <div class="row">
+    <div class="name"><span class="check"></span>Разводка, щит, автоматы, УЗО</div><div class="price">30 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Розетки, выключатели, светильники</div><div class="price">15 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 5 · Сантехника (опция)</h2>
+  <div class="sub">если без санузла — модуль не жилой для ПМЖ</div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Разводка ХВС/ГВС, канализация</div><div class="price">25 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Унитаз, раковина, душ, водонагреватель 80 л</div><div class="price">40 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 6 · Отопление</h2>
+  <div class="sub">обязательно для круглогодичного проживания</div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Тёплый пол электрический (по всей площади)</div><div class="price">80 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Электроконвекторы (2 шт, основной + резерв)</div><div class="price">15 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 7 · Внутренняя отделка</h2>
+  <div class="row">
+    <div class="name"><span class="check"></span>Обшивка стен/потолка (ГКЛ или вагонка)</div><div class="price">40 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Шпаклёвка / покраска / обои</div><div class="price">35 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Напольное покрытие (ламинат / кварцвинил)</div><div class="price">35 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 8 · Кровля</h2>
+  <div class="row">
+    <div class="name"><span class="check"></span>Плоская мембранная кровля
+      <span class="note">быстрый монтаж, минимальная нагрузка</span>
+    </div>
+    <div class="price">50 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name">или · Двускатная с покрытием Шинглас
+      <span class="note">как у АТОН, выглядит «как дом»</span>
+    </div>
+    <div class="price">90 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 9 · Фундамент</h2>
+  <div class="row">
+    <div class="name"><span class="check"></span>Винтовые сваи (6 шт) + монтаж
+      <span class="note">контейнер весит 3.5–4 т</span>
+    </div>
+    <div class="price">60 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 10 · Мебель (свой цех АТОН — экономия ~40%)</h2>
+  <div class="row">
+    <div class="name"><span class="check"></span>Кухня (корпус + монтаж)</div><div class="price">40 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Шкаф-купе / гардеробная</div><div class="price">25 000 ₽</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>Блок 11 · Регистрация и документы</h2>
+  <div class="sub">без этого клиент не оформит собственность</div>
+  <div class="row">
+    <div class="name"><span class="check"></span>Кадастровый учёт + регистрация в Росреестре</div><div class="price">40 000 ₽</div>
+  </div>
+</div>
+
+<div class="total">
+  <h2>📊 Итого по модулю</h2>
+  <div class="sum">Минимум (без сантехники, базовая отделка): ~915 000 ₽</div>
+  <div class="small">блоки 1, 2, 3, 4, 6, 7, 8, 9, 11</div>
+  <div class="sum" style="margin-top: 14px;">Полный «под ключ» (с сантехникой и мебелью): ~1 050 000 ₽</div>
+  <div class="small">все блоки, 1–11</div>
+</div>
+
+<div class="options">
+  <h3>Рекомендованная цена продажи</h3>
+  <ul>
+    <li><b>1.5–1.8 млн ₽</b> (минимум, без сантехники) — маржа 40–50%</li>
+    <li><b>1.9–2.2 млн ₽</b> (полный комплект, под ключ) — маржа 45–55%</li>
+    <li><b>2.5 млн ₽</b> (премиум с дизайнерской отделкой) — маржа 55–60%</li>
+  </ul>
+</div>
+
+<div class="options">
+  <h3>Что НЕ включено (оплачивает клиент отдельно)</h3>
+  <ul>
+    <li>Подключение к электросети: 50–100 тыс ₽</li>
+    <li>Скважина/колодец + насос: 100–200 тыс ₽</li>
+    <li>Септик: 80–150 тыс ₽</li>
+    <li>Газ (если рядом есть): 100–300 тыс ₽</li>
+    <li>Благоустройство участка (забор, дорожки, ландшафт) — отдельно</li>
+  </ul>
+</div>
+
+<div class="questions">
+  <h2>❓ Вопросы для обсуждения с Романом (21.07)</h2>
+  <ol>
+    <li><b>Пирог утепления</b> — какой конкретно? Марка/толщина/производитель минваты? Это критично для Урала.</li>
+    <li><b>Окна</b> — двухкамерные энергосберегающие? Профиль и стеклопакет утвердить заранее.</li>
+    <li><b>Кровля</b> — мембрана или двускатная? Если двускатная — кто монтирует?</li>
+    <li><b>Фундамент</b> — кто монтирует сваи? Роман сам или его субподрядчик?</li>
+    <li><b>Что Роман берёт «под ключ»</b>, а что клиент ищет сам (коммуникации, фундамент)?</li>
+    <li><b>Готовые проекты модулей</b> — есть ли у Романа реализованные кейсы, на которые можно посмотреть / съездить?</li>
+    <li><b>Сроки производства одного модуля</b> — от заказа до сдачи на участке клиента?</li>
+    <li><b>Гарантия</b> — какой срок и на что распространяется?</li>
+  </ol>
+</div>
+
+<p class="meta">Документ от 20.07.2026 · для внутреннего обсуждения · не публичный</p>
+
+</div>
+</body>
+</html>
