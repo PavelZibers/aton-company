@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Спецификация модульного дома АТОН (40 фут) — для обсуждения с подрядчиком</title>
+<title>Спецификация модульного дома AtonModule (40 фут High Cube) — v2</title>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -25,12 +25,26 @@
   header .pre { font-size: 12px; letter-spacing: 1.5px; color: #c9a227; text-transform: uppercase; }
   header h1 { margin: 6px 0 8px; font-size: 22px; line-height: 1.3; }
   header p { margin: 0; font-size: 13px; opacity: 0.85; }
+  .model-banner {
+    background: #c9a227;
+    color: #2c2418;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .model-banner b { font-size: 15px; display: block; margin-bottom: 4px; }
   .block {
     background: #ffffff;
     border-radius: 10px;
     padding: 18px 20px;
     margin-bottom: 14px;
     border: 1px solid #e6dcc6;
+  }
+  .block.ext {
+    background: #fff8e7;
+    border-left: 4px solid #c9a227;
   }
   .block h2 {
     margin: 0 0 4px;
@@ -103,6 +117,16 @@
     margin-top: 2px;
   }
   .row .name { display: flex; align-items: flex-start; }
+  .delta {
+    display: inline-block;
+    background: #e7f4e4;
+    color: #2d6a1f;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+  }
   @media print {
     body { background: #fff; }
     .block, .total, .questions { box-shadow: none; }
@@ -114,35 +138,36 @@
 <div class="wrap">
 
 <header>
-  <div class="pre">АТОН — рабочий документ</div>
-  <h1>Спецификация модульного дома на базе 40-футового контейнера</h1>
-  <p>Для обсуждения с подрядчиком (Роман Аскаров) · 21.07.2026</p>
+  <div class="pre">AtonModule — рабочий документ v2</div>
+  <h1>Спецификация модульного дома (40 фут High Cube)</h1>
+  <p>Для обсуждения с подрядчиком (Роман Аскаров) · 21.07.2026 · обновлено после разговора с Павлом</p>
 </header>
+
+<div class="model-banner">
+  <b>Модель продаж: «Дом-модуль с базы»</b>
+  АТОН продаёт готовый модуль с производственной базы. Доставка, фундамент, регистрация дома — отдельные услуги, оплачивает заказчик.
+</div>
 
 <div class="block">
   <h2>Общие параметры</h2>
-  <div class="row"><div class="name">База</div><div class="price">морской контейнер 40 фут (12.19 × 2.44 × 2.59 м)</div></div>
+  <div class="row"><div class="name">База</div><div class="price">морской контейнер 40 фут High Cube</div></div>
+  <div class="row"><div class="name">Габариты</div><div class="price">12.19 × 2.44 × 2.70 м <span class="delta">↑ high cube</span></div></div>
   <div class="row"><div class="name">Полезная площадь</div><div class="price">~30 м²</div></div>
+  <div class="row"><div class="name">Высота потолка внутри (после отделки)</div><div class="price">~2.45 м</div></div>
   <div class="row"><div class="name">Регион</div><div class="price">Урал (расчётная зимняя t° до −25°C)</div></div>
   <div class="row"><div class="name">Тип</div><div class="price">жилой дом, круглогодичное проживание</div></div>
-  <div class="row"><div class="name">Бренд</div><div class="price">отдельный (НЕ АТОН — обсуждается)</div></div>
+  <div class="row"><div class="name">Бренд</div><div class="price">AtonModule (суббренд АТОНа)</div></div>
 </div>
 
 <div class="block">
   <h2>Блок 1 · Базовая конструкция</h2>
-  <div class="sub">контейнер + доставка + орг. работы Романа</div>
+  <div class="sub">контейнер + орг. работы Романа</div>
   <div class="row">
-    <div class="name"><span class="check"></span>Контейнер 40 фут (новый)</div><div class="price">140 000 ₽</div>
-  </div>
-  <div class="row">
-    <div class="name"><span class="check"></span>Доставка до участка</div><div class="price">15 000 ₽</div>
-  </div>
-  <div class="row">
-    <div class="name"><span class="check"></span>Кран на выгрузку</div><div class="price">10 000 ₽</div>
+    <div class="name"><span class="check"></span>Контейнер 40 фут High Cube (новый)</div><div class="price">180 000 ₽ <span class="delta">+40k</span></div>
   </div>
   <div class="row">
     <div class="name"><span class="check"></span>Организационные работы Романа
-      <span class="note">приёмка, монтаж, отгрузка, контроль людей</span>
+      <span class="note">приёмка, монтаж на базе, контроль людей</span>
     </div>
     <div class="price">100 000 ₽</div>
   </div>
@@ -150,7 +175,7 @@
 
 <div class="block">
   <h2>Блок 2 · Утепление (ОБЯЗАТЕЛЬНО для Урала)</h2>
-  <div class="sub">иначе зимой холодно → плохие отзывы</div>
+  <div class="sub">пирог сверху крыши — чтобы не съедать высоту внутри</div>
   <div class="row">
     <div class="name"><span class="check"></span>Стены: минвата 200 мм + пароизоляция + ветрозащита
       <span class="note">пирог утвердить с Романом: марка/толщина</span>
@@ -164,10 +189,10 @@
     <div class="price">40 000 ₽</div>
   </div>
   <div class="row">
-    <div class="name"><span class="check"></span>Потолок (кровля): 200 мм
-      <span class="note">с антиконденсатной мембраной</span>
+    <div class="name"><span class="check"></span>Крыша (сверху по металлу): 200 мм минвата + гидроветрозащита + обрешётка
+      <span class="note">высота внутри сохраняется; работа на крыше</span>
     </div>
-    <div class="price">50 000 ₽</div>
+    <div class="price">80 000 ₽ <span class="delta">+30k</span></div>
   </div>
 </div>
 
@@ -230,33 +255,7 @@
 </div>
 
 <div class="block">
-  <h2>Блок 8 · Кровля</h2>
-  <div class="row">
-    <div class="name"><span class="check"></span>Плоская мембранная кровля
-      <span class="note">быстрый монтаж, минимальная нагрузка</span>
-    </div>
-    <div class="price">50 000 ₽</div>
-  </div>
-  <div class="row">
-    <div class="name">или · Двускатная с покрытием Шинглас
-      <span class="note">как у АТОН, выглядит «как дом»</span>
-    </div>
-    <div class="price">90 000 ₽</div>
-  </div>
-</div>
-
-<div class="block">
-  <h2>Блок 9 · Фундамент</h2>
-  <div class="row">
-    <div class="name"><span class="check"></span>Винтовые сваи (6 шт) + монтаж
-      <span class="note">контейнер весит 3.5–4 т</span>
-    </div>
-    <div class="price">60 000 ₽</div>
-  </div>
-</div>
-
-<div class="block">
-  <h2>Блок 10 · Мебель (свой цех АТОН — экономия ~40%)</h2>
+  <h2>Блок 8 · Мебель (свой цех АТОН — экономия ~40%)</h2>
   <div class="row">
     <div class="name"><span class="check"></span>Кухня (корпус + монтаж)</div><div class="price">40 000 ₽</div>
   </div>
@@ -265,57 +264,71 @@
   </div>
 </div>
 
-<div class="block">
-  <h2>Блок 11 · Регистрация и документы</h2>
-  <div class="sub">без этого клиент не оформит собственность</div>
-  <div class="row">
-    <div class="name"><span class="check"></span>Кадастровый учёт + регистрация в Росреестре</div><div class="price">40 000 ₽</div>
-  </div>
-</div>
-
 <div class="total">
-  <h2>📊 Итого по модулю</h2>
-  <div class="sum">Минимум (без сантехники, базовая отделка): ~915 000 ₽</div>
-  <div class="small">блоки 1, 2, 3, 4, 6, 7, 8, 9, 11</div>
-  <div class="sum" style="margin-top: 14px;">Полный «под ключ» (с сантехникой и мебелью): ~1 050 000 ₽</div>
-  <div class="small">все блоки, 1–11</div>
+  <h2>📊 Итоговая себестоимость модуля на базе</h2>
+  <div class="sum">Минимум (без сантехники): 880 000 ₽</div>
+  <div class="small">блоки 1, 2, 3, 4, 6, 7, 8</div>
+  <div class="sum" style="margin-top: 14px;">Полный «под ключ» (с сантехникой): 945 000 ₽</div>
+  <div class="small">все блоки, 1–8</div>
 </div>
 
 <div class="options">
   <h3>Рекомендованная цена продажи</h3>
   <ul>
-    <li><b>1.5–1.8 млн ₽</b> (минимум, без сантехники) — маржа 40–50%</li>
-    <li><b>1.9–2.2 млн ₽</b> (полный комплект, под ключ) — маржа 45–55%</li>
-    <li><b>2.5 млн ₽</b> (премиум с дизайнерской отделкой) — маржа 55–60%</li>
+    <li><b>1.6–1.8 млн ₽</b> (минимум, без сантехники) — маржа 50–55%</li>
+    <li><b>1.8–2.0 млн ₽</b> (полный комплект, под ключ) — маржа 47–50%</li>
+    <li><b>2.2–2.4 млн ₽</b> (премиум с дизайнерской отделкой) — маржа 55–60%</li>
   </ul>
 </div>
 
-<div class="options">
-  <h3>Что НЕ включено (оплачивает клиент отдельно)</h3>
-  <ul>
-    <li>Подключение к электросети: 50–100 тыс ₽</li>
-    <li>Скважина/колодец + насос: 100–200 тыс ₽</li>
-    <li>Септик: 80–150 тыс ₽</li>
-    <li>Газ (если рядом есть): 100–300 тыс ₽</li>
-    <li>Благоустройство участка (забор, дорожки, ландшафт) — отдельно</li>
-  </ul>
+<div class="block ext">
+  <h2>🚚 Дополнительные услуги (оплачивает заказчик)</h2>
+  <div class="sub">не входят в цену модуля — отдельная смета под клиента</div>
+  <div class="row">
+    <div class="name">Доставка контейнера с базы до участка
+      <span class="note">зависит от расстояния и типа транспорта</span>
+    </div>
+    <div class="price">от 25 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name">Кран на выгрузку и монтаж на сваи</div><div class="price">от 15 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name"><b>Винтовые сваи + выезд на замер</b>
+      <span class="note">АТОН выезжает на участок, подбирает: длина, лопасть/шуруп, нагрузки, грунт. Цена зависит от грунта и кол-ва свай</span>
+    </div>
+    <div class="price">от 80 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name">Регистрация дома (кадастр + Росреестр)</div><div class="price">от 40 000 ₽</div>
+  </div>
+  <div class="row">
+    <div class="name">Подключение к электросети</div><div class="price">50–100 тыс ₽</div>
+  </div>
+  <div class="row">
+    <div class="name">Скважина / колодец + насос</div><div class="price">100–200 тыс ₽</div>
+  </div>
+  <div class="row">
+    <div class="name">Септик</div><div class="price">80–150 тыс ₽</div>
+  </div>
 </div>
 
 <div class="questions">
   <h2>❓ Вопросы для обсуждения с Романом (21.07)</h2>
   <ol>
-    <li><b>Пирог утепления</b> — какой конкретно? Марка/толщина/производитель минваты? Это критично для Урала.</li>
-    <li><b>Окна</b> — двухкамерные энергосберегающие? Профиль и стеклопакет утвердить заранее.</li>
-    <li><b>Кровля</b> — мембрана или двускатная? Если двускатная — кто монтирует?</li>
-    <li><b>Фундамент</b> — кто монтирует сваи? Роман сам или его субподрядчик?</li>
-    <li><b>Что Роман берёт «под ключ»</b>, а что клиент ищет сам (коммуникации, фундамент)?</li>
-    <li><b>Готовые проекты модулей</b> — есть ли у Романа реализованные кейсы, на которые можно посмотреть / съездить?</li>
+    <li><b>High Cube поставка</b> — 2.70 м или 2.90 м? Цена за штуку от поставщика? Сроки поставки?</li>
+    <li><b>Пирог утепления стен</b> — минвата какой марки/толщины? Пароизоляция и ветрозащита — какой производитель?</li>
+    <li><b>Пирог утепления крыши (сверху)</b> — минвата 200 мм с обрешёткой, или ПИР-плиты (тоньше, дороже, без мостиков холода)?</li>
+    <li><b>Окна</b> — двухкамерные энергосберегающие. Профиль (Rehau/Veka/WHS)?</li>
+    <li><b>Сваи</b> — кто в итоге монтирует (Роман или субподряд)? Условия по выезду на замер?</li>
+    <li><b>Что Роман берёт «под ключ»</b>, а что клиент ищет сам?</li>
+    <li><b>Готовые проекты модулей</b> — есть ли реализованные кейсы, на которые можно посмотреть?</li>
     <li><b>Сроки производства одного модуля</b> — от заказа до сдачи на участке клиента?</li>
     <li><b>Гарантия</b> — какой срок и на что распространяется?</li>
   </ol>
 </div>
 
-<p class="meta">Документ от 20.07.2026 · для внутреннего обсуждения · не публичный</p>
+<p class="meta">Документ v2 от 20.07.2026 · для внутреннего обсуждения · не публичный</p>
 
 </div>
 </body>
