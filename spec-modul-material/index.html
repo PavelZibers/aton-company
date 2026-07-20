@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Спецификация материалов — AtonModule (40 фут HC) v1</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f1ea;
+    color: #2c2418;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 18px 60px; }
+  header {
+    background: #2c2418;
+    color: #f5f1ea;
+    padding: 24px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid #c9a227;
+  }
+  header .pre { font-size: 12px; letter-spacing: 1.5px; color: #c9a227; text-transform: uppercase; }
+  header h1 { margin: 6px 0 8px; font-size: 22px; line-height: 1.3; }
+  header p { margin: 0; font-size: 13px; opacity: 0.85; }
+  .info-banner {
+    background: #c9a227;
+    color: #2c2418;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .info-banner b { display: block; margin-bottom: 4px; }
+  .block {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    border: 1px solid #e6dcc6;
+  }
+  .block.calc {
+    background: #f8f1e3;
+    border: 1px solid #c9a227;
+  }
+  .block h2 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: #8b6f1f;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .block .sub { font-size: 12px; color: #8b6f1f; opacity: 0.8; margin-bottom: 14px; }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e6dcc6;
+    font-size: 14px;
+  }
+  .row:last-child { border-bottom: none; }
+  .row .name { flex: 1; }
+  .row .qty { white-space: nowrap; color: #3a2a0f; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .row .note { display: block; font-size: 12px; color: #6b5a3e; margin-top: 3px; }
+  .total {
+    background: #fff8e7;
+    border-left: 4px solid #c9a227;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .total b { color: #8b6f1f; display: block; margin-bottom: 6px; }
+  .total ul { margin: 0; padding-left: 20px; }
+  .total li { margin-bottom: 4px; }
+  .meta {
+    text-align: center;
+    color: #8b6f1f;
+    font-size: 12px;
+    margin-top: 30px;
+    opacity: 0.8;
+  }
+  .empty {
+    color: #b8a98a;
+    font-style: italic;
+    font-size: 13px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  table td {
+    padding: 8px 0;
+  }
+  @media print {
+    body { background: #fff; }
+    .block, .total { box-shadow: none; }
+    header { background: #fff; color: #2c2418; border: 1px solid #2c2418; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="pre">AtonModule — спецификация материалов v1</div>
+  <h1>Расчёт материалов на 1 модуль (40 фут High Cube)</h1>
+  <p>Для корректировки по факту · 21.07.2026</p>
+</header>
+
+<div class="info-banner">
+  <b>📋 Что здесь</b>
+  Объёмы материалов на 1 модуль. Размеры предварительные — Павел корректирует по реалиям, обновляем.
+</div>
+
+<div class="block calc">
+  <h2>🔢 Исходные параметры модуля</h2>
+  <div class="sub">внутренние размеры после монтажа и отделки</div>
+  <div class="row">
+    <div class="name">Габариты снаружи</div>
+    <div class="qty">12.19 × 2.44 × 2.70 м</div>
+  </div>
+  <div class="row">
+    <div class="name">Высота потолка внутри (чистовая)</div>
+    <div class="qty">~2.45 м</div>
+  </div>
+  <div class="row">
+    <div class="name">Площадь пола (общая)</div>
+    <div class="qty">29.7 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Площадь потолка (общая)</div>
+    <div class="qty">29.7 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Периметр</div>
+    <div class="qty">29.26 м</div>
+  </div>
+  <div class="row">
+    <div class="name">Площадь стен (периметр × высота)</div>
+    <div class="qty">~79 м²</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>🪵 Напольное покрытие</h2>
+  <div class="sub">чистовая отделка пола (после стяжки и утепления)</div>
+  <div class="row">
+    <div class="name">Ламинат / кварцвинил (с запасом 5–7% на подрезку)</div>
+    <div class="qty">~31 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Подложка под ламинат</div>
+    <div class="qty">~30 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Плинтус напольный</div>
+    <div class="qty">~30 пог. м</div>
+  </div>
+  <div class="row">
+    <div class="name">Стяжка (если нужна — уточнить по пирогу пола)</div>
+    <div class="qty"><span class="empty">уточнить у Романа</span></div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>⬜ Потолок</h2>
+  <div class="sub">чистовая отделка потолка</div>
+  <div class="row">
+    <div class="name">Обшивка потолка (ГКЛ / вагонка / ПВХ-панели)</div>
+    <div class="qty">~30 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Каркас под обшивку (брусок или профиль)</div>
+    <div class="qty"><span class="empty">уточнить у Романа</span></div>
+  </div>
+  <div class="row">
+    <div class="name">Саморезы / дюбели / подвесы</div>
+    <div class="qty"><span class="empty">комплект</span></div>
+  </div>
+  <div class="row">
+    <div class="name">Финишная отделка потолка (покраска / шпаклёвка)</div>
+    <div class="qty">~30 м²</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>🧱 Стены</h2>
+  <div class="sub">чистовая отделка стен по периметру</div>
+  <div class="row">
+    <div class="name">Площадь стен общая (периметр × высота)</div>
+    <div class="qty">~79 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Минус проёмы (3 окна + 3 двери = ~8.5 м²)</div>
+    <div class="qty">−8.5 м²</div>
+  </div>
+  <div class="row">
+    <div class="name"><b>Площадь стен под отделку</b></div>
+    <div class="qty"><b>~70 м²</b></div>
+  </div>
+  <div class="row">
+    <div class="name">Обшивка стен (ГКЛ / вагонка)</div>
+    <div class="qty">~70 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Каркас под обшивку (брусок или профиль)</div>
+    <div class="qty"><span class="empty">уточнить у Романа</span></div>
+  </div>
+  <div class="row">
+    <div class="name">Финишная отделка стен (шпаклёвка + покраска / обои)</div>
+    <div class="qty">~70 м²</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>🚪 Перегородки (внутри модуля)</h2>
+  <div class="sub">2 шт перегородки для зонирования</div>
+  <div class="row">
+    <div class="name">Длина каждой перегородки (типовая, уточнить планировку)</div>
+    <div class="qty">3.0 м</div>
+  </div>
+  <div class="row">
+    <div class="name">Высота перегородки (до потолка)</div>
+    <div class="qty">2.45 м</div>
+  </div>
+  <div class="row">
+    <div class="name">Площадь одной перегородки (с двух сторон)</div>
+    <div class="qty">2 × 7.35 = ~15 м²</div>
+  </div>
+  <div class="row">
+    <div class="name"><b>Итого 2 перегородки (площадь стен под отделку)</b></div>
+    <div class="qty"><b>~14.7 м²</b></div>
+  </div>
+  <div class="row">
+    <div class="name">Минус 2 двери (700×2050)</div>
+    <div class="qty">−2.9 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Чистая площадь перегородок под отделку</div>
+    <div class="qty">~12 м²</div>
+  </div>
+  <div class="row">
+    <div class="name">Каркас перегородок (брусок 50×50 + обшивка ГКЛ/вагонка)</div>
+    <div class="qty"><span class="empty">уточнить у Романа</span></div>
+  </div>
+  <div class="row">
+    <div class="name">Двери межкомнатные (комплект: полотно + коробка + наличники)</div>
+    <div class="qty">2 шт</div>
+  </div>
+  <div class="row">
+    <div class="name">Ручки + петли + защёлки на 2 двери</div>
+    <div class="qty">2 комплекта</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>🪟 Окна</h2>
+  <div class="sub">3 окна ПВХ энергосберегающие, 2-камерные</div>
+  <div class="row">
+    <div class="name">Окно большое (типовое — гостиная/спальня)</div>
+    <div class="qty">1400 × 1400 мм</div>
+  </div>
+  <div class="row">
+    <div class="name">Окно среднее (типовое — кухня)</div>
+    <div class="qty">1200 × 1200 мм</div>
+  </div>
+  <div class="row">
+    <div class="name">Окно малое (санузел)</div>
+    <div class="qty">600 × 600 мм</div>
+  </div>
+  <div class="row">
+    <div class="name">Подоконники ПВХ (3 шт, под каждое окно)</div>
+    <div class="qty">3 шт</div>
+  </div>
+  <div class="row">
+    <div class="name">Отливы наружные (3 шт)</div>
+    <div class="qty">3 шт</div>
+  </div>
+  <div class="row">
+    <div class="name">Монтажная пена (на 3 окна + 1 входная дверь)</div>
+    <div class="qty">~5 баллонов</div>
+  </div>
+  <div class="row">
+    <div class="name">ПСУЛ / пароизоляционные ленты</div>
+    <div class="qty">комплект</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>🚪 Входная дверь</h2>
+  <div class="row">
+    <div class="name">Входная дверь утеплённая (металл, с терморазрывом)</div>
+    <div class="qty">1 шт</div>
+  </div>
+  <div class="row">
+    <div class="name">Размер проёма</div>
+    <div class="qty">900 × 2050 мм</div>
+  </div>
+</div>
+
+<div class="block">
+  <h2>📐 Сводка по площадям отделки</h2>
+  <table>
+    <tr style="border-bottom: 1px solid #e6dcc6;">
+      <td style="padding: 8px 0;"><b>Зона</b></td>
+      <td style="padding: 8px 0; text-align: right;"><b>Площадь</b></td>
+    </tr>
+    <tr style="border-bottom: 1px dashed #e6dcc6;">
+      <td style="padding: 6px 0;">Пол (чистовая)</td>
+      <td style="padding: 6px 0; text-align: right;">~29.7 м²</td>
+    </tr>
+    <tr style="border-bottom: 1px dashed #e6dcc6;">
+      <td style="padding: 6px 0;">Потолок (чистовая)</td>
+      <td style="padding: 6px 0; text-align: right;">~29.7 м²</td>
+    </tr>
+    <tr style="border-bottom: 1px dashed #e6dcc6;">
+      <td style="padding: 6px 0;">Стены по периметру (минус проёмы)</td>
+      <td style="padding: 6px 0; text-align: right;">~70 м²</td>
+    </tr>
+    <tr style="border-bottom: 1px dashed #e6dcc6;">
+      <td style="padding: 6px 0;">Перегородки (2 шт, минус двери)</td>
+      <td style="padding: 6px 0; text-align: right;">~12 м²</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 0;"><b>ИТОГО площадь отделки</b></td>
+      <td style="padding: 8px 0; text-align: right;"><b>~141 м²</b></td>
+    </tr>
+  </table>
+</div>
+
+<div class="total">
+  <b>📝 Что нужно уточнить у Романа / по факту</b>
+  <ul>
+    <li><b>Планировка перегородок</b> — точная длина каждой (3.0 м — типовая, но Павел знает планировку лучше)</li>
+    <li><b>Пирог пола</b> — нужна ли стяжка сверху утеплителя, или сразу подложка + покрытие</li>
+    <li><b>Каркас под обшивку</b> — брусок, профиль, шаг обрешётки (зависит от выбранной отделки)</li>
+    <li><b>Размеры окон</b> — 1400×1400 / 1200×1200 / 600×600 типовые, но возможно другие</li>
+    <li><b>Профиль окон</b> — 60 мм или 70 мм, производитель</li>
+    <li><b>Двери перегородок</b> — простые или с замком, какой материал полотна</li>
+    <li><b>Ламинат / кварцвинил / плитка</b> — материал и класс износостойкости</li>
+    <li><b>Вагонка / ГКЛ / иное</b> — выбранный материал для обшивки стен и потолка</li>
+  </ul>
+</div>
+
+<p class="meta">Документ v1 от 20.07.2026 · для корректировки по реалиям · не публичный</p>
+
+</div>
+</body>
+</html>
