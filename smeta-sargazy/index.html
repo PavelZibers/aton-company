@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Предварительная рабочая смета АТОН по благоустройству участка в посёлке Саргазы.">
+  <title>Смета благоустройства — Саргазы | АТОН</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; overflow-x: clip; }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.58;
+      color: var(--color-ink);
+      background: var(--color-paper);
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    a { color: var(--color-brand); text-decoration-thickness: 0.08em; text-underline-offset: 0.16em; }
+    .sheet { width: min(100%, 76rem); margin-inline: auto; background: var(--color-surface); box-shadow: 0 1rem 4rem var(--color-shadow); }
+    .mast {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      padding: var(--space-lg) var(--page-gutter);
+      border-block-end: var(--rule-strong);
+      background: var(--color-brand);
+      color: var(--color-paper);
+    }
+    .brand { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; letter-spacing: 0.08em; color: var(--color-accent); }
+    .brand small { display: block; margin-block-start: var(--space-3xs); font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-paper); }
+    .mast-meta { max-width: 28rem; text-align: end; font-size: var(--text-sm); color: var(--color-paper-2); }
+    main { padding: var(--space-2xl) var(--page-gutter) var(--space-3xl); }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(15rem, 0.65fr);
+      gap: var(--space-2xl);
+      align-items: end;
+      padding-block-end: var(--space-2xl);
+      border-block-end: var(--rule-hairline);
+    }
+    .kicker { margin: 0 0 var(--space-sm); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--color-brand); }
+    h1, h2, h3 { margin: 0; font-family: var(--font-display); color: var(--color-brand-deep); overflow-wrap: anywhere; min-width: 0; }
+    h1 { max-width: 14ch; font-size: var(--text-display); line-height: 1.02; letter-spacing: -0.035em; }
+    .lede { max-width: var(--measure); margin: var(--space-lg) 0 0; font-size: var(--text-md); color: var(--color-muted); }
+    .hero-total { padding-block-start: var(--space-lg); border-block-start: var(--rule-strong); }
+    .hero-total span { display: block; }
+    .hero-total .label { font-size: var(--text-sm); color: var(--color-muted); }
+    .hero-total .value { margin-block: var(--space-2xs); font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1; color: var(--color-brand); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .hero-total .note { font-size: var(--text-sm); color: var(--color-muted); }
+    .summary {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+      margin-block: var(--space-xl) var(--space-2xl);
+      border-block: var(--rule-hairline);
+    }
+    .summary-item { padding: var(--space-lg) var(--space-md); border-inline-end: var(--rule-hairline); }
+    .summary-item:first-child { padding-inline-start: 0; }
+    .summary-item:last-child { padding-inline-end: 0; border-inline-end: 0; }
+    .summary-item strong { display: block; font-family: var(--font-display); font-size: var(--text-lg); color: var(--color-brand); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .summary-item span { font-size: var(--text-sm); color: var(--color-muted); }
+    .notice { max-width: var(--measure); margin-block: 0 var(--space-2xl); padding: var(--space-lg); background: var(--color-accent-soft); border-block: var(--rule-hairline); }
+    .notice strong { color: var(--color-brand-deep); }
+    .estimate-section { margin-block-start: var(--space-3xl); }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-lg); margin-block-end: var(--space-lg); }
+    h2 { font-size: var(--text-2xl); line-height: 1.12; letter-spacing: -0.025em; }
+    .section-total { font-weight: 700; color: var(--color-brand); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .section-note { max-width: var(--measure); margin: calc(var(--space-md) * -1) 0 var(--space-lg); color: var(--color-muted); }
+    .table-wrap { border-block-start: var(--rule-strong); }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums; }
+    col.kind { width: 7rem; }
+    col.qty { width: 6rem; }
+    col.unit { width: 4rem; }
+    col.rate { width: 8rem; }
+    col.sum { width: 9rem; }
+    th, td { padding: var(--space-sm) var(--space-xs); border-block-end: var(--rule-hairline); vertical-align: top; }
+    th { font-size: var(--text-xs); text-align: start; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    td { font-size: var(--text-sm); }
+    td.num, th.num { text-align: end; }
+    td.sum { font-weight: 700; color: var(--color-brand-deep); }
+    .kind-label { display: inline-block; font-size: var(--text-xs); font-weight: 700; color: var(--color-brand); }
+    tfoot td { padding-block: var(--space-md); font-weight: 700; border-block-end: var(--rule-strong); }
+    .grand-total { margin-block: var(--space-3xl) var(--space-2xl); padding-block: var(--space-xl); border-block: var(--rule-strong); }
+    .grand-total-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-xl); align-items: baseline; padding-block: var(--space-xs); }
+    .grand-total-row span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .grand-total-row.final { margin-block-start: var(--space-md); padding-block-start: var(--space-lg); border-block-start: var(--rule-hairline); font-family: var(--font-display); font-size: var(--text-2xl); color: var(--color-brand); }
+    .assumptions { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr); gap: var(--space-2xl); margin-block-start: var(--space-3xl); }
+    h3 { margin-block-end: var(--space-md); font-size: var(--text-lg); }
+    ol, ul { margin: 0; padding-inline-start: var(--space-lg); }
+    li { margin-block-end: var(--space-sm); }
+    .sources { font-size: var(--text-sm); color: var(--color-muted); }
+    .sources a { overflow-wrap: anywhere; }
+    .foot-line { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); padding: var(--space-lg) var(--page-gutter); border-block-start: var(--rule-hairline); font-size: var(--text-sm); color: var(--color-muted); }
+    .foot-line strong { color: var(--color-brand); }
+
+    @media (max-width: 60rem) {
+      .hero { grid-template-columns: 1fr; gap: var(--space-xl); }
+      .hero-total { max-width: 28rem; }
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .summary-item:nth-child(2) { border-inline-end: 0; }
+      .summary-item:nth-child(-n+2) { border-block-end: var(--rule-hairline); }
+      .assumptions { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 40rem) {
+      .mast, .section-head, .foot-line { flex-direction: column; align-items: flex-start; }
+      .mast-meta { text-align: start; }
+      main { padding-block-start: var(--space-xl); }
+      .summary { grid-template-columns: 1fr; }
+      .summary-item, .summary-item:first-child, .summary-item:last-child { padding: var(--space-md) 0; border-inline-end: 0; border-block-end: var(--rule-hairline); }
+      .summary-item:last-child { border-block-end: 0; }
+      .section-total { white-space: normal; }
+      table, thead, tbody, tfoot, tr, th, td { display: block; width: 100%; }
+      thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      tbody tr { padding-block: var(--space-sm); border-block-end: var(--rule-hairline); }
+      td { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--space-sm); padding: var(--space-2xs) 0; border: 0; text-align: start; }
+      td::before { content: attr(data-label); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); }
+      td.num, th.num { text-align: start; }
+      tfoot td { display: flex; justify-content: space-between; padding-block: var(--space-md); border-block-end: var(--rule-strong); }
+      tfoot td::before { content: none; }
+      .grand-total-row { grid-template-columns: 1fr; gap: var(--space-2xs); }
+      .grand-total-row.final { font-size: var(--text-xl); }
+    }
+    @media print {
+      @page { size: A4; margin: 11mm; }
+      body { background: var(--color-surface); }
+      .sheet { width: 100%; box-shadow: none; }
+      .mast, main, .foot-line { padding-inline: 0; }
+      .mast { background: var(--color-brand); padding-inline: var(--space-lg); }
+      .hero { grid-template-columns: 1.45fr 0.65fr; }
+      .summary { grid-template-columns: 1.3fr 1fr 1fr 1.2fr; }
+      .summary-item { border-inline-end: var(--rule-hairline); }
+      .summary-item:last-child { border-inline-end: 0; }
+      .estimate-section, tr, .notice, .grand-total, .assumptions > div { break-inside: avoid; }
+      a { color: var(--color-ink); text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="mast">
+      <div class="brand">АТОН<small>Строительная компания</small></div>
+      <div class="mast-meta">Рабочая смета · п. Саргазы, ул. Луговая<br>Основание: ландшафтный проект, 23 листа · 05.09.2026</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="kicker">Предварительный расчёт</p>
+          <h1>Благоустройство участка</h1>
+          <p class="lede">Брусчатка и бордюры, дренаж, наружная ливневая канализация и автополив. Материалы и работы показаны раздельно.</p>
+        </div>
+        <div class="hero-total">
+          <span class="label">Бюджет с резервом 10%</span>
+          <span class="value">4 914 979 ₽</span>
+          <span class="note">Без маржи АТОН и НДС</span>
+        </div>
+      </section>
+
+      <section class="summary" aria-label="Сводка сметы">
+        <div class="summary-item"><strong>2 600 983 ₽</strong><span>материалы и доставка</span></div>
+        <div class="summary-item"><strong>1 867 180 ₽</strong><span>работы и монтаж</span></div>
+        <div class="summary-item"><strong>4 468 163 ₽</strong><span>базовая смета</span></div>
+        <div class="summary-item"><strong>446 816 ₽</strong><span>резерв на уточнение</span></div>
+      </section>
+
+      <div class="notice"><strong>Ключевой риск.</strong> В проекте указана плитка «Трио, Габбро» толщиной 40 и 80 мм, но в открытом каталоге производителя серия «Трио» представлена толщиной 60 мм. Для бюджета приняты рыночные аналоги 40 и 80 мм. До заказа нужно согласовать конкретную коллекцию и допустимую нагрузку.</div>
+
+      <section class="estimate-section">
+        <div class="section-head"><h2>Брусчатка и бордюры</h2><div class="section-total">3 017 723 ₽</div></div>
+        <p class="section-note">Проектные площади: 158 м² — автомобильное покрытие 80 мм; 227 м² — пешеходное покрытие 40 мм; 9 м² — крупноформатная плитка 600×600×80 мм. В материал заложен запас 5%.</p>
+        <div class="table-wrap">
+          <table>
+            <colgroup><col class="kind"><col><col class="qty"><col class="unit"><col class="rate"><col class="sum"></colgroup>
+            <thead><tr><th>Тип</th><th>Позиция</th><th class="num">Кол-во</th><th>Ед.</th><th class="num">Цена</th><th class="num">Сумма</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Плитка 80 мм, аналог «Габбро», запас 5%</td><td data-label="Количество" class="num">165,9</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">3 506 ₽</td><td data-label="Сумма" class="num sum">581 645 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Плитка 40 мм, цвет «Габбро», запас 5%</td><td data-label="Количество" class="num">238,4</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">2 204 ₽</td><td data-label="Сумма" class="num sum">525 434 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Крупноформатная плитка 600×600×80 мм, запас 5%</td><td data-label="Количество" class="num">9,5</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">3 800 ₽</td><td data-label="Сумма" class="num sum">36 100 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Щебень гранитный 20–40, с коэффициентом уплотнения</td><td data-label="Количество" class="num">112,3</td><td data-label="Ед.">м³</td><td data-label="Цена" class="num">950 ₽</td><td data-label="Сумма" class="num sum">106 685 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Щебень гранитный 5–20, с коэффициентом уплотнения</td><td data-label="Количество" class="num">21,7</td><td data-label="Ед.">м³</td><td data-label="Цена" class="num">970 ₽</td><td data-label="Сумма" class="num sum">21 049 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Гранитный отсев, слой 30 мм</td><td data-label="Количество" class="num">13,0</td><td data-label="Ед.">м³</td><td data-label="Цена" class="num">500 ₽</td><td data-label="Сумма" class="num sum">6 500 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Геотекстиль, запас на нахлёсты</td><td data-label="Количество" class="num">433</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">120 ₽</td><td data-label="Сумма" class="num sum">51 960 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Бетонный поребрик, запас 3%</td><td data-label="Количество" class="num">306</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">340 ₽</td><td data-label="Сумма" class="num sum">104 040 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Металлический борт, запас 5%</td><td data-label="Количество" class="num">36,8</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">700 ₽</td><td data-label="Сумма" class="num sum">25 760 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Бетон и раствор для установки бордюра</td><td data-label="Количество" class="num">9</td><td data-label="Ед.">м³</td><td data-label="Цена" class="num">6 500 ₽</td><td data-label="Сумма" class="num sum">58 500 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Логистика</span></td><td data-label="Позиция">Доставка плитки и инертных материалов</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">180 000 ₽</td><td data-label="Сумма" class="num sum">180 000 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Логистика</span></td><td data-label="Позиция">Вывоз лишнего грунта</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">120 000 ₽</td><td data-label="Сумма" class="num sum">120 000 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Покрытие 80 мм: основание по проекту и укладка</td><td data-label="Количество" class="num">158</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">2 800 ₽</td><td data-label="Сумма" class="num sum">442 400 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Покрытие 40 мм: основание по проекту и укладка</td><td data-label="Количество" class="num">227</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">2 200 ₽</td><td data-label="Сумма" class="num sum">499 400 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж крупноформатной плитки</td><td data-label="Количество" class="num">9</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">2 500 ₽</td><td data-label="Сумма" class="num sum">22 500 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж бетонного поребрика</td><td data-label="Количество" class="num">297</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">500 ₽</td><td data-label="Сумма" class="num sum">148 500 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж металлического борта</td><td data-label="Количество" class="num">35</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">350 ₽</td><td data-label="Сумма" class="num sum">12 250 ₽</td></tr>
+              <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Разбивка, механизация и уборка площадки</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">75 000 ₽</td><td data-label="Сумма" class="num sum">75 000 ₽</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="5">Итого по разделу</td><td class="num">3 017 723 ₽</td></tr></tfoot>
+          </table>
+        </div>
+      </section>
+
+      <section class="estimate-section">
+        <div class="section-head"><h2>Дренаж</h2><div class="section-total">356 850 ₽</div></div>
+        <p class="section-note">Схема на листе 10 показывает трубу Ø110 и два дренажных колодца Ø400 без колец. Длина в ведомости отсутствует; для бюджета принято 120 м по обмеру схемы. Уточнить после выноса трассы.</p>
+        <div class="table-wrap"><table>
+          <colgroup><col class="kind"><col><col class="qty"><col class="unit"><col class="rate"><col class="sum"></colgroup>
+          <thead><tr><th>Тип</th><th>Позиция</th><th class="num">Кол-во</th><th>Ед.</th><th class="num">Цена</th><th class="num">Сумма</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Перфорированная дренажная труба Ø110 в фильтре</td><td data-label="Количество" class="num">120</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">180 ₽</td><td data-label="Сумма" class="num sum">21 600 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Геотекстиль для дренажной призмы</td><td data-label="Количество" class="num">360</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">120 ₽</td><td data-label="Сумма" class="num sum">43 200 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Щебень 20–40 для обсыпки</td><td data-label="Количество" class="num">19</td><td data-label="Ед.">м³</td><td data-label="Цена" class="num">950 ₽</td><td data-label="Сумма" class="num sum">18 050 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Дренажный колодец Ø400 с щебёночной обсыпкой</td><td data-label="Количество" class="num">2</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">12 000 ₽</td><td data-label="Сумма" class="num sum">24 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Фитинги, заглушки и расходные материалы</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">20 000 ₽</td><td data-label="Сумма" class="num sum">20 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Логистика</span></td><td data-label="Позиция">Доставка материалов</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">25 000 ₽</td><td data-label="Сумма" class="num sum">25 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Траншея, призма, укладка трубы и обратная засыпка</td><td data-label="Количество" class="num">120</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">1 500 ₽</td><td data-label="Сумма" class="num sum">180 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Устройство дренажного колодца Ø400</td><td data-label="Количество" class="num">2</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">7 500 ₽</td><td data-label="Сумма" class="num sum">15 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Проверка уклонов и пролив системы</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">10 000 ₽</td><td data-label="Сумма" class="num sum">10 000 ₽</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="5">Итого по разделу</td><td class="num">356 850 ₽</td></tr></tfoot>
+        </table></div>
+      </section>
+
+      <section class="estimate-section">
+        <div class="section-head"><h2>Ливневая канализация</h2><div class="section-total">518 960 ₽</div></div>
+        <p class="section-note">Подтверждено спецификацией на листе 11: 13 дождеприёмников 300×300, 142 м трубы КОРСИС Ø110, 3 колодца КС 10‑9 с люками, насос Grundfos Unilift KP; фитинги — по факту.</p>
+        <div class="table-wrap"><table>
+          <colgroup><col class="kind"><col><col class="qty"><col class="unit"><col class="rate"><col class="sum"></colgroup>
+          <thead><tr><th>Тип</th><th>Позиция</th><th class="num">Кол-во</th><th>Ед.</th><th class="num">Цена</th><th class="num">Сумма</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Труба КОРСИС DN/OD 110, SN8</td><td data-label="Количество" class="num">142</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">450 ₽</td><td data-label="Сумма" class="num sum">63 900 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Дождеприёмник 300×300 с решёткой</td><td data-label="Количество" class="num">13</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">3 000 ₽</td><td data-label="Сумма" class="num sum">39 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Отводы, тройники, муфты и уплотнения</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">25 000 ₽</td><td data-label="Сумма" class="num sum">25 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Кольцо КС 10‑9</td><td data-label="Количество" class="num">3</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">3 120 ₽</td><td data-label="Сумма" class="num sum">9 360 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Люк полимерный тяжёлый</td><td data-label="Количество" class="num">3</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">2 900 ₽</td><td data-label="Сумма" class="num sum">8 700 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Днища, плиты и герметизация колодцев</td><td data-label="Количество" class="num">3</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">8 000 ₽</td><td data-label="Сумма" class="num sum">24 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Насос Grundfos Unilift KP, бюджет</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">38 000 ₽</td><td data-label="Сумма" class="num sum">38 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Песчаная подготовка и обратная засыпка</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">30 000 ₽</td><td data-label="Сумма" class="num sum">30 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Логистика</span></td><td data-label="Позиция">Доставка колец, трубы и комплектующих</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">25 000 ₽</td><td data-label="Сумма" class="num sum">25 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Траншея и монтаж трубопровода Ø110</td><td data-label="Количество" class="num">142</td><td data-label="Ед.">м</td><td data-label="Цена" class="num">1 200 ₽</td><td data-label="Сумма" class="num sum">170 400 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж дождеприёмника</td><td data-label="Количество" class="num">13</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">1 200 ₽</td><td data-label="Сумма" class="num sum">15 600 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж колодца КС 10‑9 с люком</td><td data-label="Количество" class="num">3</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">15 000 ₽</td><td data-label="Сумма" class="num sum">45 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж насоса и подключение</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">15 000 ₽</td><td data-label="Сумма" class="num sum">15 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Проверка уклонов, пролив и запуск</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">10 000 ₽</td><td data-label="Сумма" class="num sum">10 000 ₽</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="5">Итого по разделу</td><td class="num">518 960 ₽</td></tr></tfoot>
+        </table></div>
+      </section>
+
+      <section class="estimate-section">
+        <div class="section-head"><h2>Автополив</h2><div class="section-total">574 630 ₽</div></div>
+        <p class="section-note">Лист 23 — только ТЗ: 209 м² форсуночного полива, 574 м² капельного, 3 водяные розетки и накопительная ёмкость. Количество зон, форсунок, диаметры труб и объём ёмкости не заданы; раздел считается предварительным комплектом.</p>
+        <div class="table-wrap"><table>
+          <colgroup><col class="kind"><col><col class="qty"><col class="unit"><col class="rate"><col class="sum"></colgroup>
+          <thead><tr><th>Тип</th><th>Позиция</th><th class="num">Кол-во</th><th>Ед.</th><th class="num">Цена</th><th class="num">Сумма</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Магистрали, разводка и капельные линии</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">95 000 ₽</td><td data-label="Сумма" class="num sum">95 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Форсунки, клапаны, коллектор и контроллер</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">110 000 ₽</td><td data-label="Сумма" class="num sum">110 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Накопительная ёмкость, насосный узел и автоматика</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">120 000 ₽</td><td data-label="Сумма" class="num sum">120 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Водяная розетка</td><td data-label="Количество" class="num">3</td><td data-label="Ед.">шт.</td><td data-label="Цена" class="num">4 500 ₽</td><td data-label="Сумма" class="num sum">13 500 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Материал</span></td><td data-label="Позиция">Кабель, датчик дождя и расходные материалы</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">30 000 ₽</td><td data-label="Сумма" class="num sum">30 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Гидравлический расчёт и рабочая схема</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">25 000 ₽</td><td data-label="Сумма" class="num sum">25 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж форсуночной зоны</td><td data-label="Количество" class="num">209</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">250 ₽</td><td data-label="Сумма" class="num sum">52 250 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж капельной зоны</td><td data-label="Количество" class="num">574</td><td data-label="Ед.">м²</td><td data-label="Цена" class="num">120 ₽</td><td data-label="Сумма" class="num sum">68 880 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Монтаж ёмкости и насосного узла</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">40 000 ₽</td><td data-label="Сумма" class="num sum">40 000 ₽</td></tr>
+            <tr><td data-label="Тип"><span class="kind-label">Работа</span></td><td data-label="Позиция">Пусконаладка и программирование</td><td data-label="Количество" class="num">1</td><td data-label="Ед.">компл.</td><td data-label="Цена" class="num">20 000 ₽</td><td data-label="Сумма" class="num sum">20 000 ₽</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="5">Итого по разделу</td><td class="num">574 630 ₽</td></tr></tfoot>
+        </table></div>
+      </section>
+
+      <section class="grand-total" aria-label="Итог сметы">
+        <div class="grand-total-row"><span>Материалы и доставка</span><span>2 600 983 ₽</span></div>
+        <div class="grand-total-row"><span>Работы и монтаж</span><span>1 867 180 ₽</span></div>
+        <div class="grand-total-row"><span>Базовая смета</span><span>4 468 163 ₽</span></div>
+        <div class="grand-total-row"><span>Резерв на уточнение объёмов и цен — 10%</span><span>446 816 ₽</span></div>
+        <div class="grand-total-row final"><span>Итого ориентир</span><span>4 914 979 ₽</span></div>
+      </section>
+
+      <section class="assumptions">
+        <div>
+          <h3>Что подтвердить до договора</h3>
+          <ol>
+            <li>Выбрать фактическую коллекцию плитки: проектные 40/80 мм не совпадают с доступной толщиной серии «Трио».</li>
+            <li>Снять отметки и грунты на площадке; проверить объём выемки, вывоза и доставок.</li>
+            <li>Обмерить трассу дренажа: 120 м в расчёте — предварительное значение по схеме.</li>
+            <li>Выполнить гидравлический расчёт автополива: дебит скважины, объём ёмкости, число зон, форсунок и клапанов.</li>
+            <li>Получить коммерческие предложения поставщиков с доставкой в Саргазы.</li>
+          </ol>
+          <h3>Не входит</h3>
+          <p>Террасная доска, натуральный камень, гравийная и мульчирующая отсыпка, газон, растения, освещение, забор, восстановление повреждённых сетей, подключение внешнего электропитания, маржа АТОН и налоги.</p>
+        </div>
+        <div class="sources">
+          <h3>Основание расценок</h3>
+          <p>Рыночные ориентиры Челябинска на 05.09.2026. Это не оферта; перед закупкой цены подтверждаются счетами.</p>
+          <ul>
+            <li><a href="https://chelyabinsk.mastermario.ru/production/trotuarnaia-plitka/vybor-tr-pl/parket/">Плитка 80 мм, аналог «Габбро»</a></li>
+            <li><a href="https://chernayascala.ru/catalog/trotuarka/colors/gabbro/">Плитка 40 мм «Габбро»</a></li>
+            <li><a href="https://stroi74.ru/ukladka_trotuarnoi_plitki">Укладка и бордюры</a></li>
+            <li><a href="https://md-group.net/products/shcheben-granitnyy/">Гранитный щебень</a></li>
+            <li><a href="https://www.standartpark.ru/catalog/plastikovye-dozhdepriemniki-300/">Дождеприёмники Standartpark</a></li>
+            <li><a href="https://www.prombase.ru/prices/prays-na-truby-korsis">Труба КОРСИС Ø110</a></li>
+            <li><a href="https://zavod174.ru/catalog/elementy-kolodtsev/zhelezobetonnye-koltsa/ks-10-9/">Кольца КС 10‑9</a></li>
+            <li><a href="https://chelyabinsk.mslandshaft.ru/catalog/montazh-sistemy-avtopoliva/">Автополив в Челябинске</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot-line"><span><strong>АТОН</strong> · Строим жизни, а не стены</span><span>г. Челябинск · atonsk.ru · +7 (912) 319‑96‑47</span></footer>
+  </div>
+</body>
+</html>
