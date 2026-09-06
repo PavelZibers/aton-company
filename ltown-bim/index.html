@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1110" />
+  <title>L‑Town · 3D‑скелет · АТОН</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #e9eee8;
+      --muted: #9aa69f;
+      --panel: rgba(13, 20, 18, .88);
+      --line: rgba(191, 213, 199, .14);
+      --acid: #d7ff47;
+      --amber: #f2b84b;
+      --red: #ff6e55;
+      --blue: #5dc4d8;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body {
+      font-family: "Geologica", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 72% 12%, rgba(91, 142, 118, .13), transparent 38%),
+        #09100e;
+    }
+
+    #app, #viewport { position: fixed; inset: 0; }
+    canvas { display: block; touch-action: none; }
+
+    .brand {
+      position: fixed;
+      z-index: 5;
+      left: max(18px, env(safe-area-inset-left));
+      top: max(18px, env(safe-area-inset-top));
+      display: grid;
+      grid-template-columns: 42px auto;
+      gap: 12px;
+      align-items: center;
+      pointer-events: none;
+    }
+    .mark {
+      width: 42px; height: 42px;
+      display: grid; place-items: center;
+      border: 1px solid rgba(215, 255, 71, .6);
+      color: var(--acid);
+      font: 600 18px/1 "JetBrains Mono", monospace;
+      transform: rotate(-4deg);
+      background: rgba(9, 16, 14, .72);
+      box-shadow: 0 12px 30px rgba(0,0,0,.28);
+    }
+    .brand h1 { margin: 0; font-size: 17px; font-weight: 550; letter-spacing: -.02em; }
+    .brand p { margin: 3px 0 0; color: var(--muted); font: 10px/1.3 "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+
+    .panel {
+      position: fixed;
+      z-index: 6;
+      width: min(330px, calc(100vw - 24px));
+      right: max(16px, env(safe-area-inset-right));
+      top: max(16px, env(safe-area-inset-top));
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(18px) saturate(125%);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+    }
+    .panel-head { padding: 18px 18px 15px; border-bottom: 1px solid var(--line); }
+    .eyebrow { color: var(--acid); font: 10px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .16em; }
+    .panel h2 { margin: 9px 0 5px; font-size: 24px; line-height: 1; letter-spacing: -.04em; font-weight: 560; }
+    .sub { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+    .stat { padding: 13px 12px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat b { display: block; font-size: 15px; font-weight: 550; }
+    .stat span { display: block; margin-top: 4px; color: var(--muted); font: 9px/1.2 "JetBrains Mono", monospace; text-transform: uppercase; }
+    .section { padding: 15px 18px; border-bottom: 1px solid var(--line); }
+    .section-title { margin: 0 0 12px; color: var(--muted); font: 10px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .12em; }
+    .toggles { display: grid; gap: 7px; }
+    .toggle { display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer; font-size: 12px; }
+    .toggle input { display: none; }
+    .switch { width: 34px; height: 18px; border: 1px solid #57615b; border-radius: 20px; position: relative; transition: .2s ease; flex: 0 0 auto; }
+    .switch::after { content: ""; position: absolute; width: 10px; height: 10px; left: 3px; top: 3px; border-radius: 50%; background: #778079; transition: .2s ease; }
+    input:checked + .switch { border-color: var(--acid); background: rgba(215,255,71,.12); }
+    input:checked + .switch::after { transform: translateX(16px); background: var(--acid); }
+    .views { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    button {
+      appearance: none; border: 1px solid var(--line); background: rgba(255,255,255,.025); color: var(--ink);
+      padding: 9px 6px; font: 10px/1 "JetBrains Mono", monospace; cursor: pointer; transition: .18s ease;
+    }
+    button:hover, button.active { border-color: rgba(215,255,71,.72); color: var(--acid); background: rgba(215,255,71,.08); }
+    .warning { display: flex; gap: 10px; color: #d9c89c; font-size: 10px; line-height: 1.45; }
+    .warning i { width: 7px; height: 7px; margin-top: 4px; flex: 0 0 auto; border-radius: 50%; background: var(--amber); box-shadow: 0 0 18px var(--amber); }
+    .footer-note { color: #718078; font: 9px/1.5 "JetBrains Mono", monospace; }
+
+    .hint {
+      position: fixed; z-index: 4; left: max(18px, env(safe-area-inset-left)); bottom: max(18px, env(safe-area-inset-bottom));
+      padding: 10px 12px; color: var(--muted); background: rgba(9,16,14,.7); border: 1px solid var(--line);
+      font: 9px/1.4 "JetBrains Mono", monospace; pointer-events: none;
+    }
+    .measure {
+      position: fixed; z-index: 4; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%);
+      color: #85938a; font: 9px/1 "JetBrains Mono", monospace; letter-spacing: .08em; pointer-events: none;
+    }
+
+    @media (max-width: 700px) {
+      .brand { top: 13px; left: 13px; grid-template-columns: 34px auto; gap: 9px; }
+      .mark { width: 34px; height: 34px; font-size: 14px; }
+      .brand h1 { font-size: 14px; }
+      .panel { top: auto; right: 12px; left: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); width: auto; max-height: 42vh; }
+      .panel-head { padding: 12px 14px 11px; }
+      .panel h2 { font-size: 20px; }
+      .section { padding: 12px 14px; }
+      .stats, .warning-section, .footer-section { display: none; }
+      .hint { display: none; }
+      .measure { bottom: calc(44vh + 4px); }
+    }
+  </style>
+  <script type="importmap">
+  {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}
+  </script>
+</head>
+<body>
+  <main id="app">
+    <div id="viewport" aria-label="Интерактивная трёхмерная модель комплекса L-Town"></div>
+
+    <header class="brand">
+      <div class="mark">A</div>
+      <div><h1>АТОН · цифровой объект</h1><p>L‑Town / версия 0.1</p></div>
+    </header>
+
+    <aside class="panel">
+      <div class="panel-head">
+        <div class="eyebrow">Эскизная BIM‑модель</div>
+        <h2>Банный комплекс<br>и гараж</h2>
+        <div class="sub">Архитектурный 3D‑скелет по ЭП от 11.06.2026</div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>143,53 м²</b><span>Площадь</span></div>
+        <div class="stat"><b>300 мм</b><span>Наружные стены</span></div>
+        <div class="stat"><b>19</b><span>Листов ЭП</span></div>
+      </div>
+      <section class="section">
+        <p class="section-title">Слои модели</p>
+        <div class="toggles">
+          <label class="toggle">Фундаментная плита <input data-layer="slab" type="checkbox" checked><span class="switch"></span></label>
+          <label class="toggle">Несущие стены <input data-layer="walls" type="checkbox" checked><span class="switch"></span></label>
+          <label class="toggle">Перегородки <input data-layer="partitions" type="checkbox" checked><span class="switch"></span></label>
+          <label class="toggle">Окна, двери и ворота <input data-layer="openings" type="checkbox" checked><span class="switch"></span></label>
+          <label class="toggle">Балки кровли <input data-layer="beams" type="checkbox"><span class="switch"></span></label>
+          <label class="toggle">Плоскости кровли <input data-layer="roof" type="checkbox"><span class="switch"></span></label>
+        </div>
+      </section>
+      <section class="section">
+        <p class="section-title">Ракурс</p>
+        <div class="views">
+          <button class="active" data-view="iso">3D</button>
+          <button data-view="top">План</button>
+          <button data-view="front">Фасад</button>
+        </div>
+      </section>
+      <section class="section warning-section">
+        <div class="warning"><i></i><span>Модель собрана по эскизному проекту. Она пригодна для визуальной координации, но не заменяет КЖ и инженерные расчёты.</span></div>
+      </section>
+      <section class="section footer-section"><div class="footer-note">Источник: листы 03–09 ЭП. Геометрия объёмов — предварительная до получения IFC/PLN.</div></section>
+    </aside>
+
+    <div class="hint">ЛКМ — вращать · колесо — масштаб · ПКМ — двигать</div>
+    <div class="measure">1 клетка = 1 метр</div>
+  </main>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const mount = document.querySelector('#viewport');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x09100e);
+    scene.fog = new THREE.FogExp2(0x09100e, 0.018);
+
+    const camera = new THREE.PerspectiveCamera(36, innerWidth / innerHeight, .1, 180);
+    camera.position.set(24, 23, 28);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.08;
+    mount.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = .06;
+    controls.target.set(5, 0.8, 7);
+    controls.maxPolarAngle = Math.PI * .48;
+    controls.minDistance = 9;
+    controls.maxDistance = 65;
+
+    scene.add(new THREE.HemisphereLight(0xdcebd9, 0x24332b, 2.4));
+    const sun = new THREE.DirectionalLight(0xfff0c6, 3.3);
+    sun.position.set(-12, 26, 16);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.left = -30; sun.shadow.camera.right = 30;
+    sun.shadow.camera.top = 30; sun.shadow.camera.bottom = -30;
+    scene.add(sun);
+
+    const layers = {};
+    for (const name of ['slab','walls','partitions','openings','beams','roof']) {
+      layers[name] = new THREE.Group(); layers[name].name = name; scene.add(layers[name]);
+    }
+
+    const mat = {
+      slab: new THREE.MeshStandardMaterial({ color: 0x676f6a, roughness: .84, metalness: .05 }),
+      wall: new THREE.MeshStandardMaterial({ color: 0xe5dfd0, roughness: .94 }),
+      part: new THREE.MeshStandardMaterial({ color: 0xa87f5f, roughness: .9 }),
+      beam: new THREE.MeshStandardMaterial({ color: 0xc88b4a, roughness: .75 }),
+      glass: new THREE.MeshPhysicalMaterial({ color: 0x66c9d9, roughness: .12, transmission: .28, transparent: true, opacity: .72 }),
+      door: new THREE.MeshStandardMaterial({ color: 0x343d39, roughness: .55, metalness: .2 }),
+      roof: new THREE.MeshPhysicalMaterial({ color: 0x5a6861, roughness: .5, transparent: true, opacity: .42, side: THREE.DoubleSide }),
+      edge: new THREE.LineBasicMaterial({ color: 0xb8ff4f, transparent: true, opacity: .23 })
+    };
+
+    function box(parent, x, y, z, w, h, d, material, edge=false) {
+      const geo = new THREE.BoxGeometry(w, h, d);
+      const mesh = new THREE.Mesh(geo, material);
+      mesh.position.set(x, y, z); mesh.castShadow = true; mesh.receiveShadow = true;
+      parent.add(mesh);
+      if (edge) { const e = new THREE.LineSegments(new THREE.EdgesGeometry(geo), mat.edge); e.position.copy(mesh.position); parent.add(e); }
+      return mesh;
+    }
+
+    function wall(parent, x1, z1, x2, z2, h=2.8, t=.3, y=0) {
+      const len = Math.hypot(x2-x1, z2-z1), angle = Math.atan2(z2-z1, x2-x1);
+      const mesh = box(parent, (x1+x2)/2, y+h/2, (z1+z2)/2, len, h, t, mat.wall, true);
+      mesh.rotation.y = -angle;
+      parent.children[parent.children.length-1].rotation.y = -angle;
+      return mesh;
+    }
+
+    function partition(parent, x1,z1,x2,z2,h=2.55,t=.12,y=0) {
+      const len=Math.hypot(x2-x1,z2-z1), angle=Math.atan2(z2-z1,x2-x1);
+      const mesh=box(parent,(x1+x2)/2,y+h/2,(z1+z2)/2,len,h,t,mat.part);
+      mesh.rotation.y=-angle; return mesh;
+    }
+
+    function panel(parent, x,z,w,h,rot=0,y=.9,type='glass') {
+      const mesh=box(parent,x,y+h/2,z,w,h,.055,type==='glass'?mat.glass:mat.door,true);
+      mesh.rotation.y=rot; parent.children[parent.children.length-1].rotation.y=rot; return mesh;
+    }
+
+    function plate(parent, w,d,x,z,y=-.15,rotation=0) {
+      const m=box(parent,x,y,z,w,.3,d,mat.slab,true); m.rotation.y=rotation;
+      parent.children[parent.children.length-1].rotation.y=rotation; return m;
+    }
+
+    function addRectWalls(group,w,d,h=2.8) {
+      wall(group,0,0,w,0,h); wall(group,w,0,w,d,h); wall(group,w,d,0,d,h); wall(group,0,d,0,0,h);
+    }
+
+    function makeWing({name,w,d,x,z,rot=0,h=2.8,floor=-.15}) {
+      const root=new THREE.Group(); root.name=name; root.position.set(x,0,z); root.rotation.y=rot;
+      const slab=new THREE.Group(); const walls=new THREE.Group(); const openings=new THREE.Group(); const beams=new THREE.Group(); const roof=new THREE.Group();
+      plate(slab,w,d,w/2,d/2,floor); addRectWalls(walls,w,d,h);
+      for(let bx=.34; bx<w; bx+=.68) box(beams,bx,h+.09,d/2,.095,.2,d-.3,mat.beam);
+      box(roof,w/2,h+.24,d/2,w+.35,.09,d+.35,mat.roof,true);
+      for(const [layer,g] of [['slab',slab],['walls',walls],['openings',openings],['beams',beams],['roof',roof]]) {
+        const proxy=new THREE.Group(); proxy.position.copy(root.position); proxy.rotation.copy(root.rotation); proxy.add(g); layers[layer].add(proxy);
+      }
+      return {root,walls,openings,beams,roof};
+    }
+
+    // Центральный объём банного комплекса: оси 1–2 / Б'–А', лист 04.
+    plate(layers.slab,8.21,5.2,4.105,2.6,-.15);
+    wall(layers.walls,0,0,8.21,0,2.8); wall(layers.walls,8.21,0,8.21,5.2,2.8);
+    wall(layers.walls,8.21,5.2,0,5.2,2.8); wall(layers.walls,0,5.2,0,0,2.8);
+    // Парная, душевая, санузел и предбанник — предварительная разбивка по размерным цепочкам листа 04.
+    partition(layers.partitions,0,2.0,3.18,2.0); partition(layers.partitions,3.18,0,3.18,3.5);
+    partition(layers.partitions,0,3.5,3.18,3.5); partition(layers.partitions,1.18,2.0,1.18,3.5);
+    partition(layers.partitions,3.18,3.5,4.25,3.5); partition(layers.partitions,4.25,3.5,4.25,5.2);
+    panel(layers.openings,4.1,.02,3,2.55,0,0,'glass');
+    panel(layers.openings,6.55,.02,2.4,1.45,0,1.1,'glass');
+    panel(layers.openings,8.18,2.6,.95,2.55,Math.PI/2,0,'door');
+
+    // Открытая терраса между баней и гаражом.
+    plate(layers.slab,3.389,5.2,9.9045,2.6,-.35);
+    for(let bx=8.4; bx<11.6; bx+=.68) box(layers.beams,bx,2.89,2.6,.095,.2,5.0,mat.beam);
+    box(layers.roof,9.9045,3.04,2.6,3.65,.09,5.55,mat.roof,true);
+
+    // Левое крыло: хозблок/раздевалка, общий габарит 5,20 × 11,142 м.
+    const left=makeWing({name:'left',w:5.2,d:11.142,x:0,z:5.05,rot:-THREE.MathUtils.degToRad(27),h:2.8});
+    partition(left.root,0,4.9,5.2,4.9); // metadata only; visible partitions created below in aligned proxy
+    const lp=new THREE.Group(); lp.position.set(0,0,5.05); lp.rotation.y=-THREE.MathUtils.degToRad(27);
+    partition(lp,0,4.9,5.2,4.9); partition(lp,0,7.9,5.2,7.9); partition(lp,2.0,4.9,2.0,7.9);
+    layers.partitions.add(lp);
+    const lo=new THREE.Group(); lo.position.set(0,0,5.05); lo.rotation.y=-THREE.MathUtils.degToRad(27);
+    panel(lo,2.6,.02,2.0,2.0,0,0,'door'); panel(lo,5.17,6.0,2.0,.75,Math.PI/2,1.05,'glass');
+    layers.openings.add(lo);
+
+    // Правое крыло: гараж и комната хранения, 7,60 × 9,70 м.
+    const right=makeWing({name:'right',w:7.6,d:9.7,x:11.55,z:5.05,rot:THREE.MathUtils.degToRad(26),h:2.55,floor:-.2});
+    const rp=new THREE.Group(); rp.position.set(11.55,0,5.05); rp.rotation.y=THREE.MathUtils.degToRad(26);
+    partition(rp,0,2.3,3.0,2.3,.2,.3); partition(rp,3.0,0,3.0,2.3,2.55,.3); layers.partitions.add(rp);
+    const ro=new THREE.Group(); ro.position.set(11.55,0,5.05); ro.rotation.y=THREE.MathUtils.degToRad(26);
+    panel(ro,3.8,.02,3.5,2.7,0,-.05,'door'); panel(ro,7.57,3.6,1.5,.75,Math.PI/2,1.3,'glass'); panel(ro,7.57,6.6,1.5,.75,Math.PI/2,1.3,'glass');
+    layers.openings.add(ro);
+
+    // Размерная сетка 1 м и отметка нуля.
+    const grid=new THREE.GridHelper(50,50,0x72827a,0x26322d); grid.position.set(4,-.31,7); grid.material.opacity=.24; grid.material.transparent=true; scene.add(grid);
+    const ground=new THREE.Mesh(new THREE.PlaneGeometry(90,90),new THREE.MeshStandardMaterial({color:0x0b1512,roughness:1}));
+    ground.rotation.x=-Math.PI/2; ground.position.y=-.33; ground.receiveShadow=true; scene.add(ground);
+
+    layers.beams.visible=false; layers.roof.visible=false;
+    document.querySelectorAll('[data-layer]').forEach(input=>input.addEventListener('change',()=>{ layers[input.dataset.layer].visible=input.checked; }));
+
+    const views={
+      iso:{pos:[24,23,28],target:[5,.8,7]},
+      top:{pos:[5,42,7],target:[5,0,7]},
+      front:{pos:[5,7,38],target:[5,1,7]}
+    };
+    function setView(name){
+      const v=views[name]; camera.position.fromArray(v.pos); controls.target.fromArray(v.target); controls.update();
+      document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name));
+    }
+    document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+
+    function resize(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); }
+    addEventListener('resize',resize);
+    renderer.setAnimationLoop(()=>{ controls.update(); renderer.render(scene,camera); });
+  </script>
+</body>
+</html>
